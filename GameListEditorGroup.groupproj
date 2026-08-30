@@ -3,10 +3,13 @@
         <ProjectGuid>{3EAACEF8-1132-447A-83B6-879C966ED2A9}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="GameListEditor.dproj">
+        <Projects Include="FMX\GameListEditorFMX.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="pkg_windowsmediaplayer.dproj">
+        <Projects Include="FMX\VLC\VLCPlayer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DX.Pdfium4D\src\PdfViewer\DX.PdfViewer.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -17,32 +20,41 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="GameListEditor">
-        <MSBuild Projects="GameListEditor.dproj"/>
+    <Target Name="GameListEditorFMX">
+        <MSBuild Projects="FMX\GameListEditorFMX.dproj"/>
     </Target>
-    <Target Name="GameListEditor:Clean">
-        <MSBuild Projects="GameListEditor.dproj" Targets="Clean"/>
+    <Target Name="GameListEditorFMX:Clean">
+        <MSBuild Projects="FMX\GameListEditorFMX.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="GameListEditor:Make">
-        <MSBuild Projects="GameListEditor.dproj" Targets="Make"/>
+    <Target Name="GameListEditorFMX:Make">
+        <MSBuild Projects="FMX\GameListEditorFMX.dproj" Targets="Make"/>
     </Target>
-    <Target Name="pkg_windowsmediaplayer">
-        <MSBuild Projects="pkg_windowsmediaplayer.dproj"/>
+    <Target Name="VLCPlayer">
+        <MSBuild Projects="FMX\VLC\VLCPlayer.dproj"/>
     </Target>
-    <Target Name="pkg_windowsmediaplayer:Clean">
-        <MSBuild Projects="pkg_windowsmediaplayer.dproj" Targets="Clean"/>
+    <Target Name="VLCPlayer:Clean">
+        <MSBuild Projects="FMX\VLC\VLCPlayer.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="pkg_windowsmediaplayer:Make">
-        <MSBuild Projects="pkg_windowsmediaplayer.dproj" Targets="Make"/>
+    <Target Name="VLCPlayer:Make">
+        <MSBuild Projects="FMX\VLC\VLCPlayer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DX_PdfViewer">
+        <MSBuild Projects="DX.Pdfium4D\src\PdfViewer\DX.PdfViewer.dproj"/>
+    </Target>
+    <Target Name="DX_PdfViewer:Clean">
+        <MSBuild Projects="DX.Pdfium4D\src\PdfViewer\DX.PdfViewer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DX_PdfViewer:Make">
+        <MSBuild Projects="DX.Pdfium4D\src\PdfViewer\DX.PdfViewer.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="GameListEditor;pkg_windowsmediaplayer"/>
+        <CallTarget Targets="GameListEditorFMX;VLCPlayer;DX_PdfViewer"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="GameListEditor:Clean;pkg_windowsmediaplayer:Clean"/>
+        <CallTarget Targets="GameListEditorFMX:Clean;VLCPlayer:Clean;DX_PdfViewer:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="GameListEditor:Make;pkg_windowsmediaplayer:Make"/>
+        <CallTarget Targets="GameListEditorFMX:Make;VLCPlayer:Make;DX_PdfViewer:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

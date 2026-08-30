@@ -1,0 +1,461 @@
+object Frm_Help: TFrm_Help
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  Caption = 'Help'
+  ClientHeight = 516
+  ClientWidth = 869
+  Padding.Left = 8.000000000000000000
+  Padding.Top = 8.000000000000000000
+  Padding.Right = 8.000000000000000000
+  Padding.Bottom = 8.000000000000000000
+  Position = ScreenCenter
+  StyleBook = FormMain.StyleBookWinUI3
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop, iPhone, iPad]
+  OnCreate = FormCreate
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object Red_Help: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    Caret.Color = x00FFFFFF
+    DataDetectorTypes = []
+    Lines.Strings = (
+      'Choose your folder:'
+      'Select the folder where your systems folders are stored.'
+      'It can be on your PC or on your Raspberry Pi.'
+      ''
+      
+        'If you choose a folder on the Pi, you will be prompted with a me' +
+        'ssage explaining that EmulationStation will be stopped in order ' +
+        'to save your changes to the gamelist.xml.'
+      
+        'When you close the application, Recalbox/Retropie will be reboot' +
+        'ed to reflect your changes.'
+      ''
+      'You have to check the box of a field to enable its modification.'
+      
+        'It is done on purpose, to avoid accidentally changing fields con' +
+        'tent.'
+      ''
+      'Enable God Mode:'
+      
+        'Enabling this option will let you delete games directly from the' +
+        ' application.'
+      'A delete button will be added to the GUI.'
+      
+        'You will be prompted to confirm when you click on the delete but' +
+        'ton.'
+      
+        'Deleting a game will remove its entry from the gamelist, delete ' +
+        'the matching picture and video,and delete the file from your fol' +
+        'der.'
+      ''
+      'Delete without prompt:'
+      
+        'Enabling this option will disable the prompt to confirm when you' +
+        ' delete a game.'
+      'Use with caution.'
+      ''
+      'Disable Pi prompts:'
+      
+        'Checking this option will disable all the prompts related to the' +
+        ' EmulationStation stop and the Recalbox/Retropie reboot.'
+      ''
+      'Auto Hash:'
+      
+        'Enabling this option will Auto hash the files when you click on ' +
+        'More Infos.'
+      
+        'Do this if you have a powerful computer or if your systems only ' +
+        'contain small roms.'
+      'Hashing files can be very slow so use it with caution.'
+      
+        'If you do not enable this option, you will be prompted to hash o' +
+        'r not the file when you click on More Infos.'
+      ''
+      'Show tips at start:'
+      
+        'Enabling this option will show the help window on application st' +
+        'art.'
+      
+        'You can disable the help window for the next launches, by disabl' +
+        'ing this option or by checking the box "Don'#39't show again" in the' +
+        ' help window, before closing it.'
+      ''
+      'Use Genesis logo:'
+      
+        'This will let you use the Genesis logo and name instead of Megad' +
+        'rive.'
+      ''
+      'SSH / Configuration:'
+      
+        'Open a new popup window where you can set your Login and Passwor' +
+        'd for Recalbox/Retropie.'
+      
+        'Filled with default values at first launch, your settings will b' +
+        'e saved afterwards.'
+      ''
+      'System - Convert to lowercase:'
+      
+        'Will convert all the text to lowercase for the whole selected sy' +
+        'stem (every game will be converted).'
+      ''
+      'System - Convert to uppercase:'
+      
+        'Will convert all the text to uppercase for the whole selected sy' +
+        'stem (every game will be converted).'
+      ''
+      'System - Remove region from games names:'
+      
+        'Will remove the region tag in the name (i.e [xxxx]) for every ga' +
+        'me of the selected system.'
+      ''
+      'System - Delete orphans from gamelist :'
+      
+        'Will remove from the gamelist.xml all the games that are not "ph' +
+        'ysically" present on your drive.'
+      
+        'Orphan means the game is listed in the gamelist.xml, but the ass' +
+        'ociated rom no longer exists.'
+      ''
+      'System - Delete duplicates from gamelist :'
+      
+        'Will remove all duplicates (same games that are listed 2 times o' +
+        'r more) from the gamelist.xml'
+      ''
+      'Game - Convert to lowercase:'
+      'Will convert all the text to lowercase for the selected game.'
+      ''
+      'Game - Convert to uppercase:'
+      'Will convert all the text to uppercase for the selected game.'
+      '')
+    ReadOnly = True
+    TextSettings.WordWrap = True
+    Align = Client
+    Cursor = crDefault
+    Size.Width = 853.000000000000000000
+    Size.Height = 450.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'memostyle_clear'
+    TabOrder = 0
+    Visible = False
+    Viewport.Width = 823.000000000000000000
+    Viewport.Height = 438.000000000000000000
+  end
+  object Layout1: TLayout
+    Align = Bottom
+    Padding.Left = 9.000000000000000000
+    Padding.Top = 9.000000000000000000
+    Padding.Right = 9.000000000000000000
+    Padding.Bottom = 9.000000000000000000
+    Position.X = 8.000000000000000000
+    Position.Y = 458.000000000000000000
+    Size.Width = 853.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Chk_ShowTips: TCheckBox
+      Align = Left
+      Position.X = 9.000000000000000000
+      Position.Y = 9.000000000000000000
+      Size.Width = 105.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Don'#39't show again'
+    end
+    object Btn_Close: TButton
+      Align = Right
+      Position.X = 769.000000000000000000
+      Position.Y = 9.000000000000000000
+      Size.Width = 75.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Close'
+      OnClick = Btn_CloseClick
+    end
+  end
+  object PixieMarkdownView1: TPixieMarkdownView
+    UserCss = 
+      '/* ========================================='#13#10'   Dark README The' +
+      'me'#13#10'   ========================================= */'#13#10#13#10':root {'#13#10 +
+      '    color-scheme: dark;'#13#10#13#10'    --bg: #111318;'#13#10'    --bg-secondar' +
+      'y: #181b21;'#13#10'    --bg-tertiary: #20242c;'#13#10#13#10'    --text: #e6e8eb;' +
+      #13#10'    --text-secondary: #a9afb9;'#13#10'    --text-muted: #7f8793;'#13#10#13#10 +
+      '    --border: #303641;'#13#10#13#10'    --accent: #5aa9ff;'#13#10'    --accent-h' +
+      'over: #78b9ff;'#13#10#13#10'    --warning-bg: #332b18;'#13#10'    --warning-bord' +
+      'er: #66521e;'#13#10'    --warning-text: #e8c96a;'#13#10#13#10'    --code-bg: #19' +
+      '1c22;'#13#10'    --code-border: #2c313a;'#13#10#13#10'    --blockquote-border: #' +
+      '4b5360;'#13#10'}'#13#10#13#10#13#10'/* -----------------------------------------'#13#10'  ' +
+      ' Base'#13#10'   ----------------------------------------- */'#13#10#13#10'body {' +
+      #13#10'    margin: 0;'#13#10'    padding: 40px;'#13#10'    background: var(--bg);' +
+      #13#10'    color: var(--text);'#13#10#13#10'    font-family:'#13#10'        -apple-sy' +
+      'stem,'#13#10'        BlinkMacSystemFont,'#13#10'        "Segoe UI",'#13#10'       ' +
+      ' Roboto,'#13#10'        Helvetica,'#13#10'        Arial,'#13#10'        sans-serif' +
+      ';'#13#10#13#10'    font-size: 15px;'#13#10'    line-height: 1.65;'#13#10'}'#13#10#13#10#13#10'/* ---' +
+      '--------------------------------------'#13#10'   Main content'#13#10'   ----' +
+      '------------------------------------- */'#13#10#13#10'.markdown-body {'#13#10'  ' +
+      '  max-width: 900px;'#13#10'    margin: 0 auto;'#13#10'}'#13#10#13#10#13#10'/* ------------' +
+      '-----------------------------'#13#10'   Headings'#13#10'   -----------------' +
+      '------------------------ */'#13#10#13#10'h1,'#13#10'h2,'#13#10'h3,'#13#10'h4 {'#13#10'    color: #' +
+      'f3f4f6;'#13#10'    font-weight: 600;'#13#10'    line-height: 1.3;'#13#10'}'#13#10#13#10'h1 {' +
+      #13#10'    margin-top: 0;'#13#10'    padding-bottom: 12px;'#13#10'    border-bott' +
+      'om: 1px solid var(--border);'#13#10#13#10'    font-size: 32px;'#13#10'}'#13#10#13#10'h2 {'#13 +
+      #10'    margin-top: 42px;'#13#10'    padding-bottom: 8px;'#13#10'    border-bot' +
+      'tom: 1px solid var(--border);'#13#10#13#10'    font-size: 24px;'#13#10'}'#13#10#13#10'h3 {' +
+      #13#10'    margin-top: 30px;'#13#10'    font-size: 19px;'#13#10'}'#13#10#13#10'h4 {'#13#10'    fo' +
+      'nt-size: 16px;'#13#10'}'#13#10#13#10#13#10'/* --------------------------------------' +
+      '---'#13#10'   Text'#13#10'   ----------------------------------------- */'#13#10#13 +
+      #10'p {'#13#10'    color: var(--text);'#13#10'}'#13#10#13#10'strong {'#13#10'    color: #ffffff' +
+      ';'#13#10'    font-weight: 600;'#13#10'}'#13#10#13#10#13#10'/* ----------------------------' +
+      '-------------'#13#10'   Links'#13#10'   ------------------------------------' +
+      '----- */'#13#10#13#10'a {'#13#10'    color: var(--accent);'#13#10'    text-decoration:' +
+      ' none;'#13#10'}'#13#10#13#10'a:hover {'#13#10'    color: var(--accent-hover);'#13#10'    tex' +
+      't-decoration: underline;'#13#10'}'#13#10#13#10#13#10'/* ----------------------------' +
+      '-------------'#13#10'   Lists'#13#10'   ------------------------------------' +
+      '----- */'#13#10#13#10'ul,'#13#10'ol {'#13#10'    padding-left: 28px;'#13#10'}'#13#10#13#10'li {'#13#10'    m' +
+      'argin: 5px 0;'#13#10'}'#13#10#13#10'li::marker {'#13#10'    color: var(--text-muted);'#13 +
+      #10'}'#13#10#13#10#13#10'/* -----------------------------------------'#13#10'   Code'#13#10' ' +
+      '  ----------------------------------------- */'#13#10#13#10'code {'#13#10'    pa' +
+      'dding: 2px 6px;'#13#10#13#10'    background: var(--code-bg);'#13#10'    border: ' +
+      '1px solid var(--code-border);'#13#10'    border-radius: 5px;'#13#10#13#10'    co' +
+      'lor: #d9dee7;'#13#10#13#10'    font-family:'#13#10'        "JetBrains Mono",'#13#10'  ' +
+      '      "Cascadia Code",'#13#10'        Consolas,'#13#10'        monospace;'#13#10#13 +
+      #10'    font-size: 0.9em;'#13#10'}'#13#10#13#10'pre {'#13#10'    margin: 20px 0;'#13#10'    pad' +
+      'ding: 18px 20px;'#13#10#13#10'    overflow-x: auto;'#13#10#13#10'    background: var' +
+      '(--code-bg);'#13#10'    border: 1px solid var(--code-border);'#13#10'    bor' +
+      'der-radius: 8px;'#13#10#13#10'    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2)' +
+      ';'#13#10'}'#13#10#13#10'pre code {'#13#10'    padding: 0;'#13#10#13#10'    background: transpare' +
+      'nt;'#13#10'    border: 0;'#13#10#13#10'    color: #d9dee7;'#13#10#13#10'    font-size: 13p' +
+      'x;'#13#10'    line-height: 1.6;'#13#10'}'#13#10#13#10#13#10'/* ---------------------------' +
+      '--------------'#13#10'   Blockquotes'#13#10'   -----------------------------' +
+      '------------ */'#13#10#13#10'blockquote {'#13#10'    margin: 20px 0;'#13#10'    paddin' +
+      'g: 10px 18px;'#13#10#13#10'    background: var(--bg-secondary);'#13#10'    borde' +
+      'r-left: 4px solid var(--blockquote-border);'#13#10#13#10'    color: var(--' +
+      'text-secondary);'#13#10'}'#13#10#13#10'blockquote p {'#13#10'    margin: 0;'#13#10'    color' +
+      ': var(--text-secondary);'#13#10'}'#13#10#13#10#13#10'/* ----------------------------' +
+      '-------------'#13#10'   Warning blocks'#13#10'   ---------------------------' +
+      '-------------- */'#13#10#13#10'blockquote strong:first-child {'#13#10'    color:' +
+      ' var(--warning-text);'#13#10'}'#13#10#13#10#13#10'/* -------------------------------' +
+      '----------'#13#10'   Horizontal rule'#13#10'   -----------------------------' +
+      '------------ */'#13#10#13#10'hr {'#13#10'    height: 1px;'#13#10'    margin: 35px 0;'#13#10 +
+      #13#10'    border: 0;'#13#10'    background: var(--border);'#13#10'}'#13#10#13#10#13#10'/* ----' +
+      '-------------------------------------'#13#10'   Tables'#13#10'   -----------' +
+      '------------------------------ */'#13#10#13#10'table {'#13#10'    width: 100%;'#13#10 +
+      '    margin: 20px 0;'#13#10#13#10'    border-collapse: collapse;'#13#10#13#10'    bac' +
+      'kground: var(--bg-secondary);'#13#10'}'#13#10#13#10'th,'#13#10'td {'#13#10'    padding: 10px' +
+      ' 14px;'#13#10#13#10'    border: 1px solid var(--border);'#13#10#13#10'    text-align' +
+      ': left;'#13#10'}'#13#10#13#10'th {'#13#10'    background: var(--bg-tertiary);'#13#10'    col' +
+      'or: #f1f3f5;'#13#10'    font-weight: 600;'#13#10'}'#13#10#13#10'td {'#13#10'    color: var(-' +
+      '-text-secondary);'#13#10'}'#13#10#13#10#13#10'/* -----------------------------------' +
+      '------'#13#10'   Images'#13#10'   ----------------------------------------- ' +
+      '*/'#13#10#13#10'img {'#13#10'    max-width: 100%;'#13#10'    height: auto;'#13#10#13#10'    bord' +
+      'er-radius: 8px;'#13#10'}'#13#10#13#10#13#10'/* -------------------------------------' +
+      '----'#13#10'   Selection'#13#10'   -----------------------------------------' +
+      ' */'#13#10#13#10'::selection {'#13#10'    background: #315d91;'#13#10'    color: #ffff' +
+      'ff;'#13#10'}'#13#10#13#10#13#10'/* -----------------------------------------'#13#10'   Scr' +
+      'ollbar'#13#10'   ----------------------------------------- */'#13#10#13#10'::-we' +
+      'bkit-scrollbar {'#13#10'    width: 10px;'#13#10'    height: 10px;'#13#10'}'#13#10#13#10'::-w' +
+      'ebkit-scrollbar-track {'#13#10'    background: var(--bg);'#13#10'}'#13#10#13#10'::-web' +
+      'kit-scrollbar-thumb {'#13#10'    background: #363c46;'#13#10'    border-radi' +
+      'us: 5px;'#13#10'}'#13#10#13#10'::-webkit-scrollbar-thumb:hover {'#13#10'    background' +
+      ': #464e5b;'#13#10'}'#13#10#13#10#13#10'/* -----------------------------------------'#13 +
+      #10'   Responsive'#13#10'   ----------------------------------------- */'#13 +
+      #10#13#10'@media (max-width: 700px) {'#13#10#13#10'    body {'#13#10'        padding: 2' +
+      '0px;'#13#10'        font-size: 14px;'#13#10'    }'#13#10#13#10'    h1 {'#13#10'        font-' +
+      'size: 27px;'#13#10'    }'#13#10#13#10'    h2 {'#13#10'        font-size: 21px;'#13#10'    }'#13 +
+      #10#13#10'    pre {'#13#10'        padding: 14px;'#13#10'    }'#13#10'}'
+    Zoom = 1.000000000000000000
+    Align = Client
+    Size.Width = 853.000000000000000000
+    Size.Height = 450.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Markdown.Strings = (
+      '## '#55357#56513' Choose Your Folder'
+      ''
+      'Select the folder where your system folders are stored.'
+      ''
+      'The folder can be located:'
+      ''
+      '* On your **PC**'
+      '* On your **Raspberry Pi**'
+      ''
+      '### Raspberry Pi'
+      ''
+      
+        'If you select a folder on the Raspberry Pi, you will be prompted' +
+        ' with a message explaining that **EmulationStation will be stopp' +
+        'ed** in order to save your changes to `gamelist.xml`.'
+      ''
+      
+        'When you close the application, **Recalbox/RetroPie will be rebo' +
+        'oted** so that your changes take effect.'
+      ''
+      '---'
+      ''
+      '## '#9999#65039' Editing Fields'
+      ''
+      
+        'To modify a field, you must first **check the checkbox next to i' +
+        't**.'
+      ''
+      
+        'This is intentional and prevents accidentally changing the conte' +
+        'nts of fields.'
+      ''
+      '---'
+      ''
+      '## '#9881#65039' Options'
+      ''
+      '### Enable God Mode'
+      ''
+      
+        'Enables the ability to **delete games directly from the applicat' +
+        'ion**.'
+      ''
+      
+        'A **Delete** button will be added to the interface. When clicked' +
+        ', you will be asked to confirm the deletion.'
+      ''
+      'Deleting a game will:'
+      ''
+      '* Remove its entry from `gamelist.xml`'
+      '* Delete the associated picture'
+      '* Delete the associated video'
+      '* Delete the ROM file from your folder'
+      ''
+      
+        '> '#9888#65039' **Warning:** Deleted files cannot be recovered by the appli' +
+        'cation.'
+      ''
+      '### Delete Without Prompt'
+      ''
+      'Disables the confirmation dialog when deleting a game.'
+      ''
+      '> '#9888#65039' **Use with caution.**'
+      ''
+      '### Disable Pi Prompts'
+      ''
+      'Disables all confirmation messages related to:'
+      ''
+      '* Stopping EmulationStation'
+      '* Rebooting Recalbox/RetroPie'
+      ''
+      '### Auto Hash'
+      ''
+      'Automatically hashes ROM files when you click **More Infos**.'
+      ''
+      
+        'Recommended if you have a powerful computer or if your systems c' +
+        'ontain mostly small ROM files.'
+      ''
+      
+        '> '#9888#65039' Hashing can be **very slow**, especially for large files. U' +
+        'se this option with caution.'
+      ''
+      
+        'If this option is disabled, you will be asked whether you want t' +
+        'o hash the file when clicking **More Infos**.'
+      ''
+      '### Show Tips at Start'
+      ''
+      'Shows the help window when the application starts.'
+      ''
+      'You can disable it in either of two ways:'
+      ''
+      '1. Disable **Show tips at start**.'
+      
+        '2. Check **Don'#39't show again** in the help window before closing ' +
+        'it.'
+      ''
+      '### Use Genesis Logo'
+      ''
+      'Uses the **Genesis** logo and name instead of **Mega Drive**.'
+      ''
+      '---'
+      ''
+      '## '#55357#56592' SSH / Configuration'
+      ''
+      
+        'Opens a popup window where you can configure the **Login** and *' +
+        '*Password** used to connect to Recalbox/RetroPie.'
+      ''
+      
+        'Default values are filled in on the first launch. Your settings ' +
+        'will be saved for subsequent launches.'
+      ''
+      '---'
+      ''
+      '# '#55357#57056#65039' System Operations'
+      ''
+      
+        'The following operations apply to **all games in the currently s' +
+        'elected system**.'
+      ''
+      '### Convert to Lowercase'
+      ''
+      
+        'Converts all text to lowercase for every game in the selected sy' +
+        'stem.'
+      ''
+      '### Convert to Uppercase'
+      ''
+      
+        'Converts all text to uppercase for every game in the selected sy' +
+        'stem.'
+      ''
+      '### Remove Region from Game Names'
+      ''
+      'Removes region tags from game names.'
+      ''
+      'For example:'
+      ''
+      '```text'
+      'Super Mario World [USA]'
+      '```'
+      ''
+      'becomes:'
+      ''
+      '```text'
+      'Super Mario World'
+      '```'
+      ''
+      '### Delete Orphans from Gamelist'
+      ''
+      
+        'Removes games from `gamelist.xml` that are no longer physically ' +
+        'present on your drive.'
+      ''
+      
+        'An **orphan** is a game that is listed in `gamelist.xml`, but wh' +
+        'ose associated ROM file no longer exists.'
+      ''
+      '### Delete Duplicates from Gamelist'
+      ''
+      'Removes duplicate game entries from `gamelist.xml`.'
+      ''
+      
+        'If the same game is listed two or more times, only one entry wil' +
+        'l remain.'
+      ''
+      '---'
+      ''
+      '# '#55356#57262' Game Operations'
+      ''
+      
+        'The following operations apply only to the **currently selected ' +
+        'game**.'
+      ''
+      '### Convert to Lowercase'
+      ''
+      'Converts all text to lowercase for the selected game.'
+      ''
+      '### Convert to Uppercase'
+      ''
+      'Converts all text to uppercase for the selected game.')
+  end
+end

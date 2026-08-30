@@ -1,0 +1,248 @@
+object FormAdvNameEditor: TFormAdvNameEditor
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = Single
+  Caption = 'Advanced Name Editor'
+  ClientHeight = 435
+  ClientWidth = 663
+  Position = ScreenCenter
+  StyleBook = FormMain.StyleBookWinUI3
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop, iPhone, iPad]
+  OnCreate = FormCreate
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object Btn_Apply: TButton
+    ModalResult = 1
+    Position.X = 498.000000000000000000
+    Position.Y = 395.000000000000000000
+    Size.Width = 75.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'buttonstyle_accent'
+    TabOrder = 0
+    Text = 'Apply'
+  end
+  object Btn_Cancel: TButton
+    ModalResult = 2
+    Position.X = 581.000000000000000000
+    Position.Y = 395.000000000000000000
+    Size.Width = 75.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'Cancel'
+  end
+  object Panel1: TPanel
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 250.000000000000000000
+    Size.Height = 130.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object Lbl_Characters: TLabel
+      Enabled = False
+      Position.X = 57.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 197.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'characters at the beginning.'
+      TabOrder = 7
+    end
+    object Lbl_EndChars: TLabel
+      Enabled = False
+      Position.X = 57.000000000000000000
+      Position.Y = 84.000000000000000000
+      Size.Width = 197.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'characters at the end.'
+      TabOrder = 8
+    end
+    object Chk_DeleteChars: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 97.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Delete'
+      OnChange = Chk_DeleteCharsChange
+    end
+    object NumberBoxChars: TNumberBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 10
+      Cursor = crIBeam
+      Max = 9999.000000000000000000
+      Position.X = 8.000000000000000000
+      Position.Y = 44.000000000000000000
+      Enabled = False
+      Size.Width = 41.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      OnChangeTracking = Chk_DeleteCharsChange
+    end
+    object NumberBoxCharsEnd: TNumberBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 9
+      Cursor = crIBeam
+      Max = 9999.000000000000000000
+      Position.X = 8.000000000000000000
+      Position.Y = 84.000000000000000000
+      Enabled = False
+      Size.Width = 41.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      OnChangeTracking = Chk_DeleteCharsChange
+    end
+  end
+  object Panel2: TPanel
+    Position.X = 8.000000000000000000
+    Position.Y = 146.000000000000000000
+    Size.Width = 250.000000000000000000
+    Size.Height = 130.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    object Lbl_Beginning: TLabel
+      Enabled = False
+      Position.X = 121.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 121.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'at the beginning.'
+      TabOrder = 6
+    end
+    object Lbl_End: TLabel
+      Enabled = False
+      Position.X = 121.000000000000000000
+      Position.Y = 84.000000000000000000
+      Size.Width = 112.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'at the end.'
+      TabOrder = 7
+    end
+    object Chk_Add: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 97.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Add'
+      OnChange = Chk_AddChange
+    end
+    object Edt_StartString: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 2
+      Position.X = 8.000000000000000000
+      Position.Y = 44.000000000000000000
+      Enabled = False
+      Size.Width = 105.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      OnChangeTracking = Edt_StartStringChange
+    end
+    object Edt_EndString: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 3
+      Position.X = 8.000000000000000000
+      Position.Y = 84.000000000000000000
+      Enabled = False
+      Size.Width = 105.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      OnChangeTracking = Edt_EndStringChange
+    end
+  end
+  object PanelCase: TPanel
+    Position.X = 8.000000000000000000
+    Position.Y = 284.000000000000000000
+    Size.Width = 250.000000000000000000
+    Size.Height = 143.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    object Chk_Case: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 113.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Case'
+      OnChange = Chk_CaseChange
+    end
+    object RadioButtonFirstChar: TRadioButton
+      Enabled = False
+      GroupName = 'case'
+      IsChecked = True
+      Position.X = 8.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 234.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 37
+      Text = 'Capitalize the first character'
+      OnChange = Chk_CaseChange
+    end
+    object RadioButtonUpper: TRadioButton
+      Enabled = False
+      GroupName = 'case'
+      Position.X = 8.000000000000000000
+      Position.Y = 100.000000000000000000
+      Size.Width = 234.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 36
+      Text = 'Convert to Uppercase'
+      OnChange = Chk_CaseChange
+    end
+    object RadioButtonLower: TRadioButton
+      Enabled = False
+      GroupName = 'case'
+      Position.X = 8.000000000000000000
+      Position.Y = 70.000000000000000000
+      Size.Width = 234.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 35
+      Text = 'Convert to Lowercase'
+      OnChange = Chk_CaseChange
+    end
+  end
+  object Panel4: TPanel
+    Position.X = 270.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 386.000000000000000000
+    Size.Height = 130.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    object Lbl_Preview: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Preview'
+      TabOrder = 1
+    end
+    object MemoPreview: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      ReadOnly = True
+      TextSettings.WordWrap = True
+      Position.X = 8.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 370.000000000000000000
+      Size.Height = 76.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Viewport.Width = 352.000000000000000000
+      Viewport.Height = 64.000000000000000000
+    end
+  end
+end

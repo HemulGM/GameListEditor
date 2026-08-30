@@ -1,0 +1,112 @@
+object Frm_ConfigureSSH: TFrm_ConfigureSSH
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  Caption = 'Configure SSH'
+  ClientHeight = 185
+  ClientWidth = 346
+  Position = ScreenCenter
+  StyleBook = FormMain.StyleBookWinUI3
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop, iPhone, iPad]
+  OnCreate = FormCreate
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object Lbl_RecalLogin: TLabel
+    AutoSize = True
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 120.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Recalbox Login'
+    TabOrder = 6
+  end
+  object Lbl_RecalPwd: TLabel
+    AutoSize = True
+    Position.X = 8.000000000000000000
+    Position.Y = 75.000000000000000000
+    Size.Width = 120.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Recalbox Password'
+    TabOrder = 7
+  end
+  object Lbl_RetroPwd: TLabel
+    AutoSize = True
+    Position.X = 176.000000000000000000
+    Position.Y = 75.000000000000000000
+    Size.Width = 120.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Retropie Password'
+    TabOrder = 8
+  end
+  object Lbl_RetroLogin: TLabel
+    AutoSize = True
+    Position.X = 176.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 120.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Retropie Login'
+    TabOrder = 9
+  end
+  object Edt_RecalLogin: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 0
+    Position.X = 8.000000000000000000
+    Position.Y = 35.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Edt_RecalPwd: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 1
+    Position.X = 8.000000000000000000
+    Position.Y = 102.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Edt_RetroLogin: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    Position.X = 176.000000000000000000
+    Position.Y = 35.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Edt_RetroPwd: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 3
+    Position.X = 176.000000000000000000
+    Position.Y = 102.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Btn_Save: TButton
+    ModalResult = 1
+    Position.X = 178.000000000000000000
+    Position.Y = 142.000000000000000000
+    Size.Width = 75.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Text = 'Save'
+  end
+  object Btn_Cancel: TButton
+    ModalResult = 2
+    Position.X = 261.000000000000000000
+    Position.Y = 142.000000000000000000
+    Size.Width = 75.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Text = 'Cancel'
+  end
+end

@@ -71,3 +71,6 @@ Win32/
 
 #Translation files (unconverted)
 *.po
+*.dsv
+*.delphilsp.json
+/FMX/Linux64/*

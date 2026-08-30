@@ -1,0 +1,12 @@
+[submodule "Libraries/DelphiWinUI3"]
+	path = Libraries/DelphiWinUI3
+	url = https://github.com/HemulGM/DelphiWinUI3
+[submodule "Libraries/VLC"]
+	path = Libraries/VLC
+	url = https://github.com/HemulGM/VLC
+[submodule "Libraries/DX.Pdfium4D"]
+	path = Libraries/DX.Pdfium4D
+	url = https://github.com/HemulGM/DX.Pdfium4D
+[submodule "Libraries/Pixie"]
+	path = Libraries/Pixie
+	url = https://github.com/HemulGM/Pixie

@@ -5,6 +5,8 @@ interface
 uses
   System.SysUtils;
 
+  {$SCOPEDENUMS ON}
+
 resourcestring
   Rst_Title1 = 'Choose your folder :';
   Rst_Help1 = 'Select the folder where your systems folders are stored.' + SlineBreak +
@@ -178,139 +180,97 @@ resourcestring
   Rst_SystemKindOther = 'Other';
 
 type
-   //enumération pour les différents systèmes
-  TSystemKind = (skNES,
-    skSNES,
-    skMasterSystem,
-    skMegaDrive,
-    skNeoGeo,
-    skCPC,
-    skAT2600,
-    skAT7800,
-    skATST,
-    skCS,
-    skFCD,
-    skFBA,
-    skFBALib,
-    skGW,
-    skGBC,
-    skGG,
-    skGB,
-    skGBA,
-    skLU,
-    skLYNX,
-    skMAME,
-    skMSX,
-    skMSX1,
-    skMSX2,
-    skNGP,
-    skNGPC,
-    skN64,
-    skODY,
-    skPCE,
-    skPCECD,
-    skPS,
-    skPRB,
-    skSVM,
-    skS32X,
-    skSCD,
-    skSG1000,
-    skSGFX,
-    skVCX,
-    skVB,
-    skWS,
-    skWSC,
-    skZXS,
-    skZX81,
-    skAM1200,
-    skAM600,
-    skAPPLE,
-    skCV,
-    skC64,
-    skDB,
-    skDC,
-    skGC,
-    skPSP,
-    skWII,
-    skGenesis,
-    sk3do,
-    skAM,
-    skAMCD,
-    skARC,
-    skAT5200,
-    skATLX,
-    skCDTV,
-    skCV2,
-    skDaphne,
-    skGX4000,
-    skIV,
-    skNaomi,
-    skNGCD,
-    skOB,
-    skPorts,
-    skSS,
-    skSNESCD,
-    skX68000,
-    skAW,
-    skTI99,
-    skMSU1,
-    skGW2,
-    skNDS,
-    skODY2,
-    skTG,
-    skTGCD,
-    skPSPM,
-    skOther
+  TSystemKind = (
+    NES,
+    SNES,
+    MasterSystem,
+    MegaDrive,
+    NeoGeo,
+    CPC,
+    AT2600,
+    AT7800,
+    ATST,
+    CS,
+    FCD,
+    FBA,
+    FBALib,
+    GW,
+    GBC,
+    GG,
+    GB,
+    GBA,
+    LU,
+    LYNX,
+    MAME,
+    MSX,
+    MSX1,
+    MSX2,
+    NGP,
+    NGPC,
+    N64,
+    ODY,
+    PCE,
+    PCECD,
+    PS,
+    PRB,
+    SVM,
+    S32X,
+    SCD,
+    SG1000,
+    SGFX,
+    VCX,
+    VB,
+    WS,
+    WSC,
+    ZXS,
+    ZX81,
+    AM1200,
+    AM600,
+    APPLE,
+    CV,
+    C64,
+    DB,
+    DC,
+    GC,
+    PSP,
+    WII,
+    Genesis,
+    N3do,
+    AM,
+    AMCD,
+    ARC,
+    AT5200,
+    ATLX,
+    CDTV,
+    CV2,
+    Daphne,
+    GX4000,
+    IV,
+    Naomi,
+    NGCD,
+    OB,
+    Ports,
+    SS,
+    SNESCD,
+    X68000,
+    AW,
+    TI99,
+    MSU1,
+    GW2,
+    NDS,
+    ODY2,
+    TG,
+    TGCD,
+    PSPM,
+    Other
     );
 
-   //enum pour les langues
-  TLangName = (lnFrench,
-    lnGerman,
-    lnEnglish,
-    lnSpanish,
-    lnPortuguese_BR);
-
-   //enum pour les pays
-  TCountryName = (cnUnd,
-    cnDe,
-    cnAsi,
-    cnAu,
-    cnBr,
-    cnBg,
-    cnCa,
-    cnCl,
-    cnCn,
-    cnAme,
-    cnKr,
-    cnCus,
-    cnDk,
-    cnSp,
-    cnEu,
-    cnFi,
-    cnFr,
-    cnGr,
-    cnHu,
-    cnIl,
-    cnIt,
-    cnJp,
-    cnKw,
-    cnWor,
-    cnMor,
-    cnNo,
-    cnNz,
-    cnOce,
-    cnNl,
-    cnPe,
-    cnPl,
-    cnPt,
-    cnCz,
-    cnUk,
-    cnRu,
-    cnSk,
-    cnSe,
-    cnTw,
-    cnTr,
-    cnUs);
+  TLangName = (
+    French,
+    German,
+    English,
+    Spanish,
+    Portuguese_BR);
 
 const
   Cst_Path = 'path';
@@ -363,6 +323,7 @@ const
   Cst_IniDelWoPrompt = 'DelWoPrompt';
   Cst_IniPiPrompts = 'PiPrompts';
   Cst_ShowTips = 'ShowTips';
+  Cst_OpenLastFolder = 'OpenLastFolder';
   Cst_IniLastPath = 'LastPath';
   Cst_IniGenesisLogo = 'GenesisLogo';
   Cst_IniRecalLogin = 'SSHRecalLogin';
@@ -406,7 +367,7 @@ const
   Cst_SSId = '&ssid=';
   Cst_SSPwd = '&sspassword=';
   Cst_Crc = '&crc=';
-  Cst_SystemId = '&systemid=';
+  Cst_SystemId = '&systemeid=';
   Cst_RomType = '&romtype=rom';
   Cst_RomName = '&romnom=';
   Cst_RomSize = '&romtaille=';
@@ -440,8 +401,6 @@ const
   Cst_MediaArcadeBox1 = 'ssarcademyboxv1';
   Cst_MediaWheel = 'wheel';
   Cst_MediaVideo = 'video';
-
-   //tableau de liaison enum langues / noms langues
   Cst_LangNameStr: array[TLangName] of string =
     ('fr',
     'de',
@@ -718,54 +677,99 @@ const
     '29', '64', '130', '75', '40', '28', '129', '48', '49', '87', '115',
     '56', '70', '214', '135', '22', '210', '79', '53', '205', '210', '52',
     '15', '104', '31', '114', '172', '0');
-  Cst_CountryName: array[TCountryName] of string =
-    ('', 'de', 'asi', 'au', 'br', 'bg', 'ca', 'cl', 'cn', 'ame', 'kr', 'cus',
-    'dk', 'sp', 'eu', 'fi', 'fr', 'gr', 'hu', 'il', 'it', 'jp', 'kw', 'wor',
-    'mor', 'no', 'nz', 'oce', 'nl', 'pe', 'pl', 'pt', 'cz', 'uk', 'ru', 'sk',
-    'se', 'tw', 'tr', 'us');
-  Cst_CountryNameFull: array[TCountryName] of array[1..5] of string =
-    (('', '', '', '', ''),
-    ('Allemagne', 'Deutschland', 'Germany', 'Alemania', 'Alemanha'),
-    ('Asie', 'Asien', 'Asia', 'Asia', 'Ásia'),
-    ('Australie', 'Australien', 'Australia', 'Australia', 'Austrália'),
-    ('Brésil', 'Brasilien', 'Brazil', 'Brasil', 'Brasil'),
-    ('Bulgarie', 'Bulgarien', 'Bulgaria', 'Bulgaria', 'Bulgária'),
-    ('Canada', 'Kanada', 'Canada', 'Canadá', 'Canadá'),
-    ('Chili', 'Chile', 'Chile', 'Chile', 'Chile'),
-    ('Chine', 'China', 'China', 'China', 'China'),
-    ('Continent Américain', 'Amerikanischen Kontinent', 'American continent', 'Continente americano', 'Continente americano'),
-    ('Corée', 'Korea', 'Korea', 'Corea', 'Coreia'),
-    ('Custom', 'Maßgeschneidert', 'Custom', 'Personalizado', 'Personalizadas'),
-    ('Danemark', 'Dänemark', 'Denmark', 'Dinamarca', 'Dinamarca'),
-    ('Espagne', 'Spanien', 'Spain', 'España', 'Espanha'),
-    ('Europe', 'Europa', 'Europe', 'Europa', 'Europa'),
-    ('Finlande', 'Finnland', 'Finland', 'Finlandia', 'Finlândia'),
-    ('France', 'Frankreich', 'France', 'Francia', 'França'),
-    ('Grèce', 'Griechenland', 'Greece', 'Grecia', 'Grécia'),
-    ('Hongrie', 'Ungarn', 'Hungary', 'Hungría', 'Hungria'),
-    ('Israel', 'Israel', 'Israel', 'Israel', 'Israel'),
-    ('Italie', 'Italien', 'Italy', 'Italia', 'Itália'),
-    ('Japon', 'Japan', 'Japan', 'Japón', 'Japão'),
-    ('Koweït', 'Kuwait', 'Kuwait', 'Kuwait', 'Kuweit'),
-    ('Monde', 'World', 'World', 'Mundo', 'Mundo'),
-    ('Moyen-Orient', 'Naher Osten', 'Middle East', 'Medio Oriente', 'Médio Oriente'),
-    ('Norvège', 'Norwegen', 'Norway', 'Noruega', 'Noruega'),
-    ('Nouvelle-Zélande', 'Neuseeland', 'New Zealand', 'Nueva Zelanda', 'Nova Zelândia'),
-    ('Océanie', 'Ozeanien', 'Oceania', 'Oceanía', 'Oceânia'),
-    ('Pays-Bas', 'Niederlande', 'Netherlands', 'Holanda', 'Holanda'),
-    ('Pérou', 'Peru', 'Peru', 'Perú', 'Peru'),
-    ('Pologne', 'Polen', 'Poland', 'Polonia', 'Polônia'),
-    ('Portugal', 'Portugal', 'Portugal', 'Portugal', 'Portugal'),
-    ('République Tchèque', 'Tschechien', 'Czech republic', 'República Checa', 'República Checa'),
-    ('Royaume-Uni', 'Großbritannien', 'United Kingdom', 'Reino Unido', 'Reino Unido'),
-    ('Russie', 'Russland', 'Russia', 'Rusia', 'Rússia'),
-    ('Slovaquie', 'Slowakei', 'Slovakia', 'Eslovaquia', 'Eslováquia'),
-    ('Suede', 'Schweden', 'Sweden', 'Suecia', 'Suécia'),
-    ('Taiwan', 'Taiwan', 'Taiwan', 'Taiwan', 'Taiwan'),
-    ('Turquie', 'Türkei', 'Turkey', 'Turquía', 'Turquia'),
-    ('USA', 'USA', 'USA', 'EUA', 'EUA'));
+
+type
+  TCountryName = (
+    Und, De, Asi, Au, Br, Bg, Ca, Cl, Cn, Ame, Kr, Cus, Dk, Sp, Eu,
+    Fi, Fr, Gr, Hu, Il, It, Jp, Kw, Wor, Mor, No, Nz, Oce, Nl, Pe,
+    Pl, Pt, Cz, Uk, Ru, Sk, Se, Tw, Tr, Us);
+
+  TCountry = record
+    Name: string;
+    Short: string;
+    Enum: TCountryName;
+  end;
+
+const
+  CountryNames: array[TCountryName] of TCountry = (
+    (Name: ''; Short: ''; Enum: TCountryName.Und),
+    (Name: 'Germany'; Short: 'de'; Enum: TCountryName.De),
+    (Name: 'Asia'; Short: 'asi'; Enum: TCountryName.Asi),
+    (Name: 'Australia'; Short: 'au'; Enum: TCountryName.Au),
+    (Name: 'Brazil'; Short: 'br'; Enum: TCountryName.Br),
+    (Name: 'Bulgaria'; Short: 'bg'; Enum: TCountryName.Bg),
+    (Name: 'Canada'; Short: 'ca'; Enum: TCountryName.Ca),
+    (Name: 'Chile'; Short: 'cl'; Enum: TCountryName.Cl),
+    (Name: 'China'; Short: 'cn'; Enum: TCountryName.Cn),
+    (Name: 'American continent'; Short: 'ame'; Enum: TCountryName.Ame),
+    (Name: 'Korea'; Short: 'kr'; Enum: TCountryName.Kr),
+    (Name: 'Custom'; Short: 'cus'; Enum: TCountryName.Cus),
+    (Name: 'Denmark'; Short: 'dk'; Enum: TCountryName.Dk),
+    (Name: 'Spain'; Short: 'sp'; Enum: TCountryName.Sp),
+    (Name: 'Europe'; Short: 'eu'; Enum: TCountryName.Eu),
+    (Name: 'Finland'; Short: 'fi'; Enum: TCountryName.Fi),
+    (Name: 'France'; Short: 'fr'; Enum: TCountryName.Fr),
+    (Name: 'Greece'; Short: 'gr'; Enum: TCountryName.Gr),
+    (Name: 'Hungary'; Short: 'hu'; Enum: TCountryName.Hu),
+    (Name: 'Israel'; Short: 'il'; Enum: TCountryName.Il),
+    (Name: 'Italy'; Short: 'it'; Enum: TCountryName.It),
+    (Name: 'Japan'; Short: 'jp'; Enum: TCountryName.Jp),
+    (Name: 'Kuwait'; Short: 'kw'; Enum: TCountryName.Kw),
+    (Name: 'World'; Short: 'wor'; Enum: TCountryName.Wor),
+    (Name: 'Middle East'; Short: 'mor'; Enum: TCountryName.Mor),
+    (Name: 'Norway'; Short: 'no'; Enum: TCountryName.No),
+    (Name: 'New Zealand'; Short: 'nz'; Enum: TCountryName.Nz),
+    (Name: 'Oceania'; Short: 'oce'; Enum: TCountryName.Oce),
+    (Name: 'Netherlands'; Short: 'nl'; Enum: TCountryName.Nl),
+    (Name: 'Peru'; Short: 'pe'; Enum: TCountryName.Pe),
+    (Name: 'Poland'; Short: 'pl'; Enum: TCountryName.Pl),
+    (Name: 'Portugal'; Short: 'pt'; Enum: TCountryName.Pt),
+    (Name: 'Czech republic'; Short: 'cz'; Enum: TCountryName.Cz),
+    (Name: 'United Kingdom'; Short: 'uk'; Enum: TCountryName.Uk),
+    (Name: 'Russia'; Short: 'ru'; Enum: TCountryName.Ru),
+    (Name: 'Slovakia'; Short: 'sk'; Enum: TCountryName.Sk),
+    (Name: 'Sweden'; Short: 'se'; Enum: TCountryName.Se),
+    (Name: 'Taiwan'; Short: 'tw'; Enum: TCountryName.Tw),
+    (Name: 'Turkey'; Short: 'tr'; Enum: TCountryName.Tr),
+    (Name: 'USA'; Short: 'us'; Enum: TCountryName.Us)
+  );
+
+type
+  TCountryNameHelper = record helper for TCountryName
+    function FullName: string; inline;
+    function ShortName: string; inline;
+  end;
+
+  TSystemKindHelper = record helper for TSystemKind
+    class function Create(const Name: string): TSystemKind; static;
+  end;
 
 implementation
+
+{ TSystemKindHelper }
+
+class function TSystemKindHelper.Create(const Name: string): TSystemKind;
+begin
+  Result := TSystemKind.Other;
+  for var SystemKind := Low(TSystemKind) to High(TSystemKind) do
+    if (Cst_SystemKindFolderNames[SystemKind] = Name.ToLower) then
+    begin
+      Result := SystemKind;
+      Break;
+    end;
+end;
+
+{ TCountryNameHelper }
+
+function TCountryNameHelper.FullName: string;
+begin
+  Result := CountryNames[Self].Name;
+end;
+
+function TCountryNameHelper.ShortName: string;
+begin
+  Result := CountryNames[Self].Short;
+end;
 
 end.
 

@@ -3,13 +3,13 @@ unit GLE.DownloadThread;
 interface
 
 uses
-  System.Classes, System.SysUtils, FMx.Graphics, GLE.Resources, FMX.Objects,
-  System.Net.HttpClientComponent, System.Net.URLClient, System.Net.HttpClient;
+  System.Classes, System.SysUtils, FMX.Graphics, GLE.Resources, FMX.Objects,
+  System.Net.URLClient, System.Net.HttpClient;
 
 type
-  TDOwnThread = class(TThread)
+  TDownloadThread = class(TThread)
   private
-    Net_HTTPClient: TNetHTTPClient;
+    HTTPClient: THTTPClient;
     Img: TImage;
     procedure AddPicture;
   protected
@@ -26,41 +26,29 @@ implementation
 uses
   GLE.Main;
 
-constructor TDOwnThread.Create;
+constructor TDownloadThread.Create;
 begin
   inherited Create(True);
-  Net_HTTPClient := TNetHTTPClient.Create(Net_HTTPClient);
-  if FormMain.FProxyUse then
-  begin
-    Net_HTTPClient.ProxySettings := TProxySettings.Create(
-      FormMain.FProxyServer,
-      StrToInt(FormMain.FProxyPort),
-      FormMain.FProxyUser,
-      FormMain.FProxyPwd);
-  end
-  else
-  begin
-    Net_HTTPClient.ProxySettings := TProxySettings.Create('', 0, '', '');
-  end;
+  HTTPClient := FormMain.CreateHTTPClient;
 
   FreeOnTerminate := True;
   Img := nil;
 end;
 
-destructor TDOwnThread.Destroy;
+destructor TDownloadThread.Destroy;
 begin
-  Net_HTTPClient.Free;
+  HTTPClient.Free;
   inherited;
 end;
 
-procedure TDOwnThread.Execute;
+procedure TDownloadThread.Execute;
 var
   Stream: TBytesStream;
 begin
   Stream := TBytesStream.Create;
   try
     try
-      Net_HTTPClient.Get(Url, Stream);
+      HTTPClient.Get(Url, Stream);
       if (Stream.Size = 0) then
       begin
         FormMain.WarnUser(Rst_StreamError);
@@ -92,7 +80,7 @@ begin
   Synchronize(AddPicture);
 end;
 
-procedure TDOwnThread.AddPicture;
+procedure TDownloadThread.AddPicture;
 begin
   FormMain.FImgList.Add(Img);
 end;

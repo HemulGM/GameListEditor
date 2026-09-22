@@ -10,3 +10,6 @@
 [submodule "Libraries/Pixie"]
 	path = Libraries/Pixie
 	url = https://github.com/HemulGM/Pixie
+[submodule "Libraries/Markdown4D"]
+	path = Libraries/Markdown4D
+	url = https://github.com/GDKsoftware/Markdown4D

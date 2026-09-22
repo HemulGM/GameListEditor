@@ -3,20 +3,14 @@ unit GLE.Game;
 interface
 
 uses
-  System.StrUtils, System.Classes, System.SysUtils, IdHashCRC, GLE.Resources;
+  System.StrUtils, System.Classes, System.SysUtils, IdHashCRC, Xml.XMLIntf,
+  GLE.Resources;
 
 type
-   //Objet stockant uniquement le type système (enum) pour
-   //combobox systems, permet de retrouver facile l'image et le nom du systeme
-  TSystemKindHelper = record helper for TSystemKind
-    class function Create(const Name: string): TSystemKind; static;
-  end;
-
   TGame = class
   private
+    FRootFolder: string;
     FRomPath: string;
-    FRomName: string;
-    FRomNameWoExt: string;
     FImagePath: string;
     FBoxPath: string;
     FVideoPath: string;
@@ -37,22 +31,23 @@ type
     FKidGame: Boolean;
     FHidden: Boolean;
     FFavorite: Boolean;
-    FIsOrphan: Boolean;
-    FPhysicalRomPath: string;
-    FPhysicalImagePath: string;
-    FPhysicalVideoPath: string;
-    FPhysicalBoxPath: string;
     FYear: string;
     FManualPath: string;
-    FPhysicalManualPath: string;
-    procedure Load(aPath, aName, aDescription, aImagePath, aVideoPath, aRating, aDeveloper, aPublisher, aGenre, aPlayers, aDate, aRegion, aPlaycount, aLastplayed, aKidGame, aHidden, aFavorite, aBox, aManual: string);
-    function GetRomName(const aRomPath: string): string;
+    function GetRomNameWoExt: string;
+    function GetRomName: string;
+    function GetIsOrphan: Boolean;
+    function GetPhysicalBoxPath: string;
+    function GetPhysicalImagePath: string;
+    function GetPhysicalManualPath: string;
+    function GetPhysicalRomPath: string;
+    function GetPhysicalVideoPath: string;
+    function GetPhysicalPath(const APath: string): string;
   public
-    constructor Create(aPath, aName, aDescription, aImagePath, aVideoPath, aRating, aDeveloper, aPublisher, aGenre, aPlayers, aDate, aRegion, aPlaycount, aLastplayed, aKidGame, aHidden, aFavorite, aBox, aManual: string); reintroduce;
-
+    constructor Create;
+    class function CreateFrom(const Node: IXMLNode; const ARootFolder: string): TGame;
     property RomPath: string read FRomPath write FRomPath;
-    property RomName: string read FRomName write FRomName;
-    property RomNameWoExt: string read FRomNameWoExt write FRomNameWoExt;
+    property RomName: string read GetRomName;
+    property RomNameWoExt: string read GetRomNameWoExt;
     property ImagePath: string read FImagePath write FImagePath;
     property BoxPath: string read FBoxPath write FBoxPath;
     property VideoPath: string read FVideoPath write FVideoPath;
@@ -74,65 +69,161 @@ type
     property KidGame: Boolean read FKidGame write FKidGame;
     property Hidden: Boolean read FHidden write FHidden;
     property Favorite: Boolean read FFavorite write FFavorite;
-    property IsOrphan: Boolean read FIsOrphan write FIsOrphan;
+    property IsOrphan: Boolean read GetIsOrphan;
     property ManualPath: string read FManualPath write FManualPath;
-    property PhysicalRomPath: string read FPhysicalRomPath write FPhysicalRomPath;
-    property PhysicalImagePath: string read FPhysicalImagePath write FPhysicalImagePath;
-    property PhysicalVideoPath: string read FPhysicalVideoPath write FPhysicalVideoPath;
-    property PhysicalBoxPath: string read FPhysicalBoxPath write FPhysicalBoxPath;
-    property PhysicalManualPath: string read FPhysicalManualPath write FPhysicalManualPath;
+    property PhysicalRomPath: string read GetPhysicalRomPath;
+    property PhysicalImagePath: string read GetPhysicalImagePath;
+    property PhysicalVideoPath: string read GetPhysicalVideoPath;
+    property PhysicalBoxPath: string read GetPhysicalBoxPath;
+    property PhysicalManualPath: string read GetPhysicalManualPath;
 
     function CalculateMd5(const aFileName: string): string;
     function CalculateSha1(const aFileName: string): string;
     function CalculateCrc32(const aFileName: string): string;
   end;
 
+function FormatDateFromString(const aDate: string; out Year: string; aIso: Boolean = False): string;
+
 implementation
 
 uses
-  System.Hash;
+  System.Hash, System.IOUtils, System.RegularExpressions;
 
-constructor TGame.Create(aPath, aName, aDescription, aImagePath, aVideoPath, aRating, aDeveloper, aPublisher, aGenre, aPlayers, aDate, aRegion, aPlaycount, aLastplayed, aKidGame, aHidden, aFavorite, aBox, aManual: string);
+function FormatDateFromString(const ADate: string; out Year: string; AIso: Boolean = False): string;
 begin
-  Load(aPath, aName, aDescription, aImagePath, aVideoPath, aRating,
-    aDeveloper, aPublisher, aGenre, aPlayers, aDate, aRegion, aPlaycount,
-    aLastplayed, aKidGame, aHidden, aFavorite, aBox, aManual);
+  var FullStr := ADate;
+  Result := '';
+
+  if (not AIso) and (FullStr.Contains(Cst_DateSuffix)) then
+  begin
+    SetLength(FullStr, 8);
+    var Day := Copy(FullStr, 7, 2);
+    var Month := Copy(FullStr, 5, 2);
+    Year := Copy(FullStr, 1, 4);
+    var DayInt, MonthInt, YearInt: Integer;
+    if (TryStrToInt(Day, DayInt)) and (DayInt > 0) then
+      Result := Result + Day + '/';
+    if (TryStrToInt(Month, MonthInt)) and (MonthInt > 0) then
+      Result := Result + Month + '/';
+    if (TryStrToInt(Year, YearInt)) and (YearInt > 0) then
+      Result := Result + Year;
+  end
+  else if AIso and (TRegEx.IsMatch(FullStr, '^[0-9]')) then
+  begin
+    if (Length(FullStr) = 4) then
+      Result := FullStr + Cst_DateLongFill + Cst_DateSuffix;
+
+    if (Length(FullStr) = 7) then
+    begin
+      var Month := Copy(FullStr, 1, 2);
+      Year := Copy(FullStr, 4, 4);
+      Result := Year + Month + Cst_DateShortFill + Cst_DateSuffix;
+    end;
+
+    if (Length(FullStr) = 10) then
+    begin
+      var Day := Copy(FullStr, 1, 2);
+      var Month := Copy(FullStr, 4, 2);
+      Year := Copy(FullStr, 7, 4);
+      Result := Year + Month + Day + Cst_DateSuffix;
+    end;
+  end;
 end;
 
-procedure TGame.Load(aPath, aName, aDescription, aImagePath, aVideoPath, aRating, aDeveloper, aPublisher, aGenre, aPlayers, aDate, aRegion, aPlaycount, aLastplayed, aKidGame, aHidden, aFavorite, aBox, aManual: string);
+constructor TGame.Create;
 begin
-  FRomPath := aPath;
-  FRomName := GetRomName(aPath);
-  FRomNameWoExt := ChangeFileExt(FRomName, '');
-  FImagePath := aImagePath;
-  FBoxPath := aBox;
-  FVideoPath := aVideoPath;
-  FName := aName;
-  FDescription := aDescription;
-  FRating := aRating;
-  FReleaseDate := aDate;
-  FDeveloper := aDeveloper;
-  FPublisher := aPublisher;
-  FGenre := aGenre;
-  FPlayers := aPlayers;
-  FRegion := aRegion;
-  FPlaycount := aPlaycount;
-  FLastplayed := aLastplayed;
-  FKidGame := aKidGame = Cst_True;
-  FHidden := aHidden = Cst_True;
-  FFavorite := aFavorite = Cst_True;
-  FManualPath := aManual;
+  inherited;
 end;
 
-function TGame.GetRomName(const aRomPath: string): string;
+function TGame.GetPhysicalPath(const APath: string): string;
 begin
-  var Delim := LastDelimiter('/', aRomPath);
-  Result := Copy(aRomPath, Succ(Delim), (aRomPath.Length - Delim));
+  if APath.IsEmpty then
+    Result := ''
+  else
+  begin
+    Result := TPath.Combine(FRootFolder, APath.Replace('./', ''));
+  end;
+end;
+
+class function TGame.CreateFrom(const Node: IXMLNode; const ARootFolder: string): TGame;
+
+  function GetNodeValue(ANode: IXMLNode; const ANodeName: string): string;
+  begin
+    if Assigned(ANode.ChildNodes.FindNode(ANodeName)) then
+      Result := ANode.ChildNodes.Nodes[ANodeName].Text
+    else
+      Result := '';
+  end;
+
+begin
+  var Year: string;
+  Result := TGame.Create;
+  Result.FRootFolder := ARootFolder;
+  Result.FRomPath := GetNodeValue(Node, Cst_Path);
+  Result.FName := GetNodeValue(Node, Cst_Name);
+  Result.FDescription := GetNodeValue(Node, Cst_Description);
+  Result.FImagePath := GetNodeValue(Node, Cst_ImageLink);
+  Result.FVideoPath := GetNodeValue(Node, Cst_VideoLink);
+  Result.FRating := GetNodeValue(Node, Cst_Rating);
+  Result.FDeveloper := GetNodeValue(Node, Cst_Developer);
+  Result.FPublisher := GetNodeValue(Node, Cst_Publisher);
+  Result.FGenre := GetNodeValue(Node, Cst_Genre);
+  Result.FPlayers := GetNodeValue(Node, Cst_Players);
+  Result.FReleaseDate := FormatDateFromString(GetNodeValue(Node, Cst_ReleaseDate), Year);
+  Result.FRegion := GetNodeValue(Node, Cst_Region);
+  Result.FPlaycount := GetNodeValue(Node, Cst_Playcount);
+  Result.FLastplayed := GetNodeValue(Node, Cst_LastPlayed);
+  Result.FKidGame := GetNodeValue(Node, Cst_KidGame) = Cst_True;
+  Result.FHidden := GetNodeValue(Node, Cst_Hidden) = Cst_True;
+  Result.FFavorite := GetNodeValue(Node, Cst_Favorite) = Cst_True;
+  Result.FBoxPath := GetNodeValue(Node, Cst_BoxLink);
+  Result.FManualPath := GetNodeValue(Node, Cst_ManualLink);
+  Result.Year := Year;
+end;
+
+function TGame.GetIsOrphan: Boolean;
+begin
+  Result := not TFile.Exists(PhysicalRomPath);
+end;
+
+function TGame.GetPhysicalBoxPath: string;
+begin
+  Result := GetPhysicalPath(BoxPath);
+end;
+
+function TGame.GetPhysicalImagePath: string;
+begin
+  Result := GetPhysicalPath(ImagePath);
+end;
+
+function TGame.GetPhysicalManualPath: string;
+begin
+  Result := GetPhysicalPath(ManualPath);
+end;
+
+function TGame.GetPhysicalRomPath: string;
+begin
+  Result := GetPhysicalPath(RomPath);
+end;
+
+function TGame.GetPhysicalVideoPath: string;
+begin
+  Result := GetPhysicalPath(VideoPath);
+end;
+
+function TGame.GetRomName: string;
+begin
+  Result := TPath.GetFileName(FRomPath);
+end;
+
+function TGame.GetRomNameWoExt: string;
+begin
+  Result := TPath.GetFileNameWithoutExtension(FRomPath);
 end;
 
 function TGame.CalculateMd5(const aFileName: string): string;
 begin
-  if FileExists(aFileName) then
+  if TFile.Exists(aFileName) then
     Result := THashMD5.GetHashStringFromFile(aFileName)
   else
     Result := '';
@@ -140,41 +231,25 @@ end;
 
 function TGame.CalculateSha1(const aFileName: string): string;
 begin
-  if FileExists(aFileName) then
+  if TFile.Exists(aFileName) then
     Result := THashSHA1.GetHashStringFromFile(aFileName)
   else
     Result := '';
 end;
 
 function TGame.CalculateCrc32(const aFileName: string): string;
-var
-  IdCRC32: TIdHashCRC32;
-  FS: TFileStream;
 begin
-  if FileExists(aFileName) then
+  if TFile.Exists(aFileName) then
   begin
-    IdCRC32 := TIdHashCRC32.Create;
-    FS := TFileStream.Create(aFileName, fmOpenRead or fmShareDenyWrite);
+    var CRC32 := TIdHashCRC32.Create;
+    var FS := TFileStream.Create(aFileName, fmOpenRead or fmShareDenyWrite);
     try
-      Result := IdCRC32.HashStreamAsHex(FS)
+      Result := CRC32.HashStreamAsHex(FS)
     finally
       FS.Free;
-      IdCRC32.Free;
+      CRC32.Free;
     end;
   end;
-end;
-
-{ TSystemKindHelper }
-
-class function TSystemKindHelper.Create(const Name: string): TSystemKind;
-begin
-  Result := skOther;
-  for var SystemKind := Low(TSystemKind) to High(TSystemKind) do
-    if (Cst_SystemKindFolderNames[SystemKind] = Name.ToLower) then
-    begin
-      Result := SystemKind;
-      Break;
-    end;
 end;
 
 end.

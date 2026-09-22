@@ -166,7 +166,7 @@
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
         <SanitizedProjectName>GameListEditorFMX</SanitizedProjectName>
-        <DCC_UnitSearchPath>..\Libraries\Pixie\source\common;..\Libraries\Pixie\source\htmlview;..\Libraries\Pixie\source\markdown;..\Libraries\Pixie\source\paintbox;..\Libraries\Pixie\source\svgview;..\Libraries\Pixie\source\tagbar;..\Libraries\Pixie\source\webp;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\Libraries\Pixie\source\common;..\Libraries\Pixie\source\htmlview;..\Libraries\Pixie\source\markdown;..\Libraries\Pixie\source\paintbox;..\Libraries\Pixie\source\svgview;..\Libraries\Pixie\source\tagbar;..\Libraries\Pixie\source\webp;..\Libraries\Markdown4D\Source\Core;..\Libraries\Markdown4D\Source\Fmx;..\Libraries\Markdown4D\Source\Layout;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android)'!=''">
         <DCC_UsePackage>fmx;DbxCommonDriver;bindengine;IndyIPCommon;emsclient;IndyProtocols;dbxcds;FmxTeeUI;FireDACSqliteDriver;DbxClientDriver;soapmidas;dbexpress;inet;FireDACDBXDriver;CustomIPTransport;IndySystem;FireDACCommon;emsserverresource;bindcompdbx;rtl;DBXSqliteDriver;DataSnapFireDAC;FireDAC;xmlrtl;dsnap;DataSnapNativeClient;emshosting;FireDACCommonDriver;IndyIPClient;emsedge;bindcompfmx;fmxFireDAC;FMXAudioHGM;DataSnapCommon;fmxase;dbrtl;DBXInterBaseDriver;bindcomp;inetstn;IndyCore;RESTBackendComponents;RESTComponents;IndyIPServer;dsnapxml;DataSnapClient;DataSnapProviderClient;emsclientfiredac;FireDACDSDriver;tethering;CloudService;FMXTee;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
@@ -437,26 +437,14 @@
             <Form>FormMain</Form>
         </DCCReference>
         <DCCReference Include="GLE.Help.pas">
-            <Form>Frm_Help</Form>
+            <Form>FormHelp</Form>
         </DCCReference>
-        <DCCReference Include="GLE.MoreInfos.pas">
-            <Form>FormMorInfos</Form>
-        </DCCReference>
-        <DCCReference Include="GLE.AdvNameEditor.pas">
-            <Form>FormAdvNameEditor</Form>
-        </DCCReference>
-        <DCCReference Include="GLE.ConfigureNetwork.pas">
-            <Form>Frm_Network</Form>
-        </DCCReference>
-        <DCCReference Include="GLE.ConfigureSSH.pas">
-            <Form>Frm_ConfigureSSH</Form>
+        <DCCReference Include="GLE.NameEditor.pas">
+            <Form>FormNameEditor</Form>
         </DCCReference>
         <DCCReference Include="GLE.DownloadThread.pas"/>
         <DCCReference Include="GLE.Game.pas"/>
         <DCCReference Include="GLE.Resources.pas"/>
-        <DCCReference Include="GLE.About.pas">
-            <Form>Frm_About</Form>
-        </DCCReference>
         <DCCReference Include="HGM.FMX.Image.pas"/>
         <DCCReference Include="..\Libraries\DelphiWinUI3\Sources\WinUI3.Dialogs.DataTransferManager.pas"/>
         <DCCReference Include="..\Libraries\DelphiWinUI3\Sources\WinUI3.Dialogs.pas"/>
@@ -464,37 +452,30 @@
         <DCCReference Include="..\Libraries\DelphiWinUI3\Sources\WinUI3.Form.pas"/>
         <DCCReference Include="..\Libraries\DelphiWinUI3\Sources\WinUI3.Frame.Dialog.ColorPicker.pas">
             <Form>FrameDialogColorPicker</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Libraries\DelphiWinUI3\Sources\WinUI3.Frame.Dialog.Font.pas">
             <Form>FrameDialogFont</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Libraries\DelphiWinUI3\Sources\WinUI3.Frame.Dialog.Input.pas">
             <Form>FrameDialogInput</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Libraries\DelphiWinUI3\Sources\WinUI3.Frame.Dialog.pas">
             <Form>FrameDialog</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Libraries\DelphiWinUI3\Sources\WinUI3.Frame.Dialog.Text.pas">
             <Form>FrameDialogText</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Libraries\DelphiWinUI3\Sources\WinUI3.Frame.Inner.Dialog.pas">
             <Form>FrameInnerDialog</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Libraries\DelphiWinUI3\Sources\WinUI3.Frame.Inner.InfoBar.pas">
             <Form>FrameInnerInfoBar</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Libraries\DelphiWinUI3\Sources\WinUI3.Style.pas"/>

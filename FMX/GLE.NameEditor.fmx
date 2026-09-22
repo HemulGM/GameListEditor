@@ -1,4 +1,4 @@
-object FormAdvNameEditor: TFormAdvNameEditor
+object FormNameEditor: TFormNameEditor
   Left = 0
   Top = 0
   BorderIcons = []
@@ -14,7 +14,7 @@ object FormAdvNameEditor: TFormAdvNameEditor
   OnCreate = FormCreate
   OnShow = FormShow
   DesignerMasterStyle = 0
-  object Btn_Apply: TButton
+  object ButtonApply: TButton
     ModalResult = 1
     Position.X = 498.000000000000000000
     Position.Y = 395.000000000000000000
@@ -25,7 +25,7 @@ object FormAdvNameEditor: TFormAdvNameEditor
     TabOrder = 0
     Text = 'Apply'
   end
-  object Btn_Cancel: TButton
+  object ButtonCancel: TButton
     ModalResult = 2
     Position.X = 581.000000000000000000
     Position.Y = 395.000000000000000000
@@ -42,27 +42,27 @@ object FormAdvNameEditor: TFormAdvNameEditor
     Size.Height = 130.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
-    object Lbl_Characters: TLabel
+    object LabelCharacters: TLabel
       Enabled = False
       Position.X = 57.000000000000000000
       Position.Y = 44.000000000000000000
-      Size.Width = 197.000000000000000000
+      Size.Width = 185.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       Text = 'characters at the beginning.'
       TabOrder = 7
     end
-    object Lbl_EndChars: TLabel
+    object LabelEndChars: TLabel
       Enabled = False
       Position.X = 57.000000000000000000
       Position.Y = 84.000000000000000000
-      Size.Width = 197.000000000000000000
+      Size.Width = 185.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       Text = 'characters at the end.'
       TabOrder = 8
     end
-    object Chk_DeleteChars: TCheckBox
+    object CheckBoxDeleteChars: TCheckBox
       Position.X = 8.000000000000000000
       Position.Y = 8.000000000000000000
       Size.Width = 97.000000000000000000
@@ -70,7 +70,7 @@ object FormAdvNameEditor: TFormAdvNameEditor
       Size.PlatformDefault = False
       TabOrder = 1
       Text = 'Delete'
-      OnChange = Chk_DeleteCharsChange
+      OnChange = UpdateChanges
     end
     object NumberBoxChars: TNumberBox
       Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -83,7 +83,8 @@ object FormAdvNameEditor: TFormAdvNameEditor
       Size.Width = 41.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-      OnChangeTracking = Chk_DeleteCharsChange
+      OnChange = UpdateChanges
+      OnChangeTracking = UpdateChanges
     end
     object NumberBoxCharsEnd: TNumberBox
       Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -96,7 +97,8 @@ object FormAdvNameEditor: TFormAdvNameEditor
       Size.Width = 41.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-      OnChangeTracking = Chk_DeleteCharsChange
+      OnChange = UpdateChanges
+      OnChangeTracking = UpdateChanges
     end
   end
   object Panel2: TPanel
@@ -106,7 +108,7 @@ object FormAdvNameEditor: TFormAdvNameEditor
     Size.Height = 130.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
-    object Lbl_Beginning: TLabel
+    object LabelBeginning: TLabel
       Enabled = False
       Position.X = 121.000000000000000000
       Position.Y = 44.000000000000000000
@@ -116,7 +118,7 @@ object FormAdvNameEditor: TFormAdvNameEditor
       Text = 'at the beginning.'
       TabOrder = 6
     end
-    object Lbl_End: TLabel
+    object LabelEnd: TLabel
       Enabled = False
       Position.X = 121.000000000000000000
       Position.Y = 84.000000000000000000
@@ -126,7 +128,7 @@ object FormAdvNameEditor: TFormAdvNameEditor
       Text = 'at the end.'
       TabOrder = 7
     end
-    object Chk_Add: TCheckBox
+    object CheckBoxAdd: TCheckBox
       Position.X = 8.000000000000000000
       Position.Y = 8.000000000000000000
       Size.Width = 97.000000000000000000
@@ -134,9 +136,9 @@ object FormAdvNameEditor: TFormAdvNameEditor
       Size.PlatformDefault = False
       TabOrder = 1
       Text = 'Add'
-      OnChange = Chk_AddChange
+      OnChange = UpdateChanges
     end
-    object Edt_StartString: TEdit
+    object EditStartString: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 2
       Position.X = 8.000000000000000000
@@ -145,9 +147,10 @@ object FormAdvNameEditor: TFormAdvNameEditor
       Size.Width = 105.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-      OnChangeTracking = Edt_StartStringChange
+      OnChange = UpdateChanges
+      OnChangeTracking = UpdateChanges
     end
-    object Edt_EndString: TEdit
+    object EditEndString: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 3
       Position.X = 8.000000000000000000
@@ -156,7 +159,8 @@ object FormAdvNameEditor: TFormAdvNameEditor
       Size.Width = 105.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-      OnChangeTracking = Edt_EndStringChange
+      OnChange = UpdateChanges
+      OnChangeTracking = UpdateChanges
     end
   end
   object PanelCase: TPanel
@@ -166,7 +170,7 @@ object FormAdvNameEditor: TFormAdvNameEditor
     Size.Height = 143.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
-    object Chk_Case: TCheckBox
+    object CheckBoxCase: TCheckBox
       Position.X = 8.000000000000000000
       Position.Y = 8.000000000000000000
       Size.Width = 113.000000000000000000
@@ -174,7 +178,7 @@ object FormAdvNameEditor: TFormAdvNameEditor
       Size.PlatformDefault = False
       TabOrder = 2
       Text = 'Case'
-      OnChange = Chk_CaseChange
+      OnChange = UpdateChanges
     end
     object RadioButtonFirstChar: TRadioButton
       Enabled = False
@@ -187,7 +191,7 @@ object FormAdvNameEditor: TFormAdvNameEditor
       Size.PlatformDefault = False
       TabOrder = 37
       Text = 'Capitalize the first character'
-      OnChange = Chk_CaseChange
+      OnChange = UpdateChanges
     end
     object RadioButtonUpper: TRadioButton
       Enabled = False
@@ -199,7 +203,7 @@ object FormAdvNameEditor: TFormAdvNameEditor
       Size.PlatformDefault = False
       TabOrder = 36
       Text = 'Convert to Uppercase'
-      OnChange = Chk_CaseChange
+      OnChange = UpdateChanges
     end
     object RadioButtonLower: TRadioButton
       Enabled = False
@@ -211,17 +215,17 @@ object FormAdvNameEditor: TFormAdvNameEditor
       Size.PlatformDefault = False
       TabOrder = 35
       Text = 'Convert to Lowercase'
-      OnChange = Chk_CaseChange
+      OnChange = UpdateChanges
     end
   end
   object Panel4: TPanel
-    Position.X = 270.000000000000000000
-    Position.Y = 8.000000000000000000
+    Position.X = 266.000000000000000000
+    Position.Y = 146.000000000000000000
     Size.Width = 386.000000000000000000
     Size.Height = 130.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 5
-    object Lbl_Preview: TLabel
+    object LabelPreview: TLabel
       Position.X = 8.000000000000000000
       Position.Y = 8.000000000000000000
       Size.Width = 120.000000000000000000
@@ -243,6 +247,80 @@ object FormAdvNameEditor: TFormAdvNameEditor
       TabOrder = 2
       Viewport.Width = 352.000000000000000000
       Viewport.Height = 64.000000000000000000
+    end
+  end
+  object Panel3: TPanel
+    Position.X = 266.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 386.000000000000000000
+    Size.Height = 130.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    object CheckBoxReplace: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 113.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Replace'
+      OnChange = UpdateChanges
+    end
+    object EditReplaceFind: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 4
+      Position.X = 96.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 282.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      OnChange = UpdateChanges
+      OnChangeTracking = UpdateChanges
+    end
+    object EditReplace: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 3
+      Position.X = 96.000000000000000000
+      Position.Y = 84.000000000000000000
+      Size.Width = 282.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      OnChange = UpdateChanges
+      OnChangeTracking = UpdateChanges
+    end
+    object LabelReplaceFind: TLabel
+      Enabled = False
+      Position.X = 8.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'find'
+      TabOrder = 8
+    end
+    object LabelReplaceReplace: TLabel
+      Enabled = False
+      Position.X = 8.000000000000000000
+      Position.Y = 84.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'replace'
+      TabOrder = 7
+    end
+    object CheckBoxReplaceCase: TCheckBox
+      Position.X = 168.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 210.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'checkboxstyle_switch_lefttext'
+      TabOrder = 1
+      Text = 'Case sensitivity'
+      TextSettings.HorzAlign = Trailing
+      OnChange = UpdateChanges
     end
   end
 end

@@ -3,19 +3,19 @@
 interface
 
 uses
-  {$IFDEF MSWINDOWS}
-  Winapi.Windows, {$ENDIF} System.SysUtils, System.Variants, System.Classes,
-  System.IniFiles, System.Generics.Collections, System.RegularExpressions,
-  System.UITypes, System.ImageList, System.StrUtils, System.SyncObjs,
-  Xml.omnixmldom, Xml.xmldom, Xml.XMLIntf, Xml.XMLDoc, GLE.MoreInfos, GLE.About,
-  GLE.Help, GLE.ConfigureSSH, GLE.Resources, GLE.Game, GLE.ConfigureNetwork,
-  GLE.AdvNameEditor, GLE.DownloadThread, System.Net.URLClient,
-  System.Net.HttpClient, System.Net.HttpClientComponent, System.Types, FMX.Types,
-  FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Layouts, FMX.StdCtrls, FMX.Memo,
-  FMX.Edit, Data.Bind.Components, FMX.Menus, FMX.ScrollBox, FMX.Memo.Types,
-  FMX.Dialogs, FMX.ImgList, FMX.ListBox, FMX.Objects, FMX.TabControl,
-  FMX.Filter.Effects, FMX.Controls.Presentation, FmxPasLibVlcPlayerUnit,
-  FMX.SearchBox, DX.Pdf.Viewer.FMX, WinUI3.Form, FMX.Colors, FMX.ExtCtrls;
+  System.SysUtils, System.Variants, System.Classes, System.IniFiles,
+  System.Generics.Collections, System.RegularExpressions, System.UITypes,
+  System.ImageList, System.StrUtils, System.SyncObjs, Xml.omnixmldom, Xml.xmldom,
+  Xml.XMLIntf, Xml.XMLDoc, GLE.Help, GLE.Resources, GLE.Game, GLE.NameEditor,
+  GLE.DownloadThread, System.Net.URLClient, System.Net.HttpClient,
+  System.Net.HttpClientComponent, System.Types, FMX.Types, FMX.Graphics,
+  FMX.Controls, FMX.Forms, FMX.Layouts, FMX.StdCtrls, FMX.Memo, FMX.Edit,
+  FMX.Menus, FMX.ScrollBox, FMX.Memo.Types, FMX.Dialogs, FMX.ImgList,
+  FMX.ListBox, FMX.Objects, FMX.TabControl, FMX.Filter.Effects,
+  FMX.Controls.Presentation, FmxPasLibVlcPlayerUnit, FMX.SearchBox,
+  DX.Pdf.Viewer.FMX, WinUI3.Form, FMX.Colors, FMX.ExtCtrls, FMX.Effects, FMX.Ani,
+  FMX.EditBox, FMX.NumberBox, Pixie.ControlBase.FMX, Pixie.CustomControl.FMX,
+  Pixie.HtmlView.FMX.Base, Pixie.MarkdownView.FMX, Markdown4D.Fmx.Viewer;
 
 type
   TMediaInfo = class
@@ -54,9 +54,6 @@ type
     EditGameName: TEdit;
     EditGameRegion: TEdit;
     XMLDoc: TXMLDocument;
-    MenuItemFile: TMenuItem;
-    MenuItemChoosefolder: TMenuItem;
-    MenuItemQuit: TMenuItem;
     MenuItemActions: TMenuItem;
     MenuItemSystem: TMenuItem;
     MenuItemSystemLowerCase: TMenuItem;
@@ -74,42 +71,15 @@ type
     MenuItemSetFavorite: TMenuItem;
     MenuItemSetNoFavorite: TMenuItem;
     MenuItemNameEditor: TMenuItem;
-    MenuItemOptions: TMenuItem;
-    MenuItemOptionGeneral: TMenuItem;
-    MenuItemOptGodMode: TMenuItem;
-    MenuItemOptDeleteWoPrompt: TMenuItem;
-    MenuItemOptAutoHash: TMenuItem;
-    MenuItemOptPiPrompts: TMenuItem;
-    MenuItemOptShowTips: TMenuItem;
-    MenuItemOptGenesis: TMenuItem;
-    MenuItemOptionNetWork: TMenuItem;
-    MenuItemOptConfigureNetwork: TMenuItem;
-    MenuItemOptSSH: TMenuItem;
-    MenuItemOptionLanguage: TMenuItem;
-    MenuItemLang1: TMenuItem;
-    MenuItemLang2: TMenuItem;
-    MenuItemLang3: TMenuItem;
-    MenuItemLang4: TMenuItem;
-    MenuItemLang5: TMenuItem;
-    MenuItemHelp: TMenuItem;
-    MenuItemAbout: TMenuItem;
     OpenFile: TOpenDialog;
     SaveDialog: TSaveDialog;
-    MenuItemReload: TMenuItem;
     NetHTTPClientScrape: TNetHTTPClient;
     Layout1: TLayout;
-    Layout2: TLayout;
-    RadioButtonScraper: TRadioButton;
-    RadioButtonLib: TRadioButton;
     LayoutGameList: TLayout;
     ListBoxGames: TListBox;
     SearchBoxGames: TSearchBox;
     Layout4: TLayout;
     StyleBookWinUI3: TStyleBook;
-    CheckBoxGamesListByRom: TCheckBox;
-    Lbl_Filter: TLabel;
-    ComboBoxGamesFilter: TComboBox;
-    CheckBoxGamesFullRomName: TCheckBox;
     LayoutClient: TLayout;
     PanelSystems: TPanel;
     Label1: TLabel;
@@ -119,7 +89,6 @@ type
     SearchBoxSystems: TSearchBox;
     ListBoxItem3: TListBoxItem;
     Layout6: TLayout;
-    LabelGamesCount: TLabel;
     ImageNoBox: TImage;
     PanelGame: TPanel;
     VertScrollBoxGame: TVertScrollBox;
@@ -138,14 +107,13 @@ type
     ButtonSaveChanges: TButton;
     ButtonScrape: TButton;
     Panel2: TPanel;
-    ButtonMoreInfos: TButton;
     MenuItemChangeAll: TMenuItem;
     Layout3: TLayout;
     TabControlMedia: TTabControl;
-    TabItemPicture: TTabItem;
+    TabItemMediaPicture: TTabItem;
     ImageGame: TImage;
     ImageGameBackground: TImage;
-    TabItemVideo: TTabItem;
+    TabItemMediaVideo: TTabItem;
     ImageGameBackgroundVideo: TImage;
     LayoutPlayer: TLayout;
     Rectangle1: TRectangle;
@@ -154,18 +122,13 @@ type
     Panel3: TPanel;
     Layout7: TLayout;
     Layout8: TLayout;
-    Lbl_Description: TLabel;
     EditGameRomPath: TEdit;
     Label2: TLabel;
     MenuItemGameDelete: TMenuItem;
-    ImageSystemLogo: TImage;
     RadioButtonPreviewPicture: TRadioButton;
     RadioButtonPreviewVideo: TRadioButton;
-    MenuItemContent: TMenuItem;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
-    MenuItem3: TMenuItem;
-    MenuItem4: TMenuItem;
     Layout9: TLayout;
     Layout11: TLayout;
     ImageScreenScraper: TImage;
@@ -216,9 +179,6 @@ type
     MenuItemDeleteROMNotInList: TMenuItem;
     TabItemEditManual: TTabItem;
     RadioButtonPreviewManual: TRadioButton;
-    CheckBoxGameFavorite: TCheckBox;
-    CheckBoxGameHidden: TCheckBox;
-    CheckBoxGameKids: TCheckBox;
     LayoutHead: TLayout;
     LabelTitle: TLabel;
     LayoutHeadIcon: TLayout;
@@ -229,15 +189,6 @@ type
     ButtonWinClose: TButton;
     MenuBarMain: TMenuBar;
     ButtonSettings: TButton;
-    PopupTheme: TPopup;
-    Panel61: TPanel;
-    PopupBoxStyle: TPopupBox;
-    ComboColorBoxAccentColor: TComboColorBox;
-    Layout5: TLayout;
-    Button309: TButton;
-    Label124: TLabel;
-    CheckBoxCustomTitle: TCheckBox;
-    CheckBoxCustomAccent: TCheckBox;
     StyleBookWinUI3Light: TStyleBook;
     PanelManual: TPanel;
     ToolBar2: TToolBar;
@@ -252,89 +203,312 @@ type
     Label3: TLabel;
     Layout10: TLayout;
     Label6: TLabel;
-
+    TabControlMain: TTabControl;
+    TabItemMainGameList: TTabItem;
+    TabItemMainSystems: TTabItem;
+    TabItemMainWelcome: TTabItem;
+    TabItemMainSettings: TTabItem;
+    ButtonGamesOptions: TButton;
+    PopupGamesOptions: TPopup;
+    LabelFilter: TLabel;
+    ComboBoxGamesFilter: TComboBox;
+    CheckBoxGamesListByRom: TCheckBox;
+    CheckBoxGamesFullRomName: TCheckBox;
+    Panel4: TPanel;
+    ShadowEffect1: TShadowEffect;
+    Layout2: TLayout;
+    RadioButtonGameListViewMini: TRadioButton;
+    RadioButtonGameListViewFull: TRadioButton;
+    PathLabel6: TPathLabel;
+    PathLabel7: TPathLabel;
+    LabelGamesCount: TLabel;
+    Panel5: TPanel;
+    ImageSystemLogo: TImage;
+    Panel6: TPanel;
+    CheckBoxGameFavorite: TCheckBox;
+    CheckBoxGameKids: TCheckBox;
+    CheckBoxGameHidden: TCheckBox;
+    ButtonSystemsOptions: TButton;
+    PopupSystemsOptions: TPopup;
+    Panel7: TPanel;
+    ShadowEffect3: TShadowEffect;
+    Label7: TLabel;
+    ComboBox1: TComboBox;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    PopupMenuSystemsOptions: TPopupMenu;
+    MenuItemSystemsManager: TMenuItem;
+    EditOldName: TEdit;
+    EditOldDate: TEdit;
+    CheckBoxScrapeName: TCheckBox;
+    CheckBoxScrapeDate: TCheckBox;
+    EditOldDeveloper: TEdit;
+    EditOldGenre: TEdit;
+    CheckBoxScrapeGenre: TCheckBox;
+    CheckBoxScrapeDeveloper: TCheckBox;
+    EditOldPublisher: TEdit;
+    CheckBoxScrapePublisher: TCheckBox;
+    EditOldRegion: TEdit;
+    CheckBoxScrapeRegion: TCheckBox;
+    EditOldRating: TEdit;
+    CheckBoxScrapeRating: TCheckBox;
+    EditOldPlayers: TEdit;
+    CheckBoxScrapePlayers: TCheckBox;
+    MemoOldDescription: TMemo;
+    CheckBoxScrapeDescription: TCheckBox;
+    TabControlSettings: TTabControl;
+    TabItemSettingsMain: TTabItem;
+    TabItemSettingsNetwork: TTabItem;
+    TabItemSettingsView: TTabItem;
+    VertScrollBox1: TVertScrollBox;
+    Label9: TLabel;
+    Layout23: TLayout;
+    Panel32: TPanel;
+    Label68: TLabel;
+    Label69: TLabel;
+    PathLabel8: TPathLabel;
+    ComboBoxTheme: TComboBox;
+    ExpanderSetAccent: TExpander;
+    Layout5: TLayout;
+    RadioButtonSetAccentAuto: TRadioButton;
+    RadioButtonSetAccentManual: TRadioButton;
+    ComboColorBoxAccentColor: TComboColorBox;
+    ExpanderSetBG: TExpander;
+    Layout14: TLayout;
+    RadioButtonSetBGSystem: TRadioButton;
+    ComboColorBoxSetBGColor1: TComboColorBox;
+    RadioButtonSetBGGradient: TRadioButton;
+    PopupBoxStyle: TComboBox;
+    RadioButtonSetBGImage: TRadioButton;
+    Layout15: TLayout;
+    Panel8: TPanel;
+    Label11: TLabel;
+    Label12: TLabel;
+    PathLabel9: TPathLabel;
+    CheckBoxCustomTitle: TCheckBox;
+    ComboColorBoxSetBGColor2: TComboColorBox;
+    Button1: TButton;
+    VertScrollBox4: TVertScrollBox;
+    Layout12: TLayout;
+    LabelSetCaption1: TLabel;
+    LabelSetCaption2: TLabel;
+    PathLabelSet1: TPathLabel;
+    FloatAnimation1: TFloatAnimation;
+    FloatAnimation2: TFloatAnimation;
+    ButtonSetView: TButton;
+    Label8: TLabel;
+    Label19: TLabel;
+    PathLabel12: TPathLabel;
+    PathLabel10: TPathLabel;
+    ButtonSetNetwork: TButton;
+    Label13: TLabel;
+    Label14: TLabel;
+    PathLabel11: TPathLabel;
+    PathLabel13: TPathLabel;
+    Layout16: TLayout;
+    Panel9: TPanel;
+    Label15: TLabel;
+    Label16: TLabel;
+    PathLabel14: TPathLabel;
+    CheckBoxSetGodMode: TCheckBox;
+    VertScrollBox5: TVertScrollBox;
+    ExpanderSetProxy: TExpander;
+    Layout17: TLayout;
+    LabelHost: TLabel;
+    EditProxyServer: TEdit;
+    LabelPort: TLabel;
+    NumberBoxProxyPort: TNumberBox;
+    LabelProxyUser: TLabel;
+    EditProxyUser: TEdit;
+    LabelProxyPassword: TLabel;
+    EditProxyPwd: TEdit;
+    ExpanderSetScraper: TExpander;
+    Layout18: TLayout;
+    LabelScreenLogin: TLabel;
+    EditSetScreenLogin: TEdit;
+    EditSetScreenPwd: TEdit;
+    LabelScreenPassword: TLabel;
+    PasswordEditButton1: TPasswordEditButton;
+    PasswordEditButton2: TPasswordEditButton;
+    Label17: TLabel;
+    Label18: TLabel;
+    Layout13: TLayout;
+    Label10: TLabel;
+    Label20: TLabel;
+    Button3: TButton;
+    Button4: TButton;
+    ButtonSettingsHelp: TButton;
+    Layout19: TLayout;
+    Panel10: TPanel;
+    Label21: TLabel;
+    Label22: TLabel;
+    PathLabel15: TPathLabel;
+    CheckBoxSetShowTips: TCheckBox;
+    ExpanderSetPrompts: TExpander;
+    Layout20: TLayout;
+    CheckBoxSetDelPrompts: TCheckBox;
+    TabItemSettingsSSH: TTabItem;
+    VertScrollBox6: TVertScrollBox;
+    ExpanderSetRecalbox: TExpander;
+    Layout21: TLayout;
+    Label26: TLabel;
+    EditSetRecalboxLogin: TEdit;
+    Label27: TLabel;
+    EditSetRecalboxPwd: TEdit;
+    PasswordEditButton3: TPasswordEditButton;
+    ExpanderSetRetropie: TExpander;
+    Layout22: TLayout;
+    Label28: TLabel;
+    EditSetRetropieLogin: TEdit;
+    EditSetRetropiePwd: TEdit;
+    PasswordEditButton4: TPasswordEditButton;
+    Label29: TLabel;
+    ButtonSettingsSSH: TButton;
+    Label23: TLabel;
+    Label24: TLabel;
+    PathLabel16: TPathLabel;
+    PathLabel17: TPathLabel;
+    Label25: TLabel;
+    ButtonSettingsBack: TButton;
+    TabItemMainHelp: TTabItem;
+    PixieMarkdownView1: TPixieMarkdownView;
+    Layout24: TLayout;
+    Label30: TLabel;
+    FloatAnimation3: TFloatAnimation;
+    ButtonHelpBack: TButton;
+    ButtonHelp: TButton;
+    PathLabel18: TPathLabel;
+    MarkdownViewerHelp: TMarkdownViewer;
+    ButtonChooseFolder: TButton;
+    PathLabel19: TPathLabel;
+    ButtonReloadFolder: TButton;
+    Popup1: TPopup;
+    Panel11: TPanel;
+    ShadowEffect2: TShadowEffect;
+    Label31: TLabel;
+    ComboBox2: TComboBox;
+    CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
+    Label32: TLabel;
+    Layout25: TLayout;
+    Panel12: TPanel;
+    Label33: TLabel;
+    Label34: TLabel;
+    PathLabel20: TPathLabel;
+    CheckBoxSetAutohash: TCheckBox;
+    Layout26: TLayout;
+    Panel13: TPanel;
+    Label35: TLabel;
+    Label36: TLabel;
+    PathLabel21: TPathLabel;
+    CheckBoxSetGenesisLogo: TCheckBox;
+    Layout27: TLayout;
+    ButtonWelcomeChooseFolder: TButton;
+    Label37: TLabel;
+    Label38: TLabel;
+    Layout28: TLayout;
+    Panel14: TPanel;
+    Label39: TLabel;
+    Label40: TLabel;
+    PathLabel22: TPathLabel;
+    CheckBoxSetOpenLastFolder: TCheckBox;
+    Layout29: TLayout;
+    CheckBoxSetPiPrompts: TCheckBox;
+    Panel15: TPanel;
+    RadioButtonPreviewHash: TRadioButton;
+    TabItemMediaHash: TTabItem;
+    Lbl_Crc32: TLabel;
+    Lbl_Md5: TLabel;
+    Lbl_Sha1: TLabel;
+    EditGameHashCRC32: TEdit;
+    EditGameHashMD5: TEdit;
+    EditGameHashSHA1: TEdit;
+    ButtonCalsHash: TButton;
+    EditGamePlayCount: TEdit;
+    Label41: TLabel;
+    EditGameLastPlayed: TEdit;
+    Label42: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure MenuItemQuitClick(Sender: TObject);
-    procedure MenuItemChoosefolderClick(Sender: TObject);
     procedure ButtonSaveChangesClick(Sender: TObject);
     procedure FieldChange(Sender: TObject);
     procedure ButtonSetDefaultPictureClick(Sender: TObject);
     procedure ComboBoxGamesFilterChange(Sender: TObject);
     procedure ButtonBtn_ChangeAll1Click(Sender: TObject);
-    procedure ButtonMoreInfosClick(Sender: TObject);
-    procedure MenuItemOptGodModeClick(Sender: TObject);
-    procedure MenuItemOptAutoHashClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ButtonDeleteClick(Sender: TObject);
-    procedure MenuItemOptDeleteWoPromptClick(Sender: TObject);
     procedure ChangeCaseClick(Sender: TObject);
     procedure ChangeCaseGameClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ButtonRemovePictureClick(Sender: TObject);
-    procedure MenuItemAboutClick(Sender: TObject);
     procedure MenuItemRemoveRegionClick(Sender: TObject);
-    procedure MenuItemOptGenesisClick(Sender: TObject);
-    procedure MenuItemHelpClick(Sender: TObject);
-    procedure MenuItemOptShowTipsClick(Sender: TObject);
-    procedure MenuItemOptPiPromptsClick(Sender: TObject);
-    procedure MenuItemConfigSSHClick(Sender: TObject);
     procedure MenuItemDeleteOrphansClick(Sender: TObject);
     procedure MenuItemDeleteDuplicatesClick(Sender: TObject);
     procedure ButtonStartScrapeClick(Sender: TObject);
-    procedure MenuItemOptConfigureNetworkClick(Sender: TObject);
     procedure MenuItemSetHiddenClick(Sender: TObject);
     procedure MenuItemSetNoHiddenClick(Sender: TObject);
     procedure MenuItemSetFavoriteClick(Sender: TObject);
     procedure MenuItemSetNoFavoriteClick(Sender: TObject);
-    procedure CheckBoxGamesListByRomClick(Sender: TObject);
     procedure MenuItemNameEditorClick(Sender: TObject);
     procedure MenuItemExportTxtClick(Sender: TObject);
-    procedure CheckBoxGamesFullRomNameClick(Sender: TObject);
     procedure ButtonScrapeSaveClick(Sender: TObject);
     procedure ButtonScrapeUpperTextClick(Sender: TObject);
     procedure ButtonScrapeLowerTextClick(Sender: TObject);
     procedure Chk_ScrapeClick(Sender: TObject);
-    procedure MenuItemReloadClick(Sender: TObject);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TabControlMediaChange(Sender: TObject);
     procedure ButtonChangeVideoClick(Sender: TObject);
     procedure ButtonRemoveVideoClick(Sender: TObject);
-    procedure ChangeMainTab(Sender: TObject);
     procedure ListBoxGamesChange(Sender: TObject);
-    procedure ListBoxSystemsItemClick(const Sender: TCustomListBox; const Item: TListBoxItem);
     procedure ButtonScrapeClick(Sender: TObject);
     procedure ButtonGameMainTabClick(Sender: TObject);
     procedure ButtonChangeImageClick(Sender: TObject);
-    procedure RadioButtonPreviewVideoChange(Sender: TObject);
+    procedure GameMediaChange(Sender: TObject);
     procedure ListBoxMediaChange(Sender: TObject);
     procedure CheckBoxManualCRCChange(Sender: TObject);
     procedure MenuItemDeleteROMNotInListClick(Sender: TObject);
     procedure ButtonSettingsClick(Sender: TObject);
-    procedure Button309Click(Sender: TObject);
     procedure PopupBoxStyleChange(Sender: TObject);
     procedure CheckBoxCustomAccentChange(Sender: TObject);
     procedure ComboColorBoxAccentColorChange(Sender: TObject);
     procedure CheckBoxCustomTitleChange(Sender: TObject);
-
+    procedure CheckBoxGamesListByRomChange(Sender: TObject);
+    procedure CheckBoxGamesFullRomNameChange(Sender: TObject);
+    procedure ButtonGamesOptionsClick(Sender: TObject);
+    procedure GameListViewChange(Sender: TObject);
+    procedure ButtonSystemsOptionsClick(Sender: TObject);
+    procedure ListBoxSystemsChange(Sender: TObject);
+    procedure ComboBoxThemeChange(Sender: TObject);
+    procedure TabControlSettingsChange(Sender: TObject);
+    procedure ButtonSetViewClick(Sender: TObject);
+    procedure ButtonSetNetworkClick(Sender: TObject);
+    procedure LabelSetCaption1Click(Sender: TObject);
+    procedure CheckBoxSetShowTipsChange(Sender: TObject);
+    procedure CheckBoxSetPiPromptsChange(Sender: TObject);
+    procedure ButtonSettingsSSHClick(Sender: TObject);
+    procedure ButtonSettingsBackClick(Sender: TObject);
+    procedure ButtonSettingsHelpClick(Sender: TObject);
+    procedure ButtonHelpBackClick(Sender: TObject);
+    procedure ButtonChooseFolderClick(Sender: TObject);
+    procedure ButtonReloadFolderClick(Sender: TObject);
+    procedure CheckBoxSetAutohashChange(Sender: TObject);
+    procedure CheckBoxSetGodModeChange(Sender: TObject);
+    procedure CheckBoxSetGenesisLogoChange(Sender: TObject);
+    procedure CheckBoxSetOpenLastFolderChange(Sender: TObject);
+    procedure ButtonCalsHashClick(Sender: TObject);
   private
     FLanguage: Integer;
     FRootPath: string;
     FCurrentFolder: string;
     FVideoScrapeLink: string;
     FIsLoading: Boolean;
-    FGodMode, FAutoHash, FDelWoPrompt, FGenesisLogo, FShowTips, FFolderIsOnPi, FPiPrompts, FSysIsRecal, FPiLoadedOnce: Boolean;
-    FRecalLogin, FRecalPwd, FRetroLogin, FRetroPwd: string;
-    FSSLogin, FSSPwd: string;
+    FFolderIsOnPi, FSysIsRecal, FPiLoadedOnce: Boolean;
     FScrapedGame: TGame;
-    GSystemList: TObjectDictionary<string, TObjectList<TGame>>;
+    FSystemList: TObjectDictionary<string, TObjectList<TGame>>;
     FPdfViewer: TPdfViewer;
-      //Pour le scrape
     FPictureLinks: TObjectList<TMediaInfo>;
     FInfosList: TStringList;
     FMaxThreads, FThreadCount, FStartCount: Integer;
     FTempXmlPath: string;
-
     procedure LoadFromIni;
     procedure SaveToIni;
     procedure BuildSystemsList(aReload: Boolean = False);
@@ -354,26 +528,21 @@ type
     procedure DeleteGameVideo;
     procedure StartGameVideo(const aPath: string);
     procedure StopGameVideo;
-    procedure CheckMenuItem(ANumber: Integer);
     procedure RemoveRegionFromGameName(aGame: TGame; aStartPos: Integer);
     procedure ConvertFieldsCase(aGame: TGame; aUnique: Boolean = False; aUp: Boolean = False);
     procedure StopOrStartES(AStop, ARecal: Boolean);
     procedure DeleteDuplicates(const aSystem: string);
-    procedure ReloadIni;
-    procedure SetFavOrHidden(aFav, AValue: Boolean);
-    procedure TransformGamesNames(aRemChars, aAddChars, aChangecase: Boolean; aNbStart, aNbEnd, aCaseIndex: Integer; const aStringStart, aStringEnd: string);
+    procedure SetFavoriteOrHidden(AFavorite, AValue: Boolean);
+    procedure TransformGamesNames(Func: TFunc<string, string>);
     procedure ExportToTxt;
-    //procedure CreateWindowsMediaPlayer;
     function GetSystemKind: TSystemKind;
     function GetCurrentFolderName: string;
     function GetCurrentLogoName: string;
     function GetCurrentSystemId: string;
     function GetCountryEnum(const aShortName: string): TCountryName;
     function BuildGamesList(const aPathToFile: string): TObjectList<TGame>;
-    function FormatDateFromString(const aDate: string; out Year: string; aIso: Boolean = False): string;
     function GetLangEnum(aNumber: Integer): TLangName;
-    function GetPhysicalPath(const APath: string): string;
-    function MyMessageDlg(const Msg: string; DlgTypt: TmsgDlgType; button: TMsgDlgButtons; Caption: array of string; dlgcaption: string): Integer;
+    function MyMessageDlg(const Title, Text: string; Buttons: TArray<string>): Integer;
 
     procedure ClearScrapeMedia;
     procedure ParseXml;
@@ -395,15 +564,54 @@ type
     procedure CreatePdfViewer;
     procedure UpdateManual(AGame: TGame);
   private
-    OverTheme: integer;
     OverAccentColor: TAlphaColor;
+    procedure SetGodMode(const Value: Boolean);
+    procedure SetDelWoPrompt(const Value: Boolean);
+    procedure SetPiPrompts(const Value: Boolean);
+    procedure SetRecalLogin(const Value: string);
+    procedure SetRecalPwd(const Value: string);
+    procedure SetRetroLogin(const Value: string);
+    procedure SetRetroPwd(const Value: string);
+    function GetRecalLogin: string;
+    function GetRecalPwd: string;
+    function GetRetroLogin: string;
+    function GetRetroPwd: string;
+    function GetGodMode: Boolean;
+    function GetDelWoPrompt: Boolean;
+    function GetAutoHash: Boolean;
+    procedure SetAutoHash(const Value: Boolean);
+    function GetShowTips: Boolean;
+    procedure SetShowTips(const Value: Boolean);
+    function GetGenesisLogo: Boolean;
+    procedure SetGenesisLogo(const Value: Boolean);
+    function GetOpenLastFolder: Boolean;
+    procedure SetOpenLastFolder(const Value: Boolean);
+    function GetPiPrompts: Boolean;
+    function GetSSLogin: string;
+    function GetSSPwd: string;
+    procedure SetSSLogin(const Value: string);
+    procedure SetSSPwd(const Value: string);
   protected
     procedure DoOnSettingChange; override;
   public
-    FProxyServer, FProxyUser, FProxyPwd, FProxyPort: string;
-    FProxyUse: Boolean;
     FImgList: TObjectList<TImage>;
-    procedure WarnUser(const aMessage: string);
+    function CreateHTTPClient: THTTPClient;
+    function CreateProxySettings: TProxySettings;
+    property GodMode: Boolean read GetGodMode write SetGodMode;
+    property DelWoPrompt: Boolean read GetDelWoPrompt write SetDelWoPrompt;
+    property PiPrompts: Boolean read GetPiPrompts write SetPiPrompts;
+    property RecalLogin: string read GetRecalLogin write SetRecalLogin;
+    property RecalPwd: string read GetRecalPwd write SetRecalPwd;
+    property RetroLogin: string read GetRetroLogin write SetRetroLogin;
+    property RetroPwd: string read GetRetroPwd write SetRetroPwd;
+    property AutoHash: Boolean read GetAutoHash write SetAutoHash;
+    property GenesisLogo: Boolean read GetGenesisLogo write SetGenesisLogo;
+    property ShowTips: Boolean read GetShowTips write SetShowTips;
+    property OpenLastFolder: Boolean read GetOpenLastFolder write SetOpenLastFolder;
+
+    property SSLogin: string read GetSSLogin write SetSSLogin;
+    property SSPwd: string read GetSSPwd write SetSSPwd;
+    procedure WarnUser(const AMessage: string);
     procedure WarnUserWithSafeUrl(const aMessage, aMessage2, aUrl: string);
   end;
 
@@ -414,7 +622,8 @@ var
 implementation
 
 uses
-  System.IOUtils, FMX.BehaviorManager, WinUI3.Style, System.Messaging
+  System.IOUtils, FMX.BehaviorManager, WinUI3.Style, System.Messaging,
+  Markdown4D.Theme, WinUI3.Dialogs, System.DateUtils
   {$IFDEF POSIX}
     , Posix.StdLib, posix.Stdio, posix.SysUio
   {$ENDIF}
@@ -425,6 +634,16 @@ uses
 
 {$R *.FMX}
 
+function IntToBoolStr(const Value: Integer): string;
+begin
+  Result := if Value = 0 then Cst_False else Cst_True;
+end;
+
+function BoolStr(const Value: Boolean): string;
+begin
+  Result := if Value then Cst_True else Cst_False;
+end;
+
 function SelCount(ListBox: TListBox): Integer;
 begin
   Result := 0;
@@ -433,178 +652,89 @@ begin
       Inc(Result);
 end;
 
-function TFormMain.GetPhysicalPath(const APath: string): string;
+function TFormMain.MyMessageDlg(const Title, Text: string; Buttons: TArray<string>): Integer;
 begin
-  if APath.IsEmpty then
-    Result := ''
-  else
-  begin
-    Result := TPath.Combine(FRootPath, FCurrentFolder, APath.Replace('./', ''));
-  end;
-end;
-
-function TFormMain.FormatDateFromString(const ADate: string; out Year: string; AIso: Boolean = False): string;
-var
-  FullStr, Day, Month: string;
-  DayInt, MonthInt, YearInt: Integer;
-begin
-  FullStr := ADate;
-  Result := '';
-
-  //si on formate pour affichage et que la chaine passйe
-  //rйpond au critиre
-  if (not AIso) and (FullStr.Contains(Cst_DateSuffix)) then
-  begin
-    SetLength(FullStr, 8);
-    Day := Copy(FullStr, 7, 2);
-    Month := Copy(FullStr, 5, 2);
-    Year := Copy(FullStr, 1, 4);
-    if (TryStrToInt(Day, DayInt)) and (DayInt > 0) then
-      Result := Result + Day + '/';
-    if (TryStrToInt(Month, MonthInt)) and (MonthInt > 0) then
-      Result := Result + Month + '/';
-    if (TryStrToInt(Year, YearInt)) and (YearInt > 0) then
-      Result := Result + Year;
-
-      //sinon si on formate pour enregistrement dans le .xml
-      //et que la chaine ne contient que des chiffres ou /
-  end
-  else if AIso and (TRegEx.IsMatch(FullStr, '^[0-9]')) then
-  begin
-    if (Length(FullStr) = 4) then
-      Result := FullStr + Cst_DateLongFill + Cst_DateSuffix;
-
-    if (Length(FullStr) = 7) then
-    begin
-      Month := Copy(FullStr, 1, 2);
-      Year := Copy(FullStr, 4, 4);
-      Result := Year + Month + Cst_DateShortFill + Cst_DateSuffix;
-    end;
-
-    if (Length(FullStr) = 10) then
-    begin
-      Day := Copy(FullStr, 1, 2);
-      Month := Copy(FullStr, 4, 2);
-      Year := Copy(FullStr, 7, 4);
-      Result := Year + Month + Day + Cst_DateSuffix;
-    end;
-  end;
-end;
-
-function TFormMain.MyMessageDlg(const Msg: string; DlgTypt: TmsgDlgType; button: TMsgDlgButtons; Caption: array of string; dlgcaption: string): Integer;
-{var
-  aMsgdlg: TForm;
-  ii: Integer;
-  Dlgbutton: Tbutton;
-  Captionindex: Integer;   }
-begin         {
-  aMsgdlg := CreateMessageDialog(Msg, DlgTypt, button);
-  aMsgdlg.Caption := dlgcaption;
-  aMsgdlg.BiDiMode := bdLeftToRight;
-  Captionindex := 0;
-  for ii := 0 to Pred(aMsgdlg.ComponentCount) do
-  begin
-    if (aMsgdlg.components[ii] is Tbutton) then
-    begin
-      Dlgbutton := Tbutton(aMsgdlg.Components[ii]);
-      if (Captionindex <= High(Caption)) then
-        Dlgbutton.Caption := Caption[Captionindex];
-      Inc(Captionindex);
-    end;
-  end;
-  Result := aMsgdlg.Showmodal;   }
+  var Data: TDialogTextParams;
+  Data.Title := Title;
+  Data.Body := Text;
+  Data.Buttons := Buttons;
+  Data.AccentId := 0;
+  Result := TWinUIDialog.Show(Self, Data).Result;
 end;
 
 procedure TFormMain.LoadFromIni;
-var
-  FileIni: TIniFile;
 begin
-  FileIni := TIniFile.Create(TPath.Combine(TPath.GetLibraryPath, Cst_IniFilePath));
+  var FileIni := TIniFile.Create(TPath.Combine(TPath.GetLibraryPath, Cst_IniFilePath));
   try
     FRootPath := FileIni.ReadString(Cst_IniOptions, Cst_IniLastPath, '');
-    FGodMode := FileIni.ReadBool(Cst_IniOptions, Cst_IniGodMode, False);
-    MenuItemOptGodMode.IsChecked := FGodMode;
-    MenuItemOptDeleteWoPrompt.Enabled := FGodMode;
-    MenuItemGameDelete.Visible := FGodMode;
-    ButtonGameDelete.Visible := FGodMode;
 
-    FAutoHash := FileIni.ReadBool(Cst_IniOptions, Cst_IniAutoHash, False);
-    MenuItemOptAutoHash.IsChecked := FAutoHash;
-
-    FDelWoPrompt := FileIni.ReadBool(Cst_IniOptions, Cst_IniDelWoPrompt, False);
-    MenuItemOptDeleteWoPrompt.IsChecked := FDelWoPrompt;
-
-    FPiPrompts := FileIni.ReadBool(Cst_IniOptions, Cst_IniPiPrompts, False);
-    MenuItemOptPiPrompts.IsChecked := FPiPrompts;
-
-    FGenesisLogo := FileIni.ReadBool(Cst_IniOptions, Cst_IniGenesisLogo, False);
-    MenuItemOptGenesis.IsChecked := FGenesisLogo;
-
-    FShowTips := FileIni.ReadBool(Cst_IniOptions, Cst_ShowTips, True);
-    MenuItemOptShowTips.IsChecked := FShowTips;
-
+    GodMode := FileIni.ReadBool(Cst_IniOptions, Cst_IniGodMode, False);
+    AutoHash := FileIni.ReadBool(Cst_IniOptions, Cst_IniAutoHash, False);
+    DelWoPrompt := FileIni.ReadBool(Cst_IniOptions, Cst_IniDelWoPrompt, False);
+    PiPrompts := FileIni.ReadBool(Cst_IniOptions, Cst_IniPiPrompts, False);
+    GenesisLogo := FileIni.ReadBool(Cst_IniOptions, Cst_IniGenesisLogo, False);
+    ShowTips := FileIni.ReadBool(Cst_IniOptions, Cst_ShowTips, True);
+    OpenLastFolder := FileIni.ReadBool(Cst_IniOptions, Cst_OpenLastFolder, True);
     FLanguage := FileIni.ReadInteger(Cst_IniOptions, Cst_IniLanguage, 0);
 
-    FRecalLogin := FileIni.ReadString(Cst_IniOptions, Cst_IniRecalLogin, Cst_RecalLogin);
-    FRecalPwd := FileIni.ReadString(Cst_IniOptions, Cst_IniRecalPwd, Cst_RecalPwd);
-    FRetroLogin := FileIni.ReadString(Cst_IniOptions, Cst_IniRetroLogin, Cst_RetroLogin);
-    FRetroPwd := FileIni.ReadString(Cst_IniOptions, Cst_IniRetroPwd, Cst_RetroPwd);
+    RecalLogin := FileIni.ReadString(Cst_IniOptions, Cst_IniRecalLogin, Cst_RecalLogin);
+    RecalPwd := FileIni.ReadString(Cst_IniOptions, Cst_IniRecalPwd, Cst_RecalPwd);
+    RetroLogin := FileIni.ReadString(Cst_IniOptions, Cst_IniRetroLogin, Cst_RetroLogin);
+    RetroPwd := FileIni.ReadString(Cst_IniOptions, Cst_IniRetroPwd, Cst_RetroPwd);
 
-    FSSLogin := FileIni.ReadString(Cst_IniOptions, Cst_IniSSUser, '');
-    FSSPwd := FileIni.ReadString(Cst_IniOptions, Cst_IniSSPwd, '');
-    FProxyUser := FileIni.ReadString(Cst_IniOptions, Cst_IniProxyUser, '');
-    FProxyPwd := FileIni.ReadString(Cst_IniOptions, Cst_IniProxyPwd, '');
-    FProxyServer := FileIni.ReadString(Cst_IniOptions, Cst_IniProxyServer, '');
-    FProxyPort := FileIni.ReadString(Cst_IniOptions, Cst_IniProxyPort, '0');
-    FProxyUse := FileIni.ReadBool(Cst_IniOptions, Cst_IniProxyUse, False);
+    SSLogin := FileIni.ReadString(Cst_IniOptions, Cst_IniSSUser, '');
+    SSPwd := FileIni.ReadString(Cst_IniOptions, Cst_IniSSPwd, '');
+    EditProxyUser.Text := FileIni.ReadString(Cst_IniOptions, Cst_IniProxyUser, '');
+    EditProxyPwd.Text := FileIni.ReadString(Cst_IniOptions, Cst_IniProxyPwd, '');
+    EditProxyServer.Text := FileIni.ReadString(Cst_IniOptions, Cst_IniProxyServer, '');
+    NumberBoxProxyPort.Value := FileIni.ReadInteger(Cst_IniOptions, Cst_IniProxyPort, 0);
+    ExpanderSetProxy.IsChecked := FileIni.ReadBool(Cst_IniOptions, Cst_IniProxyUse, False);
   finally
     FileIni.Free;
   end;
 end;
 
 procedure TFormMain.SaveToIni;
-var
-  FileIni: TIniFile;
 begin
   if not TDirectory.Exists(ExtractFilePath(TPath.Combine(TPath.GetLibraryPath, Cst_IniFilePath))) then
     TDirectory.CreateDirectory(ExtractFilePath(TPath.Combine(TPath.GetLibraryPath, Cst_IniFilePath)));
+
   if not TFile.Exists(TPath.Combine(TPath.GetLibraryPath, Cst_IniFilePath)) then
     TFile.Create(TPath.Combine(TPath.GetLibraryPath, Cst_IniFilePath)).Free;
-  FileIni := TIniFile.Create(TPath.Combine(TPath.GetLibraryPath, Cst_IniFilePath));
+
+  var FileIni := TIniFile.Create(TPath.Combine(TPath.GetLibraryPath, Cst_IniFilePath));
   try
     FileIni.WriteString(Cst_IniOptions, Cst_IniLastPath, FRootPath);
-    FileIni.WriteBool(Cst_IniOptions, Cst_IniGodMode, FGodMode);
-    FileIni.WriteBool(Cst_IniOptions, Cst_IniAutoHash, FAutoHash);
-    FileIni.WriteBool(Cst_IniOptions, Cst_IniDelWoPrompt, (FGodMode and FDelWoPrompt));
-    FileIni.WriteBool(Cst_IniOptions, Cst_IniGenesisLogo, FGenesisLogo);
-    FileIni.WriteBool(Cst_IniOptions, Cst_ShowTips, FShowTips);
-    FileIni.WriteBool(Cst_IniOptions, Cst_IniPiPrompts, FPiPrompts);
+    FileIni.WriteBool(Cst_IniOptions, Cst_IniGodMode, GodMode);
+    FileIni.WriteBool(Cst_IniOptions, Cst_IniAutoHash, AutoHash);
+    FileIni.WriteBool(Cst_IniOptions, Cst_IniDelWoPrompt, DelWoPrompt);
+    FileIni.WriteBool(Cst_IniOptions, Cst_IniGenesisLogo, GenesisLogo);
+    FileIni.WriteBool(Cst_IniOptions, Cst_ShowTips, ShowTips);
+    FileIni.WriteBool(Cst_IniOptions, Cst_OpenLastFolder, OpenLastFolder);
+    FileIni.WriteBool(Cst_IniOptions, Cst_IniPiPrompts, PiPrompts);
     FileIni.WriteInteger(Cst_IniOptions, Cst_IniLanguage, FLanguage);
-    FileIni.WriteString(Cst_IniOptions, Cst_IniRecalLogin, FRecalLogin);
-    FileIni.WriteString(Cst_IniOptions, Cst_IniRecalPwd, FRecalPwd);
-    FileIni.WriteString(Cst_IniOptions, Cst_IniRetroLogin, FRetroLogin);
-    FileIni.WriteString(Cst_IniOptions, Cst_IniRetroPwd, FRetroPwd);
-    FileIni.WriteString(Cst_IniOptions, Cst_IniSSUser, FSSLogin);
-    FileIni.WriteString(Cst_IniOptions, Cst_IniSSPwd, FSSPwd);
-    FileIni.WriteString(Cst_IniOptions, Cst_IniProxyUser, FProxyUser);
-    FileIni.WriteString(Cst_IniOptions, Cst_IniProxyPwd, FProxyPwd);
-    FileIni.WriteString(Cst_IniOptions, Cst_IniProxyServer, FProxyServer);
-    if (FProxyPort.IsEmpty) then
-      FileIni.WriteString(Cst_IniOptions, Cst_IniProxyPort, '0')
-    else
-      FileIni.WriteString(Cst_IniOptions, Cst_IniProxyPort, FProxyPort);
-    FileIni.WriteBool(Cst_IniOptions, Cst_IniProxyUse, FProxyUse);
+    FileIni.WriteString(Cst_IniOptions, Cst_IniRecalLogin, RecalLogin);
+    FileIni.WriteString(Cst_IniOptions, Cst_IniRecalPwd, RecalPwd);
+    FileIni.WriteString(Cst_IniOptions, Cst_IniRetroLogin, RetroLogin);
+    FileIni.WriteString(Cst_IniOptions, Cst_IniRetroPwd, RetroPwd);
+    FileIni.WriteString(Cst_IniOptions, Cst_IniSSUser, SSLogin);
+    FileIni.WriteString(Cst_IniOptions, Cst_IniSSPwd, SSPwd);
+    FileIni.WriteString(Cst_IniOptions, Cst_IniProxyUser, EditProxyUser.Text);
+    FileIni.WriteString(Cst_IniOptions, Cst_IniProxyPwd, EditProxyPwd.Text);
+    FileIni.WriteString(Cst_IniOptions, Cst_IniProxyServer, EditProxyServer.Text);
+    FileIni.WriteInteger(Cst_IniOptions, Cst_IniProxyPort, Trunc(NumberBoxProxyPort.Value));
+    FileIni.WriteBool(Cst_IniOptions, Cst_IniProxyUse, ExpanderSetProxy.IsChecked);
   finally
     FileIni.Free;
   end;
 end;
 
-function TFormMain.GetLangEnum(aNumber: Integer): TLangName;
+function TFormMain.GetLangEnum(ANumber: Integer): TLangName;
 begin
-  Result := lnEnglish;
+  Result := TLangName.English;
   for var LangName := Low(TLangName) to High(TLangName) do
   begin
-    if (aNumber = Ord(LangName)) then
+    if ANumber = Ord(LangName) then
     begin
       Result := LangName;
       Break;
@@ -612,12 +742,28 @@ begin
   end;
 end;
 
+function TFormMain.GetOpenLastFolder: Boolean;
+begin
+  Result := CheckBoxSetOpenLastFolder.IsChecked;
+end;
+
+function TFormMain.GetAutoHash: Boolean;
+begin
+  Result := CheckBoxSetAutohash.IsChecked;
+end;
+
 function TFormMain.GetCountryEnum(const AShortName: string): TCountryName;
 begin
-  Result := cnUnd;
+  Result := TCountryName.Und;
   for var CountryName := Low(TCountryName) to High(TCountryName) do
-    if AShortName = Cst_CountryName[CountryName] then
+    if AShortName = CountryName.ShortName then
       Exit(CountryName);
+end;
+
+function TFormMain.CreateHTTPClient: THTTPClient;
+begin
+  Result := THTTPClient.Create;
+  Result.ProxySettings := CreateProxySettings;
 end;
 
 procedure TFormMain.CreatePdfViewer;
@@ -631,17 +777,81 @@ begin
   FPdfViewer.SendToBack;
 end;
 
+function TFormMain.CreateProxySettings: TProxySettings;
+begin
+  if ExpanderSetProxy.IsChecked then
+    Result := TProxySettings.Create(EditProxyServer.Text, Trunc(NumberBoxProxyPort.Value), EditProxyUser.Text, EditProxyPwd.Text)
+  else
+    Result := TProxySettings.Create('', 0, '', '');
+end;
+
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
+  ExpanderSetAccent.StylesData['details'] := 'Adjust the accent color';
+  ExpanderSetAccent.StylesData['icon.Data.Data'] := 'M9.75,6.5 C10.164213180542,6.5 10.5,6.16421365737915 10.5,5.75 C10.5,5.33578634262085 10.1642141342163,5 9.75,5 C9.33578681945801,5 9,5.33578634262085 9,5.75 C9,6.16421365737915 9.33578586578369,6.5 9.75,' +
+    '6.5 M12.75,7.5 C13.164213180542,7.5 13.5,7.16421365737915 13.5,6.75 C13.5,6.33578634262085 13.1642141342163,6 12.75,6 C12.335786819458,6 12,6.33578634262085 12,6.75 C12,7.16421365737915 12.3357858657837,' +
+    '7.5 12.75,7.5 M15.25,9 C15.25,9.41421318054199 14.914213180542,9.75 14.5,9.75 C14.085786819458,9.75 13.75,9.41421318054199 13.75,9 C13.75,8.58578586578369 14.085786819458,8.25 14.5,8.25 C14.914213180542,' +
+    '8.25 15.25,8.58578586578369 15.25,9 M14.5,12.75 C14.914213180542,12.75 15.25,12.414213180542 15.25,12 C15.25,11.585786819458 14.9142141342163,11.25 14.5,11.25 C14.085786819458,11.25 13.75,11.585786819458 ' +
+    '13.75,12 C13.75,12.414213180542 14.0857858657837,12.75 14.5,12.75 M13.25,14 C13.25,14.414213180542 12.914213180542,14.75 12.5,14.75 C12.085786819458,14.75 11.75,14.414213180542 11.75,14 C11.75,13.5857858657837 ' +
+    '12.085786819458,13.25 12.5,13.25 C12.914213180542,13.25 13.25,13.5857858657837 13.25,14 M13.6969995498657,2.99199962615967 C10.9429998397827,1.57699966430664 8.14299964904785,1.7119996547699 5.76999950408936,' +
+    '3.1659996509552 C4.55999946594238,3.90799951553345 3.25299954414368,5.4689998626709 2.51599955558777,7.05899953842163 C2.14599943161011,7.85899972915649 1.89899957180023,8.70499992370605 1.90199947357178,' +
+    '9.49300003051758 C1.90599942207336,10.293999671936 2.16999959945679,11.0590000152588 2.83999943733215,11.6049995422363 C3.44999933242798,12.1029996871948 3.98199939727783,12.3529996871948 4.49599933624268,' +
+    '12.3779993057251 C5.01399946212769,12.4039993286133 5.41799926757813,12.1939992904663 5.73399925231934,12.007999420166 L5.93099927902222,11.8889989852905 C6.17299938201904,11.7419986724854 6.37199926376343,' +
+    '11.6209993362427 6.62099933624268,11.5429992675781 C6.90099954605103,11.4529991149902 7.25799942016602,11.4209995269775 7.77599906921387,11.5789995193481 C7.96599912643433,11.636999130249 8.08199882507324,' +
+    '11.7229995727539 8.1619987487793,11.8229999542236 C8.24799919128418,11.9289999008179 8.31699848175049,12.0769996643066 8.36799907684326,12.2889995574951 C8.41999912261963,12.5019998550415 8.44799900054932,' +
+    '12.7529993057251 8.46799945831299,13.048999786377 C8.47699928283691,13.1589994430542 8.48399925231934,13.28600025177 8.49099922180176,13.4180002212524 C8.5029993057251,13.6100006103516 8.51399898529053,' +
+    '13.8150005340576 8.52999877929688,14.0040006637573 C8.58399868011475,14.6740007400513 8.69999885559082,15.4400005340576 9.10399913787842,16.1360015869141 C9.51799869537354,16.8490009307861 10.2039995193481,' +
+    '17.439001083374 11.306999206543,17.8160018920898 C12.9089994430542,18.3640022277832 14.3729991912842,17.919002532959 15.5129985809326,17.0160026550293 C16.6389980316162,16.1250019073486 17.4689979553223,' +
+    '14.7760028839111 17.8839988708496,13.4270029067993 C19.1989994049072,9.15400314331055 17.6729984283447,5.03400325775146 13.6969985961914,2.99200248718262 M6.29199981689453,4.01900005340576 C8.35700035095215,' +
+    '2.75400018692017 10.7840003967285,2.61899995803833 13.2399997711182,3.88100004196167 C16.7469997406006,5.68300008773804 18.1129989624023,9.2810001373291 16.92799949646,13.132999420166 C16.5620002746582,' +
+    '14.3229999542236 15.8339996337891,15.4869995117188 14.8919992446899,16.2329998016357 C13.9629993438721,16.9680004119873 12.8489990234375,17.2859992980957 11.6309995651245,16.8699989318848 C10.7269992828369,' +
+    '16.5599994659424 10.2469997406006,16.1129989624023 9.96799945831299,15.6339988708496 C9.67999935150146,15.136999130249 9.57799911499023,14.5559988021851 9.52599906921387,13.9219989776611 C9.51099872589111,' +
+    '13.7329988479614 9.50099945068359,13.5619993209839 9.49099922180176,13.3879985809326 L9.46599960327148,12.9779987335205 C9.44808673858643,12.6668615341187 9.40596008300781,12.3575983047485 9.34000015258789,' +
+    '12.0530033111572 C9.27078247070313,11.7406625747681 9.13427734375,11.4471759796143 8.94000053405762,11.1930027008057 C8.71393775939941,10.9188861846924 8.40979194641113,10.7200746536255 8.06800079345703,' +
+    '10.6230030059814 C7.36600065231323,10.4080028533936 6.80300092697144,10.4360027313232 6.31800079345703,10.5890026092529 C5.94300079345703,10.709002494812 5.6200008392334,10.9060029983521 5.3720006942749,' +
+    '11.0590028762817 L5.22600078582764,11.1460027694702 C4.94100093841553,11.3150024414063 4.75400066375732,11.3900032043457 4.54600095748901,11.3800029754639 C4.33300113677979,11.370002746582 4.00300121307373,' +
+    '11.2620029449463 3.47200107574463,10.830002784729 C3.08700108528137,10.5160026550293 2.90500116348267,10.0670032501221 2.90200114250183,9.49000263214111 C2.90000104904175,8.89900302886963 3.0880012512207,' +
+    '8.20200252532959 3.42300128936768,7.48000240325928 C4.09700107574463,6.02700233459473 5.28500127792358,4.63600254058838 6.29300117492676,4.01900243759155 ';
+
+  ExpanderSetBG.StylesData['details'] := 'Window background (color, gradient, style)';
+  ExpanderSetBG.StylesData['icon.Data.Data'] := 'M5.498 3.001a2.5 2.5 0 0 0-2.5 2.5v9a2.5 2.5 0 0 0 2.5 2.5h9a2.5 2.5 0 0 0 2.5-2.5V8h.003V6.5h-.003v-.999a2.5 2.5 0 0 0-2.5-2.5zM15.501 6v.5H14.21l1.145-1.145c.093.195.146.414.146.645m-.852-1.353L12.795 6.5H9.967l2-2H14c.232 0 .451.053.648.147M10.553 4.5l-2 2H5.724l2-2zm-4.243 0L4.5 6.31V6A1.5 1.5 0 0 1 6 4.5zM7.053 8L4.5 10.552V8zM4.5 11.966L8.467 8h2.828l-6.648 6.648A1.5 1.5 0 0 1 4.5 14zM12.71 8h2.79v.037L8.039 15.5H6c-.23 0-.45-.052-.645-.146zm2.79 1.452v2.828l-3.22 3.22H9.453zm0 4.242V14a1.5 1.5 0 0 1-1.5 1.5h-.305z';
+
+  ExpanderSetProxy.StylesData['details'] := 'Use a proxy server when connecting to the network';
+  ExpanderSetProxy.StylesData['icon.Data.Data'] := 'M12 6.25a.75.75 0 0 1 .75.75v10a.75.75 0 1 1-1.5 0V7a.75.75 0 0 1 .75-.75M6.065 8.399a.75.75 0 0 1 1.06.02l2.953 3.06c.28.29.28.751 0 1.042l-2.953 3.06a.75.75 0 1 1-1.08-1.04l1.728-1.79H4a.75.75 0 1 1 ' +
+    '0-1.5h3.773L6.046 9.458a.75.75 0 0 1 .019-1.06m10.461.001a.75.75 0 0 1 1.06.02l2.954 3.06c.28.29.28.751 0 1.042l-2.953 3.06a.75.75 0 1 1-1.08-1.04l1.727-1.79l-3.772-.001a.75.75 0 0 1 0-1.5h3.773l-1.728-1.79a.75.75 ' +
+    '0 0 1 .02-1.061';
+
+  ExpanderSetScraper.StylesData['details'] := 'Authorization data in Screen Scraper';
+  ExpanderSetScraper.StylesData['icon.Data.Data'] := 'M15 2.25a.75.75 0 0 1 .75.75v1A1.75 1.75 0 0 1 14 5.75h-1a.25.25 0 0 0-.25.25v.25h.533c1.313 0 2.354 0 3.194.083c.863.085 1.583.262 2.234.66q.465.285.854.66c.55.53.895 1.178 1.179 1.981c.275.78.512 1.768.81 ' +
+    '3.01l1.095 4.557c.483 2.011-.805 3.994-2.827 4.453c-1.702.386-3.468-.419-4.248-1.97l-.129-.255a2.66 2.66 0 0 0-2.381-1.44h-2.128c-1.021 0-1.942.567-2.381 1.44l-.128.255c-.781 1.551-2.547 2.356-4.249 1.97c-2.022-.46-3.31-2.442-2.827-4.453l1.095-4.556c.298-1.242.536-2.231.81-3.01c.284-.804.628-1.452 ' +
+    '1.179-1.982q.391-.375.854-.66c.651-.398 1.372-.575 2.234-.66c.84-.083 1.88-.083 3.194-.083h.533V6c0-.966.784-1.75 1.75-1.75h1a.25.25 0 0 0 .25-.25V3a.75.75 0 0 1 .75-.75m-4.243 5.5c-1.362 0-2.329 0-3.087.076c-.743.073-1.214.212-1.598.447a3.5 ' +
+    '3.5 0 0 0-.597.461c-.32.308-.563.717-.804 1.4c-.246.697-.466 1.61-.777 2.902L2.81 17.552c-.28 1.164.46 2.357 1.7 2.64c1.05.238 2.115-.265 2.577-1.183l.128-.254c.701-1.394 2.149-2.265 3.721-2.265h2.128c1.572 ' +
+    '0 3.02.871 3.721 2.265l.128.254c.462.918 1.527 1.42 2.577 1.182c1.241-.282 1.98-1.475 1.7-2.64l-1.084-4.515c-.31-1.292-.53-2.205-.777-2.903c-.24-.682-.484-1.091-.804-1.399a3.5 3.5 0 0 0-.597-.46c-.384-.236-.855-.375-1.598-.448c-.758-.075-1.725-.076-3.087-.076zM8.5 ' +
+    '10.25a.75.75 0 0 1 .75.75v.75H10a.75.75 0 0 1 0 1.5h-.75V14a.75.75 0 0 1-1.5 0v-.75H7a.75.75 0 0 1 0-1.5h.75V11a.75.75 0 0 1 .75-.75' +
+    'M16 11a1 1 0 1 1-2 0a1 1 0 0 1 2 0m2 3a1 1 0 1 1-2 0a1 1 0 0 1 2 0';
+
+  ExpanderSetPrompts.StylesData['details'] := 'Enabling/Disabling confirmation dialog boxes';
+  ExpanderSetPrompts.StylesData['icon.Data.Data'] := 'M19 5.5a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0m-3.793 0l1.147-1.146a.5.5 0 0 0-.708-.708L14.5 4.793l-1.146-1.147a.5.5 0 0 0-.708.708L13.793 5.5l-1.147 1.146a.5.5 0 0 0 .708.708L14.5 6.207l1.146 1.147a.5.5 ' +
+    '0 0 0 .708-.708zM17 12.276V10.4a5.5 5.5 0 0 0 1-.657v2.533c0 1.418-1.164 2.566-2.6 2.566h-4.59l-4.011 2.961a1.01 1.01 0 0 1-1.4-.199a.98.98 0 0 1-.199-.59v-2.172h-.6c-1.436 0-2.6-1.149-2.6-2.566v-6.71C2 ' +
+    '4.149 3.164 3 4.6 3h5a5.5 5.5 0 0 0-.393 1H4.6C3.704 4 3 4.713 3 5.566v6.71c0 .853.704 1.566 1.6 1.566h1.6V17h.003l.002-.001l4.276-3.157H15.4c.896 0 1.6-.713 1.6-1.566';
+
+  ExpanderSetRetropie.StylesData['details'] := 'Authorization data for Retropie';
+  ExpanderSetRetropie.StylesData['icon.Data.Data'] := 'M10 3a2 2 0 1 1 0 4a2 2 0 0 1 0-4m.5 4.959a3 3 0 1 0-1 0V11h-2A1.5 1.5 0 0 0 6 12.5v.5H5a2 2 0 0 0-2 2v2.5a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5V15a2 2 0 0 0-2-2h-1v-.5a1.5 1.5 0 0 0-1.5-1.5h-2zM7.5 12h5a.5.5 ' +
+    '0 0 1 .5.5v.5H7v-.5a.5.5 0 0 1 .5-.5M5 14h10a1 1 0 0 1 1 1v2H4v-2a1 1 0 0 1 1-1';
+
+  ExpanderSetRecalbox.StylesData['details'] := 'Authorization data for Recalbox';
+  ExpanderSetRecalbox.StylesData['icon.Data.Data'] := 'M9.125 7.184A.75.75 0 0 0 8 7.834v4.333a.75.75 0 0 0 1.125.65l4.125-2.384a.5.5 0 0 0 0-.866zM2 10a8 8 0 1 1 16 0a8 8 0 0 1-16 0m8-7a7 7 0 1 0 0 14a7 7 0 0 0 0-14';
+
+  // Theme and style
   OverAccentColor := SystemAccentColor;
   BeginUpdate;
   ComboColorBoxAccentColor.Color := OverAccentColor;
   EndUpdate;
-  OverTheme := 2;
   SetSystemWindowControls(ButtonWinClose, ButtonWinMax, ButtonWinMin);
   CaptionControls := [LayoutCaption, LayoutHead];
   OffsetControls := [LayoutHead];
   TitleControls := [LabelTitle];
+  SystemButtonsContainer := LayoutCaption;
   IconControl := ImageIcon;
   {$IFDEF MSWINDOWS}
   HideTitleBar := True;
@@ -651,70 +861,50 @@ begin
   LabelTitle.Visible := False;
   LayoutHeadIcon.Visible := False;
   {$ENDIF}
-  CreatePdfViewer;
+  // Defaults
   MemoGameDescription.ScrollAnimation := TBehaviorBoolean.True;
   MemoScrapeDescription.ScrollAnimation := TBehaviorBoolean.True;
   TabControlEditor.TabPosition := TTabPosition.None;
   TabControlMedia.TabPosition := TTabPosition.None;
+  TabControlSettings.TabPosition := TTabPosition.None;
+  TabControlMain.TabPosition := TTabPosition.None;
+  LabelGamesCount.Text := '';
+  ListBoxGames.Clear;
+  ListBoxSystems.Clear;
+  TabControlSettingsChange(nil);
+  // Pdf
+  CreatePdfViewer;
+  // Create
   FImgList := TObjectList<TImage>.Create;
   FInfosList := TStringList.Create(True);
   FPictureLinks := TObjectList<TMediaInfo>.Create;
-  LabelGamesCount.Text := 'Games';
-  GSystemList := TObjectDictionary<string, TObjectList<TGame>>.Create([doOwnsValues]);
-  ListBoxGames.Clear;
-  ListBoxSystems.Clear;
-  LoadFromIni;
+  FSystemList := TObjectDictionary<string, TObjectList<TGame>>.Create([doOwnsValues]);
   FPiLoadedOnce := False;
   FTempXmlPath := TPath.Combine(TPath.GetLibraryPath, Cst_TempXml);
   CounterGuard := TCriticalSection.Create;
-
-  if TDirectory.Exists(FRootPath) then
-    BuildSystemsList(True);
+  // Load settings
+  LoadFromIni;
+  // Start
+  TabControlMain.ActiveTab := TabItemMainWelcome;
+  TabControlMedia.ActiveTab := TabItemMediaPicture;
+  TabControlMediaChange(nil);
+  if OpenLastFolder and TDirectory.Exists(FRootPath) then
+    BuildSystemsList(True)
+  else
+    TabControlMain.ActiveTab := TabItemMainWelcome;
 end;
 
 procedure TFormMain.FormShow(Sender: TObject);
 begin
-  CheckMenuItem(Succ(FLanguage));
-  if FShowTips then
+  if ShowTips then
   begin
-    var Frm_Help := TFrm_Help.Create(nil);
+    var FormHelp := TFormHelp.Create(Self);
     try
-      FShowTips := Frm_Help.Execute(not FShowTips);
+      ShowTips := FormHelp.Execute(not ShowTips);
     finally
-      Frm_Help.Free;
+      FormHelp.Free;
     end;
   end;
-  MenuItemOptShowTips.IsChecked := FShowTips;
-end;
-
-procedure TFormMain.CheckMenuItem(aNumber: Integer);
-begin
-  var CompName := Cst_MenuLang + IntToStr(aNumber);
-  var Comp := FindComponent(CompName);
-  if not Assigned(Comp) then
-    Exit;
-  var MenuItem := Comp as TMenuItem;
-  MenuItem.IsChecked := True;
-end;
-
-procedure TFormMain.MenuItemChoosefolderClick(Sender: TObject);
-begin
-  ImageGameBackground.Visible := True;
-  EnableControls(False);
-  ClearAllFields;
-  ListBoxGames.Clear;
-  BuildSystemsList;
-  ButtonSaveChanges.Enabled := False;
-end;
-
-procedure TFormMain.MenuItemReloadClick(Sender: TObject);
-begin
-  ImageGameBackground.Visible := True;
-  EnableControls(False);
-  ClearAllFields;
-  ListBoxGames.Clear;
-  BuildSystemsList(True);
-  ButtonSaveChanges.Enabled := False;
 end;
 
 //permet d'йxecuter la ligne de commande qui stop/start Emulation Station
@@ -727,23 +917,23 @@ begin
   if AStop then
   begin
     if ARecal then
-      ShellExecute(0, nil, 'cmd.exe', PChar(Cst_PlinkCommand + FRecalLogin +
-          Cst_PlinkCommandRecal + FRecalPwd +
+      ShellExecute(0, nil, 'cmd.exe', PChar(Cst_PlinkCommand + RecalLogin +
+          Cst_PlinkCommandRecal + RecalPwd +
           Cst_PlinkCommandStop), PChar(PathToPlink), 0)
     else
-      ShellExecute(0, nil, 'cmd.exe', PChar(Cst_PlinkCommand + FRetroLogin +
-          Cst_PlinkCommandRetro + FRetroPwd +
+      ShellExecute(0, nil, 'cmd.exe', PChar(Cst_PlinkCommand + RetroLogin +
+          Cst_PlinkCommandRetro + RetroPwd +
           Cst_PlinkCommandStop), PChar(PathToPlink), 0);
   end
   else
   begin
     if ARecal then
-      ShellExecute(0, nil, 'cmd.exe', PChar(Cst_PlinkCommand + FRecalLogin +
-          Cst_PlinkCommandRecal + FRecalPwd +
+      ShellExecute(0, nil, 'cmd.exe', PChar(Cst_PlinkCommand + RecalLogin +
+          Cst_PlinkCommandRecal + RecalPwd +
           Cst_PlinkCommandStart), PChar(PathToPlink), 0)
     else
-      ShellExecute(0, nil, 'cmd.exe', PChar(Cst_PlinkCommand + FRetroLogin +
-          Cst_PlinkCommandRetro + FRetroPwd +
+      ShellExecute(0, nil, 'cmd.exe', PChar(Cst_PlinkCommand + RetroLogin +
+          Cst_PlinkCommandRetro + RetroPwd +
           Cst_PlinkCommandStart), PChar(PathToPlink), 0)
   end;
   {$ENDIF}
@@ -751,126 +941,119 @@ end;
 
 procedure TFormMain.BuildSystemsList(AReload: Boolean);
 begin
-  ImageSystemLogo.Bitmap := nil;
-  ListBoxSystems.Clear;
-  ListBoxSystems.Enabled := False;
-  ComboBoxGamesFilter.Enabled := False;
-  Lbl_Filter.Enabled := False;
-  LabelGamesCount.Text := 'Games';
-  MenuItemGameDelete.Enabled := False;
-  CheckBoxGameKids.IsChecked := False;
-  CheckBoxGameHidden.IsChecked := False;
-  CheckBoxGameFavorite.IsChecked := False;
-  GSystemList.Clear;
-  var ValidFolderCount := 0;
-
-  if (not AReload) then
+  if not AReload then
   begin
-    MenuItemReload.Enabled := False;
     var Dir: string := FRootPath;
-    if SelectDirectory('Select dir', '', Dir) then
+    if SelectDirectory(Translate('Select dir'), '', Dir) then
       FRootPath := Dir
     else
       Exit;
   end;
 
+  EnableControls(False);
+  ClearAllFields;
+  ListBoxGames.Clear;
+  ListBoxSystems.Clear;
+  ListBoxSystems.Enabled := False;
+  ImageSystemLogo.Bitmap := nil;
+  ComboBoxGamesFilter.Enabled := False;
+  LabelGamesCount.Text := '';
+  MenuItemGameDelete.Enabled := False;
+  FSystemList.Clear;
+
   var Dirs := TDirectory.GetDirectories(FRootPath);
   var IsFound := Length(Dirs) > 0;
   if not IsFound then
   begin
-    ShowMessage('not IsFound'#13#10 + Rst_WrongFolder);
+    ShowUIMessage(Self, Rst_WrongFolder + #13#10'not IsFound');
     Exit;
   end;
 
+  var ValidFolderCount := 0;
   ListBoxSystems.BeginUpdate;
   try
     for var Dir in Dirs do
     begin
-      if (Dir[1] <> '.') and TFile.Exists(TPath.Combine([FRootPath, Dir, Cst_GameListFileName])) then
+      if Dir.StartsWith('.') then
+        Continue;
+      if not TFile.Exists(TPath.Combine(FRootPath, Dir, Cst_GameListFileName)) then
+        Continue;
+
+      FCurrentFolder := TPath.GetFileName(Dir);
+
+      var TmpList := BuildGamesList(TPath.Combine(FRootPath, FCurrentFolder, Cst_GameListFileName));
+      if Assigned(TmpList) then
       begin
-        FCurrentFolder := TPath.GetFileName(Dir);
+        FSystemList.Add(FCurrentFolder, TmpList);
 
-        var GameListPath := TPath.Combine([FRootPath, FCurrentFolder, Cst_GameListFileName]);
-        var TmpList := BuildGamesList(GameListPath);
+        var Item := TListBoxItemSystem.Create(ListBoxSystems);
+        ListBoxSystems.AddObject(Item);
+        Item.ItemData.Detail := TmpList.Count.ToString;
+        Item.SystemKind := TSystemKind.Create(FCurrentFolder);
 
-        if Assigned(TmpList) then
-        begin
-          GSystemList.Add(FCurrentFolder, TmpList);
+        if Item.SystemKind = TSystemKind.Other then
+          Item.Text := FCurrentFolder
+        else if (Item.SystemKind = TSystemKind.MegaDrive) and GenesisLogo then
+          Item.Text := Cst_SystemKindStr[TSystemKind.Genesis]
+        else
+          Item.Text := Cst_SystemKindStr[Item.SystemKind];
 
-          var System := TSystemKind.Create(FCurrentFolder);
-          if (System = skOther) then
-          begin
-            var Item := TListBoxItemSystem.Create(ListBoxSystems);
-            ListBoxSystems.AddObject(Item);
-            Item.Text := FCurrentFolder;
-            Item.ItemData.Detail := TmpList.Count.ToString;
-            Item.SystemKind := System;
-          end
-          else if (System = skMegaDrive) and FGenesisLogo then
-          begin
-            var Item := TListBoxItemSystem.Create(ListBoxSystems);
-            ListBoxSystems.AddObject(Item);
-            Item.Text := Cst_SystemKindStr[skGenesis];
-            Item.ItemData.Detail := TmpList.Count.ToString;
-            Item.SystemKind := System;
-          end
-          else
-          begin
-            var Item := TListBoxItemSystem.Create(ListBoxSystems);
-            ListBoxSystems.AddObject(Item);
-            Item.Text := Cst_SystemKindStr[System];
-            Item.ItemData.Detail := TmpList.Count.ToString;
-            Item.SystemKind := System;
-          end;
-
-          Inc(ValidFolderCount);
-        end;
+        Inc(ValidFolderCount);
       end;
     end;
   finally
     ListBoxSystems.EndUpdate;
   end;
 
-  if (ValidFolderCount = 0) then
+  if ValidFolderCount = 0 then
   begin
-    ShowMessage('ValidFolderCount 0'#13#10 + Rst_WrongFolder);
+    ShowUIMessage(Self, Rst_WrongFolder + #13#10'ValidFolderCount is 0');
     Exit;
-  end
-  else
-  begin
-    FFolderIsOnPi := FRootPath.StartsWith(Cst_Recalbox) or FRootPath.StartsWith(Cst_Retropie);
-
-    if FFolderIsOnPi and not FPiLoadedOnce then
-    begin
-      FPiLoadedOnce := True;
-      if not FPiPrompts then
-        MyMessageDlg(Rst_StopES, TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], [Rst_Ok], Rst_Info);
-      if FRootPath.StartsWith(Cst_Recalbox) then
-      begin
-        StopOrStartES(True, True);
-        FSysIsRecal := True;
-      end
-      else
-      begin
-        StopOrStartES(True, False);
-        FSysIsRecal := False;
-      end;
-    end;
-
-    ListBoxSystems.Enabled := True;
-    ComboBoxGamesFilter.Enabled := ListBoxSystems.Enabled;
-    Lbl_Filter.Enabled := ListBoxSystems.Enabled;
-    ListBoxSystems.ItemIndex := 0;
-    EnableControls(True);
-    ComboBoxGamesFilter.ItemIndex := 0;
-    LoadGamesList(GetCurrentFolderName);
-    MenuItemReload.Enabled := True;
   end;
+
+  FFolderIsOnPi := FRootPath.StartsWith(Cst_Recalbox) or FRootPath.StartsWith(Cst_Retropie);
+
+  if FFolderIsOnPi and not FPiLoadedOnce then
+  begin
+    FPiLoadedOnce := True;
+    if not PiPrompts then
+      MyMessageDlg(Rst_Info, Rst_StopES, [Rst_Ok]);
+    if FRootPath.StartsWith(Cst_Recalbox) then
+    begin
+      StopOrStartES(True, True);
+      FSysIsRecal := True;
+    end
+    else
+    begin
+      StopOrStartES(True, False);
+      FSysIsRecal := False;
+    end;
+  end;
+
+  ListBoxSystems.Enabled := True;
+  ComboBoxGamesFilter.Enabled := ListBoxSystems.Enabled;
+  ListBoxSystems.ItemIndex := 0;
+  EnableControls(True);
+  ComboBoxGamesFilter.ItemIndex := 0;
+  LoadGamesList(GetCurrentFolderName);
+  TabControlMain.ActiveTab := TabItemMainGameList;
 end;
 
 procedure TFormMain.ButtonGameMainTabClick(Sender: TObject);
 begin
   TabControlEditor.ActiveTab := TabItemEditGame;
+end;
+
+procedure TFormMain.ButtonGamesOptionsClick(Sender: TObject);
+begin
+  PopupGamesOptions.PlacementTarget := ButtonGamesOptions;
+  PopupGamesOptions.Placement := TPlacement.Bottom;
+  PopupGamesOptions.Popup;
+end;
+
+procedure TFormMain.ButtonHelpBackClick(Sender: TObject);
+begin
+  TabControlMain.ActiveTab := TabItemMainGameList;
 end;
 
 procedure TFormMain.ButtonScrapeClick(Sender: TObject);
@@ -901,42 +1084,9 @@ begin
   Result := TObjectList<TGame>.Create(True);
   repeat
     if Node.HasChildNodes then
-    begin
-      var Year: string;
-      var Game := TGame.Create(
-        GetNodeValue(Node, Cst_Path),
-        GetNodeValue(Node, Cst_Name),
-        GetNodeValue(Node, Cst_Description),
-        GetNodeValue(Node, Cst_ImageLink),
-        GetNodeValue(Node, Cst_VideoLink),
-        GetNodeValue(Node, Cst_Rating),
-        GetNodeValue(Node, Cst_Developer),
-        GetNodeValue(Node, Cst_Publisher),
-        GetNodeValue(Node, Cst_Genre),
-        GetNodeValue(Node, Cst_Players),
-        FormatDateFromString(GetNodeValue(Node, Cst_ReleaseDate), Year),
-        GetNodeValue(Node, Cst_Region),
-        GetNodeValue(Node, Cst_Playcount),
-        GetNodeValue(Node, Cst_LastPlayed),
-        GetNodeValue(Node, Cst_KidGame),
-        GetNodeValue(Node, Cst_Hidden),
-        GetNodeValue(Node, Cst_Favorite),
-        GetNodeValue(Node, Cst_BoxLink),
-        GetNodeValue(Node, Cst_ManualLink)
-      );
-
-      Game.Year := Year;
-      Game.PhysicalRomPath := GetPhysicalPath(Game.RomPath);
-      Game.PhysicalImagePath := GetPhysicalPath(Game.ImagePath);
-      Game.PhysicalVideoPath := GetPhysicalPath(Game.VideoPath);
-      Game.PhysicalBoxPath := GetPhysicalPath(Game.BoxPath);
-      Game.PhysicalManualPath := GetPhysicalPath(Game.ManualPath);
-      Game.IsOrphan := not TFile.Exists(Game.PhysicalRomPath);
-
-      Result.Add(Game);
-    end;
+      Result.Add(TGame.CreateFrom(Node, TPath.Combine(FRootPath, FCurrentFolder)));
     Node := Node.NextSibling;
-  until (Node = nil);
+  until Node = nil;
 
   XMLDoc.Active := False;
 end;
@@ -947,13 +1097,17 @@ begin
   LoadGamesList(GetCurrentFolderName);
 end;
 
+procedure TFormMain.ComboBoxThemeChange(Sender: TObject);
+begin
+  if FUpdating > 0 then
+    Exit;
+  DoOnSettingChange;
+end;
+
 procedure TFormMain.ComboColorBoxAccentColorChange(Sender: TObject);
 begin
   if FUpdating > 0 then
     Exit;
-  BeginUpdate;
-  CheckBoxCustomAccent.IsChecked := True;
-  EndUpdate;
   DoOnSettingChange;
 end;
 
@@ -969,11 +1123,10 @@ begin
   ButtonRemovePicture.Enabled := AValue;
   ButtonRemoveVideo.Enabled := AValue;
   ButtonSetDefaultPicture.Enabled := AValue;
-  ButtonMoreInfos.Enabled := AValue;
   MenuItemGameDelete.Enabled := AValue;
   ButtonGameDelete.Enabled := AValue;
 
-  MenuItemSystem.Enabled := AValue or not (GSystemList.Count = 0);
+  MenuItemSystem.Enabled := AValue or not (FSystemList.Count = 0);
   MenuItemGame.Enabled := AValue and not (ListBoxGames.Items.Count = 0);
 
   EditGameName.Enabled := AValue;
@@ -1042,17 +1195,15 @@ end;
 procedure TFormMain.FillGameItem(Item: TListBoxItemGame; Game: TGame);
 begin
   var GameName: string := '';
-  if not CheckBoxGamesListByRom.IsChecked then
-  begin
-    GameName := Game.Name;
-  end
-  else if CheckBoxGamesListByRom.IsChecked then
+  if CheckBoxGamesListByRom.IsChecked then
   begin
     if CheckBoxGamesFullRomName.IsChecked then
-      GameName := StringReplace(Game.RomPath, './', '', [])
+      GameName := Game.RomName
     else
-      GameName := Game.RomName;
-  end;
+      GameName := Game.RomNameWoExt;
+  end
+  else
+    GameName := Game.Name;
   try
     if TFile.Exists(Game.PhysicalBoxPath) then
       Item.ItemData.Bitmap.LoadThumbnailFromFile(Game.PhysicalBoxPath, 64, 64)
@@ -1062,9 +1213,8 @@ begin
     Item.ItemData.Bitmap := nil;
   end;
   if Item.ItemData.Bitmap.IsEmpty then
-  begin
     Item.ItemData.Bitmap := ImageNoBox.Bitmap;
-  end;
+
   Item.ItemData.Detail := Game.Genre;
   Item.StylesData['info'] := Game.Developer + ' ● ' + Game.Year;
   Item.StylesData['rating'] := Game.Rating;
@@ -1076,38 +1226,26 @@ end;
 
 procedure TFormMain.LoadGamesList(const ASystem: string);
 
-  function CheckIfFileMissing(const aLink: string): Boolean;
+  function CheckIfFileMissing(const ALink: string): Boolean;
   begin
-    Result := aLink.IsEmpty or not (FileExists(aLink));
+    Result := ALink.IsEmpty or not (TFile.Exists(ALink));
   end;
 
   function AdjustDecimalSeparator(const Value: string): string;
   begin
-    Result := StringReplace(Value, ',', '.', [rfReplaceAll]);
-  end;
-
-  function CountChar(const S: string; const Ch: Char): Integer;
-  var
-    i: Integer;
-  begin
-    Result := 0;
-    for i := 1 to Length(S) do
-      if S[i] = Ch then
-        Inc(Result);
+    Result := Value.Replace(',', '.', [rfReplaceAll]);
   end;
 
   function FlexibleDateParse(const ADateStr: string): TDate;
-  var
-    Year, Month: Word;
   begin
-    if Length(ADateStr) = 4 then // Only year provided
+    if ADateStr.Length = 4 then // Only year provided
     begin
       Result := EncodeDate(StrToIntDef(ADateStr, 0), 1, 1);
     end
-    else if (CountChar(ADateStr, '-') = 1) or (CountChar(ADateStr, PathDelim) = 1) then // Year and month provided
+    else if (ADateStr.CountChar('-') = 1) or (ADateStr.CountChar(PathDelim) = 1) then // Year and month provided
     begin
-      Year := StrToIntDef(Copy(ADateStr, 1, 4), 0);
-      Month := StrToIntDef(Copy(ADateStr, 6, 2), 0);
+      var Year := StrToIntDef(Copy(ADateStr, 1, 4), 0);
+      var Month := StrToIntDef(Copy(ADateStr, 6, 2), 0);
       Result := EncodeDate(Year, Month, 1);
     end
     else
@@ -1126,9 +1264,6 @@ procedure TFormMain.LoadGamesList(const ASystem: string);
   end;
 
   procedure InitializeDuplicateDictionaries(const GameList: TObjectList<TGame>; const FilterIndex: Integer; out NameCountMap: TDictionary<string, Integer>; out ROMPathCountMap: TDictionary<string, Integer>);
-  var
-    Game: TGame;
-    ROMFileName: string;
   begin
     NameCountMap := nil;
     ROMPathCountMap := nil;
@@ -1140,7 +1275,7 @@ procedure TFormMain.LoadGamesList(const ASystem: string);
       ROMPathCountMap := TDictionary<string, Integer>.Create;
 
     try
-      for Game in GameList do
+      for var Game in GameList do
       begin
          // Count game names for filter 29 (All with duplicate name)
         if (FilterIndex = 29) and Assigned(NameCountMap) then
@@ -1154,7 +1289,7 @@ procedure TFormMain.LoadGamesList(const ASystem: string);
          // Count ROM paths for filter 30 (All with duplicate roms)
         if (FilterIndex = 30) and Assigned(ROMPathCountMap) then
         begin
-          ROMFileName := ExtractFileName(Game.PhysicalRomPath);
+          var ROMFileName := ExtractFileName(Game.PhysicalRomPath);
           if ROMPathCountMap.ContainsKey(ROMFileName) then
             ROMPathCountMap[ROMFileName] := ROMPathCountMap[ROMFileName] + 1
           else
@@ -1170,7 +1305,7 @@ procedure TFormMain.LoadGamesList(const ASystem: string);
         if (FilterIndex = 30) and not Assigned(ROMPathCountMap) then
           ROMPathCountMap := TDictionary<string, Integer>.Create;
          // Handle catastrophic failure in the counting process
-        ShowMessage('Error while searching for duplicates: ' + E.Message);
+        WarnUser('Error while searching for duplicates: ' + E.Message);
       end;
     end;
   end;
@@ -1178,7 +1313,6 @@ procedure TFormMain.LoadGamesList(const ASystem: string);
 var
   ReferenceGame: TGame;
   TmpList: TObjectList<TGame>;
-  TmpGame: TGame;
   FilterIndex: Integer;
   ParsedReferenceRating, ParsedGameRating: Double;
   ParsedReferenceDate: TDate;
@@ -1189,9 +1323,8 @@ begin
   ParsedGameRating := 0;
   StopGameVideo;
 
-  if GSystemList.TryGetValue(ASystem, TmpList) then
+  if FSystemList.TryGetValue(ASystem, TmpList) then
   begin
-
     FormatSettings := TFormatSettings.Create;
     FormatSettings.DecimalSeparator := '.';
 
@@ -1211,8 +1344,8 @@ begin
       ParsedReferenceDate := Now;
     end;
 
-    if (GetCurrentLogoName = Cst_SystemKindImageNames[skMegaDrive]) and FGenesisLogo then
-      LoadSystemLogo(Cst_SystemKindImageNames[skGenesis])
+    if (GetCurrentLogoName = Cst_SystemKindImageNames[TSystemKind.MegaDrive]) and GenesisLogo then
+      LoadSystemLogo(Cst_SystemKindImageNames[TSystemKind.Genesis])
     else
       LoadSystemLogo(GetCurrentLogoName);
 
@@ -1228,7 +1361,7 @@ begin
     ListBoxGames.BeginUpdate;
     try
       ListBoxGames.Clear;
-      for TmpGame in TmpList do
+      for var TmpGame in TmpList do
       begin
         if (FilterIndex = 21) or (FilterIndex = 22) then
         begin
@@ -1286,16 +1419,13 @@ begin
         ROMPathCountMap.Free;
     end;
 
-    //On indique le nombre de jeux trouvйs
     if ComboBoxGamesFilter.ItemIndex = 0 then
-      LabelGamesCount.Text := Format('Games (%d)', [ListBoxGames.Items.Count])
+      LabelGamesCount.Text := Format('Count: %d', [ListBoxGames.Items.Count])
     else
-      LabelGamesCount.Text := Format('Games (%d/%d)', [ListBoxGames.Items.Count, TmpList.Count]);
+      LabelGamesCount.Text := Format('Count: %d/%d', [ListBoxGames.Items.Count, TmpList.Count]);
 
-      //On met le focus sur le premier jeu de la liste
     ClearAllFields;
 
-      //Si il y a des jeux dans la liste on affiche auto le premier
     if (ListBoxGames.Items.Count > 0) then
     begin
       EnableControls(True);
@@ -1308,18 +1438,21 @@ begin
       EnableControls(False);
     end;
 
-      //on remet les йvиnements sur les champs
     FIsLoading := False;
   end;
 end;
 
-//Charge le logo du systиme sйlectionnй dans le TImage prйvu
 procedure TFormMain.LoadSystemLogo(const aPictureName: string);
 begin
   try
     ImageSystemLogo.Bitmap.LoadFromFile(TPath.Combine(TPath.GetLibraryPath, Cst_LogoPicsFolder, aPictureName));
   except
   end;
+end;
+
+procedure TFormMain.LabelSetCaption1Click(Sender: TObject);
+begin
+  TabControlSettings.ActiveTab := TabItemSettingsMain;
 end;
 
 procedure TFormMain.ListBoxGamesChange(Sender: TObject);
@@ -1354,7 +1487,7 @@ begin
 end;
 
 //Click sur un jeu dans la liste
-procedure TFormMain.ListBoxSystemsItemClick(const Sender: TCustomListBox; const Item: TListBoxItem);
+procedure TFormMain.ListBoxSystemsChange(Sender: TObject);
 begin
   EmptyScrapeFields;
   LoadGamesList(GetCurrentFolderName);
@@ -1379,7 +1512,6 @@ begin
   CheckBoxGameFavorite.Enabled := True;
   CheckBoxGamesListByRom.Enabled := AValue;
 
-  ButtonMoreInfos.Enabled := AValue;
   MenuItemGameDelete.Enabled := True;
   ButtonGameDelete.Enabled := True;
   ButtonStartScrape.Enabled := AValue;
@@ -1422,7 +1554,7 @@ end;
 
 procedure TFormMain.UpdateVideo(AGame: TGame);
 begin
-  if (TabControlMedia.ActiveTab = TabItemVideo) and (TabControlEditor.ActiveTab = TabItemEditGame) and
+  if (TabControlMedia.ActiveTab = TabItemMediaVideo) and (TabControlEditor.ActiveTab = TabItemEditGame) and
     (not AGame.VideoPath.IsEmpty) and TFile.Exists(AGame.PhysicalVideoPath) then
   begin
     StartGameVideo(AGame.PhysicalVideoPath);
@@ -1459,14 +1591,62 @@ end;
 
 procedure TFormMain.TabControlMediaChange(Sender: TObject);
 begin
-  RadioButtonPreviewPicture.IsChecked := (TabControlEditor.ActiveTab = TabItemEditGame) and (TabControlMedia.ActiveTab = TabItemPicture);
-  RadioButtonPreviewVideo.IsChecked := (TabControlEditor.ActiveTab = TabItemEditGame) and (TabControlMedia.ActiveTab = TabItemVideo);
+  RadioButtonPreviewPicture.IsChecked := (TabControlEditor.ActiveTab = TabItemEditGame) and (TabControlMedia.ActiveTab = TabItemMediaPicture);
+  RadioButtonPreviewVideo.IsChecked := (TabControlEditor.ActiveTab = TabItemEditGame) and (TabControlMedia.ActiveTab = TabItemMediaVideo);
   RadioButtonPreviewManual.IsChecked := (TabControlEditor.ActiveTab = TabItemEditManual);
+  RadioButtonPreviewHash.IsChecked := (TabControlEditor.ActiveTab = TabItemEditGame) and (TabControlMedia.ActiveTab = TabItemMediaHash);
   if Assigned(ListBoxGames.Selected) then
   begin
     UpdateVideo((ListBoxGames.Selected as TListBoxItemGame).Game);
     if RadioButtonPreviewManual.IsChecked then
       UpdateManual((ListBoxGames.Selected as TListBoxItemGame).Game);
+  end;
+  if (TabControlEditor.ActiveTab = TabItemEditGame) and (TabControlMedia.ActiveTab = TabItemMediaHash) and Assigned(ListBoxGames.Selected) then
+  begin
+    ButtonCalsHash.Enabled := False;
+    var Game := (ListBoxGames.Selected as TListBoxItemGame).Game;
+
+    if Game.Md5.IsEmpty or Game.Sha1.IsEmpty or Game.Crc32.IsEmpty then
+    begin
+      ButtonCalsHash.Enabled := True;
+      if AutoHash or (MyMessageDlg(Rst_Info, Rst_HashWarning, [Rst_Yes, Rst_No]) = 0) then
+      begin
+        Game.Md5 := Game.CalculateMd5(Game.PhysicalRomPath);
+        Game.Sha1 := Game.CalculateSha1(Game.PhysicalRomPath);
+        Game.Crc32 := Game.CalculateCrc32(Game.PhysicalRomPath);
+        ButtonCalsHash.Enabled := False;
+      end;
+    end;
+    EditGameHashCRC32.Text := Game.Crc32;
+    EditGameHashMD5.Text := Game.Md5;
+    EditGameHashSHA1.Text := Game.Sha1;
+  end;
+end;
+
+procedure TFormMain.TabControlSettingsChange(Sender: TObject);
+begin
+  if TabControlSettings.ActiveTab = TabItemSettingsMain then
+  begin
+    LabelSetCaption2.Visible := False;
+    PathLabelSet1.Visible := False;
+  end
+  else if TabControlSettings.ActiveTab = TabItemSettingsNetwork then
+  begin
+    LabelSetCaption2.Visible := True;
+    PathLabelSet1.Visible := True;
+    LabelSetCaption2.Text := Translate('Network');
+  end
+  else if TabControlSettings.ActiveTab = TabItemSettingsView then
+  begin
+    LabelSetCaption2.Visible := True;
+    PathLabelSet1.Visible := True;
+    LabelSetCaption2.Text := Translate('View');
+  end
+  else if TabControlSettings.ActiveTab = TabItemSettingsSSH then
+  begin
+    LabelSetCaption2.Visible := True;
+    PathLabelSet1.Visible := True;
+    LabelSetCaption2.Text := Translate('SSH');
   end;
 end;
 
@@ -1483,6 +1663,7 @@ begin
   FIsLoading := True;
 
   ImageGameBackground.Visible := True;
+
   EditGameName.Text := AGame.Name;
   EditGameRating.Text := AGame.Rating;
   EditGameReleaseDate.Text := AGame.ReleaseDate;
@@ -1490,8 +1671,28 @@ begin
   EditGameDeveloper.Text := AGame.Developer;
   EditGamePlayers.Text := AGame.Players;
   EditGameGenre.Text := AGame.Genre;
-  MemoGameDescription.Text := AGame.Description;
   EditGameRegion.Text := AGame.Region;
+  MemoGameDescription.Text := AGame.Description;
+  EditGameHashCRC32.Text := AGame.Crc32;
+  EditGameHashMD5.Text := AGame.Md5;
+  EditGameHashSHA1.Text := AGame.Sha1;
+  ButtonCalsHash.Enabled := AGame.Md5.IsEmpty or AGame.Sha1.IsEmpty or AGame.Crc32.IsEmpty;
+  EditGamePlayCount.Text := AGame.Playcount;
+  if not AGame.Lastplayed.IsEmpty then
+    EditGameLastPlayed.Text := FormatDateTime('dd/mm/yyyy hh:mm:ss', ISO8601ToDate(AGame.Lastplayed))
+  else
+    EditGameLastPlayed.Text := '';
+
+  EditOldName.Text := AGame.Name;
+  EditOldRating.Text := AGame.Rating;
+  EditOldDate.Text := AGame.ReleaseDate;
+  EditOldPublisher.Text := AGame.Publisher;
+  EditOldDeveloper.Text := AGame.Developer;
+  EditOldPlayers.Text := AGame.Players;
+  EditOldGenre.Text := AGame.Genre;
+  EditOldRegion.Text := AGame.Region;
+  MemoOldDescription.Text := AGame.Description;
+
   CheckBoxGameKids.IsChecked := AGame.KidGame;
   CheckBoxGameHidden.IsChecked := AGame.Hidden;
   CheckBoxGameFavorite.IsChecked := AGame.Favorite;
@@ -1503,6 +1704,22 @@ begin
   ButtonStartScrape.Enabled := TFile.Exists(AGame.PhysicalRomPath);
   CheckBoxManualCRC.Enabled := ButtonStartScrape.Enabled;
   FIsLoading := False;
+end;
+
+procedure TFormMain.ButtonCalsHashClick(Sender: TObject);
+begin
+  if not Assigned(ListBoxGames.Selected) then
+    Exit;
+
+  var Game := (ListBoxGames.Selected as TListBoxItemGame).Game;
+
+  Game.Md5 := Game.CalculateMd5(Game.PhysicalRomPath);
+  Game.Sha1 := Game.CalculateSha1(Game.PhysicalRomPath);
+  Game.Crc32 := Game.CalculateCrc32(Game.PhysicalRomPath);
+
+  EditGameHashCRC32.Text := Game.Crc32;
+  EditGameHashMD5.Text := Game.Md5;
+  EditGameHashSHA1.Text := Game.Sha1;
 end;
 
 procedure TFormMain.ButtonChangeImageClick(Sender: TObject);
@@ -1528,6 +1745,11 @@ begin
   end;
 end;
 
+procedure TFormMain.ButtonChooseFolderClick(Sender: TObject);
+begin
+  BuildSystemsList;
+end;
+
 procedure TFormMain.ButtonSetDefaultPictureClick(Sender: TObject);
 begin
   var Game := (ListBoxGames.Selected as TListBoxItemGame).Game;
@@ -1541,18 +1763,46 @@ begin
   LoadGame(Game);
 end;
 
-procedure TFormMain.ButtonSettingsClick(Sender: TObject);
+procedure TFormMain.ButtonSetNetworkClick(Sender: TObject);
 begin
-  PopupTheme.PlacementTarget := ButtonSettings;
-  PopupTheme.Popup;
+  TabControlSettings.ActiveTab := TabItemSettingsNetwork;
 end;
 
-procedure TFormMain.Button309Click(Sender: TObject);
+procedure TFormMain.ButtonSettingsBackClick(Sender: TObject);
 begin
-  Inc(OverTheme);
-  if OverTheme > 2 then
-    OverTheme := 1;
-  DoOnSettingChange;
+  if TabControlSettings.ActiveTab <> TabItemSettingsMain then
+    TabControlSettings.ActiveTab := TabItemSettingsMain
+  else
+    TabControlMain.ActiveTab := TabItemMainGameList;
+end;
+
+procedure TFormMain.ButtonSettingsClick(Sender: TObject);
+begin
+  TabControlMain.ActiveTab := TabItemMainSettings;
+  TabControlSettings.ActiveTab := TabItemSettingsMain;
+  TabControlSettingsChange(nil);
+end;
+
+procedure TFormMain.ButtonSettingsHelpClick(Sender: TObject);
+begin      {
+  var Frm_Help := TFrm_Help.Create(nil);
+  try
+    Frm_Help.Chk_ShowTips.Visible := False;
+    FShowTips := Frm_Help.Execute(not FShowTips);
+  finally
+    Frm_Help.Free;
+  end;  }
+  TabControlMain.ActiveTab := TabItemMainHelp;
+end;
+
+procedure TFormMain.ButtonSettingsSSHClick(Sender: TObject);
+begin
+  TabControlSettings.ActiveTab := TabItemSettingsSSH;
+end;
+
+procedure TFormMain.ButtonSetViewClick(Sender: TObject);
+begin
+  TabControlSettings.ActiveTab := TabItemSettingsView;
 end;
 
 procedure TFormMain.ButtonBtn_ChangeAll1Click(Sender: TObject);
@@ -1628,15 +1878,6 @@ begin
   XMLDoc.Active := False;
 
   AGame.ImagePath := PathToXMLPath(ImageLink);
-  AGame.PhysicalImagePath := TPath.Combine(ImagesPath, AGame.RomNameWoExt + Cst_ImageSuffixPng);
-end;
-
-procedure TFormMain.ChangeMainTab(Sender: TObject);
-begin
-  if RadioButtonLib.IsChecked then
-    TabControlEditor.ActiveTab := TabItemEditGame
-  else if RadioButtonScraper.IsChecked then
-    TabControlEditor.ActiveTab := TabItemEditScrape;
 end;
 
 procedure TFormMain.ChangeVideo(const APath: string; AGame: TGame);
@@ -1681,7 +1922,16 @@ begin
   XMLDoc.Active := False;
 
   AGame.VideoPath := PathToXMLPath(VideoLink);
-  AGame.PhysicalVideoPath := TPath.Combine(VideosPath, AGame.RomNameWoExt + Cst_VideoSuffixMp4);
+end;
+
+procedure TFormMain.ButtonReloadFolderClick(Sender: TObject);
+begin
+  ImageGameBackground.Visible := True;
+  EnableControls(False);
+  ClearAllFields;
+  ListBoxGames.Clear;
+  BuildSystemsList(True);
+  ButtonSaveChanges.Enabled := False;
 end;
 
 procedure TFormMain.ButtonRemovePictureClick(Sender: TObject);
@@ -1751,11 +2001,10 @@ begin
   try
     TFile.Delete(Game.PhysicalImagePath);
   except
-    ShowMessage('Can''t remove picture file: ' + Game.PhysicalImagePath)
+    WarnUser('Can''t remove picture file: ' + Game.PhysicalImagePath);
   end;
 
   Game.ImagePath := '';
-  Game.PhysicalImagePath := '';
 
   UpdateImage(Game);
 end;
@@ -1818,13 +2067,27 @@ begin
   try
     TFile.Delete(Game.PhysicalVideoPath);
   except
-    ShowMessage('Can''t remove video file: ' + Game.PhysicalVideoPath)
+    WarnUser('Can''t remove video file: ' + Game.PhysicalVideoPath);
   end;
 
   Game.VideoPath := '';
-  Game.PhysicalVideoPath := '';
 
   UpdateVideo(Game);
+end;
+
+function TFormMain.GetShowTips: Boolean;
+begin
+  Result := CheckBoxSetShowTips.IsChecked;
+end;
+
+function TFormMain.GetSSLogin: string;
+begin
+  Result := EditSetScreenLogin.Text;
+end;
+
+function TFormMain.GetSSPwd: string;
+begin
+  Result := EditSetScreenPwd.Text;
 end;
 
 function TFormMain.GetSystemKind: TSystemKind;
@@ -1832,12 +2095,12 @@ begin
   if Assigned(ListBoxSystems.Selected) then
     Result := TListBoxItemSystem(ListBoxSystems.Selected).SystemKind
   else
-    Result := TSystemKind.skOther;
+    Result := TSystemKind.Other;
 end;
 
 function TFormMain.GetCurrentFolderName: string;
 begin
-  if GetSystemKind = skOther then
+  if GetSystemKind = TSystemKind.Other then
     Result := if Assigned(ListBoxSystems) then ListBoxSystems.Selected.Text else ''
   else
     Result := Cst_SystemKindFolderNames[GetSystemKind];
@@ -1851,6 +2114,11 @@ end;
 function TFormMain.GetCurrentSystemId: string;
 begin
   Result := Cst_SystemKindId[GetSystemKind];
+end;
+
+function TFormMain.GetDelWoPrompt: Boolean;
+begin
+  Result := CheckBoxSetDelPrompts.IsChecked;
 end;
 
 procedure TFormMain.ButtonSaveChangesClick(Sender: TObject);
@@ -1887,9 +2155,7 @@ procedure TFormMain.SaveBatchChangesToGamelist();
 
   function NodeExists(aNode: IXMLNode; const aNodeName: string): Boolean;
   begin
-    Result := False;
-    if Assigned(aNode.ChildNodes.FindNode(aNodeName)) then
-      Result := True;
+    Result := Assigned(aNode.ChildNodes.FindNode(aNodeName));
   end;
 
 var
@@ -2037,10 +2303,7 @@ begin
           Node.AddChild(Cst_KidGame);
           NodeAdded := True;
         end;
-        if CheckBoxGameKids.IsChecked then
-          Node.ChildNodes.Nodes[Cst_KidGame].Text := Cst_True
-        else
-          Node.ChildNodes.Nodes[Cst_KidGame].Text := Cst_False;
+        Node.ChildNodes.Nodes[Cst_KidGame].Text := BoolStr(CheckBoxGameKids.IsChecked);
         Game.KidGame := KidGame;
       end;
 
@@ -2051,10 +2314,7 @@ begin
           Node.AddChild(Cst_Hidden);
           NodeAdded := True;
         end;
-        if CheckBoxGameHidden.IsChecked then
-          Node.ChildNodes.Nodes[Cst_Hidden].Text := Cst_True
-        else
-          Node.ChildNodes.Nodes[Cst_Hidden].Text := Cst_False;
+        Node.ChildNodes.Nodes[Cst_Hidden].Text := BoolStr(CheckBoxGameHidden.IsChecked);
         Game.Hidden := Hidden;
       end;
 
@@ -2065,10 +2325,7 @@ begin
           Node.AddChild(Cst_Favorite);
           NodeAdded := True;
         end;
-        if CheckBoxGameFavorite.IsChecked then
-          Node.ChildNodes.Nodes[Cst_Favorite].Text := Cst_True
-        else
-          Node.ChildNodes.Nodes[Cst_Favorite].Text := Cst_False;
+        Node.ChildNodes.Nodes[Cst_Favorite].Text := BoolStr(CheckBoxGameFavorite.IsChecked);
         Game.Favorite := Favorite;
       end;
     end;
@@ -2114,16 +2371,6 @@ var
       Node.AddChild(NodeName);
       NodeAdded := True;
     end;
-  end;
-
-  function IntToBoolStr(const Value: Integer): string;
-  begin
-    Result := if Value = 0 then Cst_False else Cst_True;
-  end;
-
-  function BoolStr(const Value: Boolean): string;
-  begin
-    Result := if Value then Cst_True else Cst_False;
   end;
 
 begin
@@ -2259,7 +2506,6 @@ begin
     CheckOrAddNode(Node, Cst_ImageLink);
     Node.ChildNodes.Nodes[Cst_ImageLink].Text := ImageLink;
     Game.ImagePath := ImageLink;
-    Game.PhysicalImagePath := GetPhysicalPath(ImageLink);
   end;
 
   if ASaveVideo and (FVideoScrapeLink <> '') then
@@ -2271,7 +2517,6 @@ begin
     CheckOrAddNode(Node, Cst_VideoLink);
     Node.ChildNodes.Nodes[Cst_VideoLink].Text := VideoLink;
     Game.VideoPath := VideoLink;
-    Game.PhysicalVideoPath := GetPhysicalPath(VideoLink);
   end;
 
   if NodeAdded then
@@ -2322,31 +2567,40 @@ end;
 
 procedure TFormMain.MenuItemSetFavoriteClick(Sender: TObject);
 begin
-  SetFavOrHidden(True, True);
+  SetFavoriteOrHidden(True, True);
 end;
 
 procedure TFormMain.MenuItemSetHiddenClick(Sender: TObject);
 begin
-  SetFavOrHidden(False, True);
+  SetFavoriteOrHidden(False, True);
 end;
 
 procedure TFormMain.MenuItemSetNoFavoriteClick(Sender: TObject);
 begin
-  SetFavOrHidden(True, False);
+  SetFavoriteOrHidden(True, False);
 end;
 
 procedure TFormMain.MenuItemSetNoHiddenClick(Sender: TObject);
 begin
-  SetFavOrHidden(False, False);
+  SetFavoriteOrHidden(False, False);
 end;
 
-procedure TFormMain.SetFavOrHidden(aFav, AValue: Boolean);
+procedure TFormMain.SetAutoHash(const Value: Boolean);
+begin
+  CheckBoxSetAutohash.IsChecked := Value;
+  CheckBoxSetAutohash.Text := if CheckBoxSetAutohash.IsChecked then Translate('On')else Translate('Off');
+end;
 
-  function NodeExists(aNode: IXMLNode; const aNodeName: string): Boolean;
+procedure TFormMain.SetDelWoPrompt(const Value: Boolean);
+begin
+  CheckBoxSetDelPrompts.IsChecked := Value;
+end;
+
+procedure TFormMain.SetFavoriteOrHidden(AFavorite, AValue: Boolean);
+
+  function NodeExists(ANode: IXMLNode; const ANodeName: string): Boolean;
   begin
-    Result := False;
-    if Assigned(aNode.ChildNodes.FindNode(aNodeName)) then
-      Result := True;
+    Result := Assigned(ANode.ChildNodes.FindNode(ANodeName));
   end;
 
 begin
@@ -2357,7 +2611,7 @@ begin
 
   for var i := 0 to Pred(ListBoxGames.Items.Count) do
   begin
-    if (ListBoxGames.ListItems[i].IsSelected) then
+    if ListBoxGames.ListItems[i].IsSelected then
     begin
       var Game := (ListBoxGames.ListItems[i] as TListBoxItemGame).Game;
       var Node := XMLDoc.DocumentElement.ChildNodes.FindNode(Cst_Game);
@@ -2368,30 +2622,24 @@ begin
         Node := Node.NextSibling;
       until not Assigned(Node);
 
-      if aFav then
+      if AFavorite then
       begin
-        if not (NodeExists(Node, Cst_Favorite)) then
+        if not NodeExists(Node, Cst_Favorite) then
         begin
           Node.AddChild(Cst_Favorite);
           NodeAdded := True;
         end;
-        if AValue then
-          Node.ChildNodes.Nodes[Cst_Favorite].Text := Cst_True
-        else
-          Node.ChildNodes.Nodes[Cst_Favorite].Text := Cst_False;
+        Node.ChildNodes.Nodes[Cst_Favorite].Text := BoolStr(AValue);
         Game.Favorite := AValue;
       end
       else
       begin
-        if not (NodeExists(Node, Cst_Hidden)) then
+        if not NodeExists(Node, Cst_Hidden) then
         begin
           Node.AddChild(Cst_Hidden);
           NodeAdded := True;
         end;
-        if AValue then
-          Node.ChildNodes.Nodes[Cst_Hidden].Text := Cst_True
-        else
-          Node.ChildNodes.Nodes[Cst_Hidden].Text := Cst_False;
+        Node.ChildNodes.Nodes[Cst_Hidden].Text := BoolStr(AValue);
         Game.Hidden := AValue;
       end;
     end;
@@ -2408,11 +2656,74 @@ begin
   LoadGamesList(GetCurrentFolderName);
 end;
 
+procedure TFormMain.SetGenesisLogo(const Value: Boolean);
+begin
+  CheckBoxSetGenesisLogo.BeginUpdate;
+  try
+    CheckBoxSetGenesisLogo.IsChecked := Value;
+    CheckBoxSetGenesisLogo.Text := if CheckBoxSetGenesisLogo.IsChecked then Translate('On')else Translate('Off');
+  finally
+    CheckBoxSetGenesisLogo.EndUpdate;
+  end;
+end;
+
+procedure TFormMain.SetGodMode(const Value: Boolean);
+begin
+  CheckBoxSetGodMode.IsChecked := Value;
+  MenuItemGameDelete.Visible := Value;
+  ButtonGameDelete.Visible := Value;
+  CheckBoxSetGodMode.Text := if CheckBoxSetGodMode.IsChecked then Translate('On')else Translate('Off');
+end;
+
+procedure TFormMain.SetOpenLastFolder(const Value: Boolean);
+begin
+  CheckBoxSetOpenLastFolder.IsChecked := Value;
+end;
+
+procedure TFormMain.SetPiPrompts(const Value: Boolean);
+begin
+  CheckBoxSetPiPrompts.IsChecked := Value;
+end;
+
+procedure TFormMain.SetRecalLogin(const Value: string);
+begin
+  EditSetRecalboxLogin.Text := Value;
+end;
+
+procedure TFormMain.SetRecalPwd(const Value: string);
+begin
+  EditSetRecalboxPwd.Text := Value;
+end;
+
+procedure TFormMain.SetRetroLogin(const Value: string);
+begin
+  EditSetRetropieLogin.Text := Value;
+end;
+
+procedure TFormMain.SetRetroPwd(const Value: string);
+begin
+  EditSetRetropiePwd.Text := Value;
+end;
+
+procedure TFormMain.SetShowTips(const Value: Boolean);
+begin
+  CheckBoxSetShowTips.IsChecked := Value;
+  CheckBoxSetShowTips.Text := if CheckBoxSetShowTips.IsChecked then Translate('On')else Translate('Off');
+end;
+
+procedure TFormMain.SetSSLogin(const Value: string);
+begin
+  EditSetScreenLogin.Text := Value;
+end;
+
+procedure TFormMain.SetSSPwd(const Value: string);
+begin
+  EditSetScreenPwd.Text := Value;
+end;
+
 procedure TFormMain.ButtonDeleteClick(Sender: TObject);
 begin
-  if not (FDelWoPrompt or
-    (MyMessageDlg(Rst_DeleteWarning, TMsgDlgType.mtInformation,
-    [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], [Rst_Yes, Rst_No], Rst_Info) = mrYes)) then
+  if not (GodMode or DelWoPrompt or (MyMessageDlg(Rst_Info, Rst_DeleteWarning, [Rst_Yes, Rst_No]) = 0)) then
     Exit;
 
   var LastIndex := ListBoxGames.ItemIndex;
@@ -2457,23 +2768,19 @@ begin
 end;
 
 procedure TFormMain.MenuItemDeleteOrphansClick(Sender: TObject);
-var
-  List: TObjectList<TGame>;
 begin
-  GSystemList.TryGetValue(GetCurrentFolderName, List);
+  var List: TObjectList<TGame>;
+  FSystemList.TryGetValue(GetCurrentFolderName, List);
   for var i := Pred(List.Count) downto 0 do
-  begin
     if List.Items[i].IsOrphan then
       DeleteGame(List.Items[i]);
-  end;
 end;
 
 procedure TFormMain.DeleteGame(AGame: TGame; ReloadGameList: Boolean = True);
-var
-  List: TObjectList<TGame>;
 begin
+  var List: TObjectList<TGame>;
   var GameListPath := GetCurrentGameListPath;
-  GSystemList.TryGetValue(GetCurrentFolderName, List);
+  FSystemList.TryGetValue(GetCurrentFolderName, List);
 
   XMLDoc.LoadFromFile(GameListPath);
 
@@ -2516,16 +2823,18 @@ begin
   try
     TFile.Delete(AGame.PhysicalImagePath);
   except
+    //
   end;
 
   if not VideoReused then
   try
     TFile.Delete(AGame.PhysicalVideoPath);
   except
+    //
   end;
 
   try
-    if (GetSystemKind = skPS) then
+    if (GetSystemKind = TSystemKind.PS) then
     begin
       TFile.Delete(StringReplace(AGame.PhysicalRomPath, '.cue', '.bin', [rfReplaceAll]));
       TFile.Delete(StringReplace(AGame.PhysicalRomPath, '.bin', '.cue', [rfReplaceAll]));
@@ -2583,8 +2892,8 @@ begin
   XMLDoc.SaveToFile(GameListPath);
   XMLDoc.Active := False;
 
-  GSystemList.Remove(ASystem);
-  GSystemList.Add(ASystem, BuildGamesList(GameListPath));
+  FSystemList.Remove(ASystem);
+  FSystemList.Add(ASystem, BuildGamesList(GameListPath));
 
   LoadGamesList(ASystem);
 end;
@@ -2604,9 +2913,11 @@ begin
   EditGameRomPath.Text := '';
   MemoGameDescription.Text := '';
   ImageGame.Bitmap := nil;
+  ImageGameBackground.Visible := True;
   CheckBoxGameKids.IsChecked := False;
   CheckBoxGameHidden.IsChecked := False;
   CheckBoxGameFavorite.IsChecked := False;
+  ButtonSaveChanges.Enabled := False;
 
   FIsLoading := False;
 end;
@@ -2620,61 +2931,20 @@ end;
 
 procedure TFormMain.CheckBoxCustomTitleChange(Sender: TObject);
 begin
+  if FUpdating > 0 then
+    Exit;
   HideTitleBar := CheckBoxCustomTitle.IsChecked;
 end;
 
-procedure TFormMain.CheckBoxGamesFullRomNameClick(Sender: TObject);
+procedure TFormMain.CheckBoxGamesFullRomNameChange(Sender: TObject);
 begin
   LoadGamesList(GetCurrentFolderName);
 end;
 
-procedure TFormMain.CheckBoxGamesListByRomClick(Sender: TObject);
+procedure TFormMain.CheckBoxGamesListByRomChange(Sender: TObject);
 begin
   CheckBoxGamesFullRomName.Enabled := CheckBoxGamesListByRom.IsChecked;
   LoadGamesList(GetCurrentFolderName);
-end;
-
-procedure TFormMain.MenuItemOptGodModeClick(Sender: TObject);
-begin
-  MenuItemGameDelete.Visible := MenuItemOptGodMode.IsChecked;
-  ButtonGameDelete.Visible := MenuItemOptGodMode.IsChecked;
-  FGodMode := MenuItemOptGodMode.IsChecked;
-  MenuItemOptDeleteWoPrompt.Enabled := FGodMode;
-  if not FGodMode then
-  begin
-    MenuItemOptDeleteWoPrompt.IsChecked := False;
-    FDelWoPrompt := False;
-  end;
-end;
-
-procedure TFormMain.MenuItemOptGenesisClick(Sender: TObject);
-begin
-  FGenesisLogo := MenuItemOptGenesis.IsChecked;
-
-  for var i := 0 to Pred(ListBoxSystems.Items.Count) do
-  begin
-    if ((ListBoxSystems.ListItems[i] as TListBoxItemSystem).SystemKind = skMegadrive) then
-    begin
-      if FGenesisLogo then
-        ListBoxSystems.ListItems[i].Text := Cst_SystemKindStr[skGenesis]
-      else if not FGenesisLogo then
-        ListBoxSystems.ListItems[i].Text := Cst_SystemKindStr[skMegaDrive];
-      ListBoxSystems.ItemIndex := i;
-      Break;
-    end;
-  end;
-
-  LoadGamesList(GetCurrentFolderName);
-end;
-
-procedure TFormMain.MenuItemOptAutoHashClick(Sender: TObject);
-begin
-  FAutoHash := MenuItemOptAutoHash.IsChecked;
-end;
-
-procedure TFormMain.MenuItemOptDeleteWoPromptClick(Sender: TObject);
-begin
-  FDelWoPrompt := MenuItemOptDeleteWoPrompt.IsChecked;
 end;
 
 procedure TFormMain.MenuItemExportTxtClick(Sender: TObject);
@@ -2683,20 +2953,16 @@ begin
 end;
 
 procedure TFormMain.ExportToTxt;
-var
-  FirstCharRef, FirstCharCurrent: string;
-  SortedList, FormatedList: TStringList;
-  SystemList: TObjectList<TGame>;
-  Game: TGame;
 begin
-  GSystemList.TryGetValue(GetCurrentFolderName, SystemList);
+  var SystemList: TObjectList<TGame>;
+  FSystemList.TryGetValue(GetCurrentFolderName, SystemList);
 
-  SortedList := TStringList.Create;
-  FormatedList := TStringList.Create;
+  var SortedList := TStringList.Create;
+  var FormatedList := TStringList.Create;
   try
     SortedList.Sorted := True;
     SortedList.Duplicates := dupAccept;
-    for Game in SystemList do
+    for var Game in SystemList do
     begin
       if CheckBoxGamesListByRom.IsChecked then
         SortedList.Add(Game.RomName)
@@ -2704,13 +2970,13 @@ begin
         SortedList.Add(Game.Name);
     end;
 
-    FirstCharRef := SortedList[0][1];
+    var FirstCharRef := SortedList[0][1];
     FormatedList.Add('---------- ' + AnsiUpperCase(FirstCharRef) + ' ----------');
     FormatedList.Add(sLineBreak);
 
     for var i := 0 to Pred(SortedList.Count) do
     begin
-      FirstCharCurrent := SortedList[i][1];
+      var FirstCharCurrent := SortedList[i][1];
       if (FirstCharCurrent = FirstCharRef) then
         FormatedList.Add(SortedList[i])
       else
@@ -2731,58 +2997,36 @@ begin
   end;
 end;
 
-procedure TFormMain.MenuItemConfigSSHClick(Sender: TObject);
+procedure TFormMain.GameListViewChange(Sender: TObject);
 begin
-  var Frm_ConfigSSH := TFrm_ConfigureSSH.Create(nil);
-  try
-    Frm_ConfigSSH.Execute(FRecalLogin, FRecalPwd, FRetroLogin, FRetroPwd);
-  finally
-    Frm_ConfigSSH.Free;
+  if RadioButtonGameListViewFull.IsChecked then
+  begin
+    ListBoxGames.DefaultItemStyles.ItemStyle := 'listboxitemstyle_game';
+    ListBoxGames.ItemHeight := 70;
+  end
+  else if RadioButtonGameListViewMini.IsChecked then
+  begin
+    ListBoxGames.DefaultItemStyles.ItemStyle := '';
+    ListBoxGames.ItemHeight := 32;
   end;
 end;
 
-procedure TFormMain.MenuItemOptConfigureNetworkClick(Sender: TObject);
-begin
-  var Frm_Network := TFrm_Network.Create(nil);
-  try
-    Frm_Network.Execute(FSSLogin, FSSPwd, FProxyUser, FProxyPwd, FProxyServer, FProxyPort, FProxyUse);
-  finally
-    Frm_Network.Free;
-  end;
-  ReloadIni;
-end;
-
-procedure TFormMain.RadioButtonPreviewVideoChange(Sender: TObject);
+procedure TFormMain.GameMediaChange(Sender: TObject);
 begin
   if RadioButtonPreviewPicture.IsChecked then
-    TabControlMedia.ActiveTab := TabItemPicture
+    TabControlMedia.ActiveTab := TabItemMediaPicture
   else if RadioButtonPreviewVideo.IsChecked then
-    TabControlMedia.ActiveTab := TabItemVideo
+    TabControlMedia.ActiveTab := TabItemMediaVideo
   else if RadioButtonPreviewManual.IsChecked then
-    TabControlEditor.ActiveTab := TabItemEditManual;
-end;
-
-procedure TFormMain.ReloadIni;
-begin
-  var FileIni := TIniFile.Create(TPath.Combine(TPath.GetLibraryPath, Cst_IniFilePath));
-  try
-    FSSLogin := FileIni.ReadString(Cst_IniOptions, Cst_IniSSUser, '');
-    FSSPwd := FileIni.ReadString(Cst_IniOptions, Cst_IniSSPwd, '');
-    FProxyUser := FileIni.ReadString(Cst_IniOptions, Cst_IniProxyUser, '');
-    FProxyPwd := FileIni.ReadString(Cst_IniOptions, Cst_IniProxyPwd, '');
-    FProxyServer := FileIni.ReadString(Cst_IniOptions, Cst_IniProxyServer, '');
-    FProxyPort := FileIni.ReadString(Cst_IniOptions, Cst_IniProxyPort, '');
-    FProxyUse := FileIni.ReadBool(Cst_IniOptions, Cst_IniProxyUse, False);
-  finally
-    FileIni.Free;
-  end;
+    TabControlEditor.ActiveTab := TabItemEditManual
+  else if RadioButtonPreviewHash.IsChecked then
+    TabControlMedia.ActiveTab := TabItemMediaHash;
 end;
 
 procedure TFormMain.ChangeCaseClick(Sender: TObject);
-var
-  List: TObjectList<TGame>;
 begin
-  GSystemList.TryGetValue(GetCurrentFolderName, List);
+  var List: TObjectList<TGame>;
+  FSystemList.TryGetValue(GetCurrentFolderName, List);
 
   for var i := 0 to Pred(List.Count) do
   begin
@@ -2820,18 +3064,14 @@ procedure TFormMain.ConvertFieldsCase(AGame: TGame; AUnique: Boolean = False; AU
       ListBoxGames.Selected.Text := EditGameName.Text;
   end;
 
-  function ConvertUpOrLow(ANode: IXMLNode; const aNodeName: string; AUp: Boolean; const AField: string): string;
+  function ConvertUpOrLow(ANode: IXMLNode; const ANodeName: string; AUp: Boolean; const AField: string): string;
   begin
     if AUp then
-    begin
-      Result := AnsiUpperCase(AField);
-    end
+      Result := AField.ToUpper
     else
-    begin
-      Result := AnsiLowerCase(AField);
-    end;
-    if Assigned(ANode.ChildNodes.FindNode(aNodeName)) then
-      ANode.ChildNodes.Nodes[aNodeName].Text := Result;
+      Result := AField.ToLower;
+    if Assigned(ANode.ChildNodes.FindNode(ANodeName)) then
+      ANode.ChildNodes.Nodes[ANodeName].Text := Result;
   end;
 
 begin
@@ -2865,7 +3105,7 @@ end;
 procedure TFormMain.MenuItemDeleteROMNotInListClick(Sender: TObject);
 begin
   var Games: TObjectList<TGame>;
-  GSystemList.TryGetValue(GetCurrentFolderName, Games);
+  FSystemList.TryGetValue(GetCurrentFolderName, Games);
   var ListToDelete := TStringList.Create;
   try
     var Files := TDirectory.GetFiles(TPath.Combine(FRootPath, GetCurrentFolderName));
@@ -2887,7 +3127,7 @@ begin
       ListToDelete.Add(ROM);
     end;
 
-    ShowMessage(ListToDelete.Text);
+    ShowUIMessage(Self, ListToDelete.Text);
 
     for var ROM in ListToDelete do
       TFile.Delete(ROM);
@@ -2896,63 +3136,11 @@ begin
   end;
 end;
 
-procedure TFormMain.MenuItemAboutClick(Sender: TObject);
-begin
-  var Frm_About := TFrm_About.Create(nil);
-  try
-    Frm_About.Execute;
-  finally
-    Frm_About.Free;
-  end;
-end;
-
-procedure TFormMain.MenuItemHelpClick(Sender: TObject);
-begin
-  var Frm_Help := TFrm_Help.Create(nil);
-  try
-    Frm_Help.Chk_ShowTips.Visible := False;
-    FShowTips := Frm_Help.Execute(not FShowTips);
-  finally
-    Frm_Help.Free;
-  end;
-end;
-
-procedure TFormMain.MenuItemOptPiPromptsClick(Sender: TObject);
-begin
-  FPiPrompts := MenuItemOptPiPrompts.IsChecked;
-end;
-
-procedure TFormMain.ButtonMoreInfosClick(Sender: TObject);
-begin
-  if not Assigned(ListBoxGames.Selected) then
-    Exit;
-  var Game := (ListBoxGames.Selected as TListBoxItemGame).Game;
-
-  if ((Game.Md5.IsEmpty) or (Game.Sha1.IsEmpty) or (Game.Crc32.IsEmpty)) then
-  begin
-    if FAutoHash or ((not FAutoHash) and
-      (MyMessageDlg(Rst_HashWarning, TMsgDlgType.mtInformation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], [Rst_Yes, Rst_No], Rst_Info) = mrYes))
-      then
-    begin
-      Game.Md5 := Game.CalculateMd5(Game.PhysicalRomPath);
-      Game.Sha1 := Game.CalculateSha1(Game.PhysicalRomPath);
-      Game.Crc32 := Game.CalculateCrc32(Game.PhysicalRomPath);
-    end;
-  end;
-
-  var FormMorInfos := TFormMorInfos.Create(nil);
-  try
-    FormMorInfos.Execute(Game);
-  finally
-    FormMorInfos.Free;
-  end;
-end;
-
 procedure TFormMain.MenuItemRemoveRegionClick(Sender: TObject);
 var
   List: TObjectList<TGame>;
 begin
-  GSystemList.TryGetValue(GetCurrentFolderName, List);
+  FSystemList.TryGetValue(GetCurrentFolderName, List);
 
   for var i := 0 to Pred(List.Count) do
   begin
@@ -2963,11 +3151,6 @@ begin
       RemoveRegionFromGameName(Game, Pred(CPos));
   end;
   LoadGamesList(GetCurrentFolderName);
-end;
-
-procedure TFormMain.MenuItemOptShowTipsClick(Sender: TObject);
-begin
-  FShowTips := MenuItemOptShowTips.IsChecked;
 end;
 
 procedure TFormMain.RemoveRegionFromGameName(AGame: TGame; AStartPos: Integer);
@@ -2997,35 +3180,29 @@ begin
 end;
 
 procedure TFormMain.MenuItemNameEditorClick(Sender: TObject);
-var
-  RemChars, AddChars, ChangeCase: Boolean;
-  NbStart, NbEnd, CaseIndex: Integer;
-  StringStart, StringEnd, Preview: string;
 begin
+  var Preview: string := '';
   for var i := 0 to Pred(ListBoxGames.Items.Count) do
-  begin
-    if (ListBoxGames.ListItems[i].IsSelected) then
+    if ListBoxGames.ListItems[i].IsSelected then
     begin
       Preview := (ListBoxGames.ListItems[i] as TListBoxItemGame).Game.Name;
       Break;
     end;
-  end;
 
-  var FrmNameEditor := TFormAdvNameEditor.Create(nil);
+  var FormNameEditor := TFormNameEditor.Create(Self);
   try
-    if FrmNameEditor.Execute(RemChars, AddChars, ChangeCase, NbStart, NbEnd,
-      CaseIndex, StringStart, StringEnd, Preview) then
+    var Func: TFunc<string, string>;
+    if FormNameEditor.Execute(Func, Preview) then
     begin
-      TransformGamesNames(RemChars, AddChars, ChangeCase, NbStart,
-        NbEnd, CaseIndex, StringStart, StringEnd);
+      TransformGamesNames(Func);
       LoadGamesList(GetCurrentFolderName);
     end;
   finally
-    FrmNameEditor.Free;
+    FormNameEditor.Free;
   end;
 end;
 
-procedure TFormMain.TransformGamesNames(ARemChars, AAddChars, AChangecase: Boolean; ANbStart, ANbEnd, ACaseIndex: Integer; const AStringStart, AStringEnd: string);
+procedure TFormMain.TransformGamesNames(Func: TFunc<string, string>);
 begin
   var GameListPath := GetCurrentGameListPath;
 
@@ -3033,71 +3210,25 @@ begin
 
   for var i := 0 to Pred(ListBoxGames.Items.Count) do
   begin
-    if (ListBoxGames.ListItems[i].IsSelected) then
+    if not ListBoxGames.ListItems[i].IsSelected then
+      Continue;
+
+    var Game := (ListBoxGames.ListItems[i] as TListBoxItemGame).Game;
+    Game.Name := Func(Game.Name);
+
+    var Node := XMLDoc.DocumentElement.ChildNodes.FindNode(Cst_Game);
+    while Assigned(Node) do
     begin
-      var Game := (ListBoxGames.ListItems[i] as TListBoxItemGame).Game;
-      var TmpStr := Game.Name;
-
-      if ARemChars then
-      begin
-        if (ANbStart > 0) then
-          TmpStr := Copy(TmpStr, Succ(ANbStart), (TmpStr.Length - ANbStart));
-        if (ANbEnd > 0) then
-          SetLength(TmpStr, TmpStr.Length - ANbEnd);
-      end;
-
-      if AChangecase then
-      begin
-        case ACaseIndex of
-          0:
-            TmpStr[1] := UpCase(TmpStr[1]);
-          1:
-            TmpStr := UpperCase(TmpStr);
-          2:
-            TmpStr := LowerCase(TmpStr);
-        end;
-      end;
-
-      if AAddChars then
-      begin
-        if not (AStringStart.IsEmpty) then
-          TmpStr := AStringStart + TmpStr;
-        if not (AStringEnd.IsEmpty) then
-          TmpStr := TmpStr + AStringEnd;
-      end;
-
-      Game.Name := TmpStr;
-      var Node := XMLDoc.DocumentElement.ChildNodes.FindNode(Cst_Game);
-
-      while Assigned(Node) do
-      begin
-        if (Node.ChildNodes.Nodes[Cst_Path].Text = Game.RomPath) then
-          Break;
-        Node := Node.NextSibling;
-      end;
-
-      Node.ChildNodes.Nodes[Cst_Name].Text := TmpStr;
+      if (Node.ChildNodes.Nodes[Cst_Path].Text = Game.RomPath) then
+        Break;
+      Node := Node.NextSibling;
     end;
+
+    Node.ChildNodes.Nodes[Cst_Name].Text := Game.Name;
   end;
 
   XMLDoc.SaveToFile(GameListPath);
   XMLDoc.Active := False;
-end;
-
-procedure TFormMain.MenuItemQuitClick(Sender: TObject);
-begin
-  SaveToIni;
-
-  if FPiLoadedOnce then
-  begin
-    if not FPiPrompts then
-      MyMessageDlg(Rst_RebootRecal, TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], [Rst_Ok], Rst_Info);
-    if FSysIsRecal then
-      StopOrStartES(False, True)
-    else
-      StopOrStartES(False, False);
-  end;
-  Application.Terminate;
 end;
 
 procedure TFormMain.ClearScrapeMedia;
@@ -3120,23 +3251,23 @@ begin
       raise Exception.Create('CRC field is not filled');
     Crc32 := EditScrapeCRC.Text
   end
+  else if AGame.Crc32.IsEmpty then
+    Crc32 := AGame.CalculateCrc32(AGame.PhysicalRomPath)
   else
-    Crc32 := AGame.CalculateCrc32(AGame.PhysicalRomPath);
+    Crc32 := AGame.Crc32;
 
   var Size := TFile.GetSize(AGame.PhysicalRomPath);
 
-  var Query := Cst_ScraperAddress + Cst_Category + Cst_ScrapeLogin + Cst_ScrapePwd +
-    Cst_DevSoftName + Cst_Output;
+  var Query := Cst_ScraperAddress + Cst_Category + Cst_ScrapeLogin + Cst_ScrapePwd + Cst_DevSoftName + Cst_Output;
 
-  if (not FSSLogin.IsEmpty) and (not FSSPwd.IsEmpty) then
-    Query := Query + Cst_SSId + FSSLogin + Cst_SSPwd + FSSPwd;
+  if (not SSLogin.IsEmpty) and (not SSPwd.IsEmpty) then
+    Query := Query + Cst_SSId + SSLogin + Cst_SSPwd + SSPwd;
 
   Query := Query + Cst_Crc + Crc32 + Cst_SystemId + ASysId;
 
-  if not (CheckBoxManualCRC.IsChecked) then
+  if not CheckBoxManualCRC.IsChecked then
     Query := Query + Cst_RomName + TNetEncoding.URL.Encode(AGame.RomName) + Cst_RomSize + Size.ToString;
 
-  //ShowMessage(Query);
   var Stream := TStringStream.Create;
   try
     try
@@ -3181,6 +3312,16 @@ begin
     Stream.Free;
   end;
   Result := True;
+end;
+
+function TFormMain.GetGenesisLogo: Boolean;
+begin
+  Result := CheckBoxSetGenesisLogo.IsChecked;
+end;
+
+function TFormMain.GetGodMode: Boolean;
+begin
+  Result := CheckBoxSetGodMode.IsChecked;
 end;
 
 procedure TFormMain.ParseXml;
@@ -3353,21 +3494,9 @@ end;
 
 procedure TFormMain.PopupBoxStyleChange(Sender: TObject);
 begin
-  // Set window type
-  case PopupBoxStyle.ItemIndex of
-    0: // mica
-      SystemBackdropType := TWindowBackdropType.Mica;
-    1: // tabbed
-      SystemBackdropType := TWindowBackdropType.Tabbed;
-    2: // acrilyc
-      SystemBackdropType := TWindowBackdropType.Acrylic;
-    3: // none
-      begin
-        SystemBackdropType := TWindowBackdropType.Disable;
-        Fill.Kind := TBrushKind.None;
-      end;
-  end;
-  UpdateSystemBackdropType;
+  if FUpdating > 0 then
+    Exit;
+  DoOnSettingChange;
 end;
 
 procedure TFormMain.GetPictures;
@@ -3395,13 +3524,42 @@ begin
   end;
 end;
 
+function TFormMain.GetPiPrompts: Boolean;
+begin
+  Result := CheckBoxSetPiPrompts.IsChecked;
+end;
+
+function TFormMain.GetRecalLogin: string;
+begin
+  Result := EditSetRecalboxLogin.Text;
+end;
+
+function TFormMain.GetRecalPwd: string;
+begin
+  Result := EditSetRecalboxPwd.Text;
+end;
+
+function TFormMain.GetRetroLogin: string;
+begin
+  Result := EditSetRetropieLogin.Text;
+end;
+
+function TFormMain.GetRetroPwd: string;
+begin
+  Result := EditSetRetropiePwd.Text;
+end;
+
 procedure TFormMain.GetPicture(AMedia: TMediaInfo);
 begin
-  var Thread := TDownThread.Create;
-  Thread.Url := AMedia.FileLink;
-  Thread.Ext := AMedia.FileExt;
-  Thread.OnTerminate := ThreadTerminated;
-  Thread.Start;
+  try
+    var Thread := TDownloadThread.Create;
+    Thread.Url := AMedia.FileLink;
+    Thread.Ext := AMedia.FileExt;
+    Thread.OnTerminate := ThreadTerminated;
+    Thread.Start;
+  finally
+    AMedia.Free;
+  end;
 end;
 
 procedure TFormMain.ThreadTerminated(Sender: TObject);
@@ -3440,14 +3598,15 @@ begin
 end;
 
 procedure TFormMain.DoOnSettingChange;
-begin//FF2C4361 - FF0B1E39
-  if CheckBoxCustomAccent.IsChecked then
-    OverAccentColor := ComboColorBoxAccentColor.Color
+begin
+  //FF2C4361 - FF0B1E39
+  if RadioButtonSetAccentAuto.IsChecked then
+    OverAccentColor := SystemAccentColor
   else
-    OverAccentColor := SystemAccentColor;
+    OverAccentColor := ComboColorBoxAccentColor.Color;
 
   // Override theme color
-  case OverTheme of
+  case ComboBoxTheme.ItemIndex of
     0:
       ThemeKind := TSystemThemeKind.Unspecified;
     1:
@@ -3462,47 +3621,71 @@ begin//FF2C4361 - FF0B1E39
     // Set accent color for stylebook
     ChangeStyleBookColor(StyleBookWinUI3, OverAccentColor);
     StyleBook := StyleBookWinUI3;
+    MarkdownViewerHelp.ThemePreset := TMarkdownThemePreset.Dark;
   end
   else
   begin
     // Set accent color for stylebook
     ChangeStyleBookColor(StyleBookWinUI3Light, OverAccentColor);
     StyleBook := StyleBookWinUI3Light;
+    MarkdownViewerHelp.ThemePreset := TMarkdownThemePreset.Light;
   end;
+  MarkdownViewerHelp.Theme.BackgroundColor := TAlphaColors.Null;
 
   inherited;
-  if IsDark then
+
+  // Set window type
+  if RadioButtonSetBGSystem.IsChecked then
   begin
-    //Fill.Kind := TBrushKind.None;
-    Fill.Kind := TBrushKind.Gradient;
-    Fill.Gradient.Color := $FF2C4361;
-    Fill.Gradient.Color1 := $FF0B1E39;
+    case PopupBoxStyle.ItemIndex of
+      0: // mica
+        SystemBackdropType := TWindowBackdropType.Mica;
+      1: // tabbed
+        SystemBackdropType := TWindowBackdropType.Tabbed;
+      2: // acrilyc
+        SystemBackdropType := TWindowBackdropType.Acrylic;
+      3: // none
+        begin
+          SystemBackdropType := TWindowBackdropType.Disable;
+          Fill.Kind := TBrushKind.None;
+        end;
+    end;
   end;
+
+  UpdateSystemBackdropType;
+
+  if RadioButtonSetBGGradient.IsChecked then
+  begin
+    Fill.Kind := TBrushKind.Gradient;
+    //Fill.Gradient.Color := $FF2C4361;
+    //Fill.Gradient.Color1 := $FF0B1E39;
+    Fill.Gradient.Color := ComboColorBoxSetBGColor1.Color;
+    Fill.Gradient.Color1 := ComboColorBoxSetBGColor2.Color;
+  end;
+
   TMessageManager.DefaultManager.SendMessage(Self, TStyleChangedMessage.Create(StyleBook, Self), True);
   TMessageManager.DefaultManager.SendMessage(Self, TInternalSettingChangedMessage.Create(StyleBook, Self), True);
 end;
 
 procedure TFormMain.FillFields;
 
-  function GetFormatedDate(const aStr: string): string;
-  var
-    Day, Month, Year: string;
+  function GetFormatedDate(const AStr: string): string;
   begin
-    if (Length(aStr) = 4) then
-      Result := aStr;
+    if Length(AStr) = 4 then
+      Result := AStr;
 
-    if (Length(aStr) = 7) then
+    if Length(AStr) = 7 then
     begin
-      Month := Copy(aStr, 6, 2);
-      Year := Copy(aStr, 1, 4);
+      var Month := Copy(AStr, 6, 2);
+      var Year := Copy(AStr, 1, 4);
       Result := Month + '/' + Year;
     end;
 
-    if (Length(aStr) = 10) then
+    if Length(AStr) = 10 then
     begin
-      Day := Copy(aStr, 9, 2);
-      Month := Copy(aStr, 6, 2);
-      Year := Copy(aStr, 1, 4);
+      var Day := Copy(AStr, 9, 2);
+      var Month := Copy(AStr, 6, 2);
+      var Year := Copy(AStr, 1, 4);
       Result := Day + '/' + Month + '/' + Year;
     end;
   end;
@@ -3524,8 +3707,8 @@ begin
   begin
     Dict := (FInfosList.Objects[0] as TDictionary<string, string>);
     if Dict.TryGetValue(LangStr, TmpStr) or
-      Dict.TryGetValue(Cst_CountryName[cnEu], TmpStr) or
-      Dict.TryGetValue(Cst_CountryName[cnWor], TmpStr) or
+      Dict.TryGetValue(TCountryName.Eu.ShortName, TmpStr) or
+      Dict.TryGetValue(TCountryName.Wor.ShortName, TmpStr) or
       Dict.TryGetValue('ss', TmpStr) then
       EditScrapeName.Text := TmpStr
     else
@@ -3540,9 +3723,8 @@ begin
     EditScrapeRegion.Text := '';
     for ii := 0 to Pred(List.Count) do
     begin
-      EditScrapeRegion.Text := EditScrapeRegion.Text +
-        Cst_CountryNameFull[GetCountryEnum(List[ii])][Succ(FLanguage)];
-      if (ii < Pred(List.Count)) then
+      EditScrapeRegion.Text := EditScrapeRegion.Text + Translate(GetCountryEnum(List[ii]).FullName);
+      if ii < Pred(List.Count) then
         EditScrapeRegion.Text := EditScrapeRegion.Text + ' - ';
     end;
   end
@@ -3553,10 +3735,10 @@ begin
   begin
     Dict := (FInfosList.Objects[2] as TDictionary<string, string>);
     if Dict.TryGetValue(LangStr, TmpStr) or
-      Dict.TryGetValue(Cst_LangNameStr[lnEnglish], TmpStr) or
-      Dict.TryGetValue(Cst_LangNameStr[lnGerman], TmpStr) or
-      Dict.TryGetValue(Cst_LangNameStr[lnSpanish], TmpStr) or
-      Dict.TryGetValue(Copy(Cst_LangNameStr[lnPortuguese_BR], 1, 2), TmpStr) then
+      Dict.TryGetValue(Cst_LangNameStr[TLangName.English], TmpStr) or
+      Dict.TryGetValue(Cst_LangNameStr[TLangName.German], TmpStr) or
+      Dict.TryGetValue(Cst_LangNameStr[TLangName.Spanish], TmpStr) or
+      Dict.TryGetValue(Copy(Cst_LangNameStr[TLangName.Portuguese_BR], 1, 2), TmpStr) then
       MemoScrapeDescription.Text := TmpStr
     else
       MemoScrapeDescription.Text := '';
@@ -3568,10 +3750,10 @@ begin
   begin
     Dict := (FInfosList.Objects[3] as TDictionary<string, string>);
     if Dict.TryGetValue(LangStr, TmpStr) or
-      Dict.TryGetValue(Cst_CountryName[cnEu], TmpStr) or
-      Dict.TryGetValue(Cst_CountryName[cnWor], TmpStr) or
-      Dict.TryGetValue(Cst_CountryName[cnUs], TmpStr) or
-      Dict.TryGetValue(Cst_CountryName[cnJp], TmpStr) then
+      Dict.TryGetValue(TCountryName.Eu.ShortName, TmpStr) or
+      Dict.TryGetValue(TCountryName.Wor.ShortName, TmpStr) or
+      Dict.TryGetValue(TCountryName.Us.ShortName, TmpStr) or
+      Dict.TryGetValue(TCountryName.Jp.ShortName, TmpStr) then
       EditScrapeDate.Text := GetFormatedDate(TmpStr)
     else
       EditScrapeDate.Text := '';
@@ -3588,10 +3770,10 @@ begin
     begin
       Inc(Count);
       if (Item.Value.TryGetValue(LangStr, TmpStr)) or
-        (Item.Value.TryGetValue(Cst_LangNameStr[lnEnglish], TmpStr)) or
-        (Item.Value.TryGetValue(Cst_LangNameStr[lnGerman], TmpStr)) or
-        (Item.Value.TryGetValue(Cst_LangNameStr[lnSpanish], TmpStr)) or
-        (Item.Value.TryGetValue(Copy(Cst_LangNameStr[lnPortuguese_BR], 1, 2), TmpStr)) then
+        (Item.Value.TryGetValue(Cst_LangNameStr[TLangName.English], TmpStr)) or
+        (Item.Value.TryGetValue(Cst_LangNameStr[TLangName.German], TmpStr)) or
+        (Item.Value.TryGetValue(Cst_LangNameStr[TLangName.Spanish], TmpStr)) or
+        (Item.Value.TryGetValue(Copy(Cst_LangNameStr[TLangName.Portuguese_BR], 1, 2), TmpStr)) then
         EditScrapeGenre.Text := EditScrapeGenre.Text + TmpStr
       else
         EditScrapeGenre.Text := EditScrapeGenre.Text + '';
@@ -3651,7 +3833,7 @@ end;
 
 procedure TFormMain.WarnUser(const AMessage: string);
 begin
-  ShowMessage(AMessage);
+  ShowUIMessage(Self, AMessage);
 end;
 
 procedure TFormMain.WarnUserWithSafeUrl(const AMessage, AMessage2, AUrl: string);
@@ -3661,9 +3843,7 @@ begin
   if ASafeUrl.Length > 160 then
     ASafeUrl.Insert(120, sLineBreak);
 
-  WarnUser(AMessage + sLineBreak +
-    AMessage2 + sLineBreak + sLineBreak +
-    ASafeUrl);
+  WarnUser(AMessage + sLineBreak + AMessage2 + sLineBreak + sLineBreak + ASafeUrl);
 end;
 
 procedure TFormMain.ButtonStartScrapeClick(Sender: TObject);
@@ -3672,18 +3852,7 @@ begin
   ClearScrapeMedia;
   StopGameVideo;
 
-  if FProxyUse then
-  begin
-    NetHTTPClientScrape.ProxySettings := TProxySettings.Create(
-      FProxyServer,
-      StrToInt(FProxyPort),
-      FProxyUser,
-      FProxyPwd);
-  end
-  else
-  begin
-    NetHTTPClientScrape.ProxySettings := TProxySettings.Create('', 0, '', '');
-  end;
+  NetHTTPClientScrape.ProxySettings := CreateProxySettings;
 
   ImageScrapeLoading.Visible := True;
   Application.ProcessMessages;
@@ -3698,6 +3867,13 @@ begin
     else
       ImageScrapeLoading.Visible := False;
   end;
+end;
+
+procedure TFormMain.ButtonSystemsOptionsClick(Sender: TObject);
+begin
+  PopupMenuSystemsOptions.PopupComponent := ButtonSystemsOptions;
+  var Pos := ButtonSystemsOptions.LocalToScreen(PointF(0, 0));
+  PopupMenuSystemsOptions.Popup(Pos.X, Pos.Y + ButtonSystemsOptions.Height);
 end;
 
 procedure TFormMain.ButtonScrapeSaveClick(Sender: TObject);
@@ -3725,13 +3901,46 @@ begin
   EditScrapeCRC.Enabled := CheckBoxManualCRC.IsChecked;
 end;
 
+procedure TFormMain.CheckBoxSetAutohashChange(Sender: TObject);
+begin
+  AutoHash := CheckBoxSetAutohash.IsChecked;
+end;
+
+procedure TFormMain.CheckBoxSetGenesisLogoChange(Sender: TObject);
+begin
+  GenesisLogo := CheckBoxSetGenesisLogo.IsChecked;
+  if not CheckBoxSetGenesisLogo.IsUpdating then
+    BuildSystemsList(True);
+end;
+
+procedure TFormMain.CheckBoxSetGodModeChange(Sender: TObject);
+begin
+  GodMode := CheckBoxSetGodMode.IsChecked;
+end;
+
+procedure TFormMain.CheckBoxSetOpenLastFolderChange(Sender: TObject);
+begin
+  OpenLastFolder := CheckBoxSetOpenLastFolder.IsChecked;
+end;
+
+procedure TFormMain.CheckBoxSetPiPromptsChange(Sender: TObject);
+begin
+  PiPrompts := CheckBoxSetPiPrompts.IsChecked;
+end;
+
+procedure TFormMain.CheckBoxSetShowTipsChange(Sender: TObject);
+begin
+  ShowTips := CheckBoxSetShowTips.IsChecked;
+end;
+
 procedure TFormMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  StopGameVideo;
   SaveToIni;
   if FPiLoadedOnce then
   begin
-    if not FPiPrompts then
-      MyMessageDlg(Rst_RebootRecal, TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], [Rst_Ok], Rst_Info);
+    if not PiPrompts then
+      MyMessageDlg(Rst_Info, Rst_RebootRecal, [Rst_Ok]);
     if FSysIsRecal then
       StopOrStartES(False, True)
     else
@@ -3739,15 +3948,10 @@ begin
   end;
 end;
 
-procedure TFormMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-begin
-  StopGameVideo;
-end;
-
 procedure TFormMain.FormDestroy(Sender: TObject);
 begin
   FPdfViewer.Free;
-  GSystemList.Free;
+  FSystemList.Free;
 
   FImgList.Free;
   FInfosList.Free;
